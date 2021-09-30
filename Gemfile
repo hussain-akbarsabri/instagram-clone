@@ -69,3 +69,5 @@ group :development, :test do
   gem 'rubocop-rails'
   gem 'rubocop-rspec' # or gem 'rubocop-minitest' depending on your test suite
 end
+
+gem 'devise'

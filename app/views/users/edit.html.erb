@@ -1,12 +1,6 @@
-<h1> <%= @user.email %> </h1>
-<h1> <%= @user.username %> </h1>
-<h1> 0 Posts </h1>
-<h1> 0 followers </h1>
-<h1> 0 following </h1>
+<h1> <%= @user.email%> </h1>
+<h1> <%= @user.username%> </h1>
 
-<div>
-<%= image_tag @user.image %>
-</div>
 <%= form_with(model: @user, local: true) do |form| %>
   
   <div class="field">

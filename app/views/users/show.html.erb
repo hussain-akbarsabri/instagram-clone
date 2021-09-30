@@ -1,21 +1,44 @@
-<h1> <%= @user.email %> </h1>
-<h1> <%= @user.username %> </h1>
-<h1> 0 Posts </h1>
-<h1> 0 followers </h1>
-<h1> 0 following </h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <%= image_tag @user.image, class: "img-circle" if @user.image.attached? %>
+    </div>
+    <div class="col-sm-8">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <h1> <%= @user.username %> </h1>
+          </div>
+          <div class="col-md-1">
+            <button class="btn"><%= link_to 'Edit', edit_user_path(@user) %></button>
+          </div>
+        </div>
+      </div>
 
-<div>
-<%= image_tag @user.image %>
-</div>
-<%= form_with(model: @user, local: true) do |form| %>
-  
-  <div class="field">
-    <%= form.label :image %><br />
-    <%= form.file_field :image, autofocus: true, autocomplete: "image" %>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <h3> 0 Posts </h3>
+          </div>
+          <div class="col-md-2">
+            <h3> 0 followers </h3>
+          </div>
+          <div class="col-md-2">
+            <h3> 0 following </h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <h3> <%= @user.name %> </h3>
+          </div>
+          <div class="col-md-2">
+            <h4> <%= @user.bio %> </h4>
+          </div>
+        </div>
+      </div>
+
   </div>
- 
-  <p>
-    <%= form.submit %>
-  </p>
- 
-<% end %>
+</div>

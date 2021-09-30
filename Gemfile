@@ -70,5 +70,6 @@ group :development, :test do
   gem 'rubocop-rspec' # or gem 'rubocop-minitest' depending on your test suite
 end
 
+gem 'bootstrap-sass'
 gem 'devise'
 gem 'pg'

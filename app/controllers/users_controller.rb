@@ -2,6 +2,8 @@
 
 class UsersController < ApplicationController
   before_action :configure_permitted_parameters, only: [:create]
+  skip_before_action :verify_authenticity_token
+
   def index
     @users = User.all
   end

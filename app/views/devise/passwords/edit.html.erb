@@ -1,27 +1,36 @@
-<div class="main-content">
-  <%= image_tag "instagram_image"  %>
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-    <%= f.hidden_field :reset_password_token %>
-
-    <div class="field">
-      <br>
-      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "New Password", class: "input-1" %>
-    </div>
-
-    <div class="field">
-      <br>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm New Password", class: "input-1" %>
-    </div>
-
-    <div class="actions">
-      <br>
-      <%= f.submit "Change my password", class: "btn btn-primary" %>
-    </div>
-  <% end %>
-</div>
-
 <br>
-<div class="secondary-content">
-  <%= render "devise/shared/links" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-7">
+      <div class="main-content">
+        <%= image_tag "instagram_image"  %>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <%= f.hidden_field :reset_password_token %>
+
+          <div class="field">
+            <br>
+            <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "New Password", class: "input-1" %>
+          </div>
+
+          <div class="field">
+            <br>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm New Password", class: "input-1" %>
+          </div>
+
+          <div class="actions">
+            <br>
+            <%= f.submit "Change my password", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+
+      <br>
+      <div class="secondary-content">
+        <%= render "devise/shared/links" %>
+      </div>
+  </div>
 </div>

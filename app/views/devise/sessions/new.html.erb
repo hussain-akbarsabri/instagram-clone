@@ -1,25 +1,39 @@
-<div class="main-content">
-  <%= image_tag "instagram_image"  %>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-1">
       <br>
-      <%= f.email_field :email, autocomplete: "email", placeholder: "Email", class: "input-1" %>
+      <%= image_tag "sign_in_page"  %>
     </div>
+    <div class="col-md-7">
+      <div class="main-content">
+        <%= image_tag "instagram_image"  %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <br>
+            <%= f.email_field :email, autocomplete: "email", placeholder: "Email", class: "input-1" %>
+          </div>
 
-    <div class="field">
+          <div class="field">
+            <br>
+            <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "input-1" %>
+          </div>
+
+          <br>
+          <div class="actions">
+            <%= f.submit "Log in", class: "btn btn-primary" %>
+          </div>
+
+        <% end %>
+      </div>
+
       <br>
-      <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "input-1" %>
+      <div class="secondary-content">
+        <%= render "devise/shared/links" %>
+      </div>
     </div>
-
-    <br>
-    <div class="actions">
-      <%= f.submit "Log in", class: "btn btn-primary" %>
-    </div>
-
-  <% end %>
-</div>
-
-<br>
-<div class="secondary-content">
-  <%= render "devise/shared/links" %>
+  </div>
 </div>

@@ -1,21 +1,30 @@
-<div class="main-content">
-  <%= image_tag "instagram_image"  %>
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-
-    <div class="field">
-      <br>
-      <%= f.email_field :email, autocomplete: "email", placeholder: "Email", class: "input-1" %>
-    </div>
-
-    <div class="actions">
-      <br>
-      <%= f.submit "Send me reset link", class: "btn btn-primary" %>
-    </div>
-  <% end %>
-</div>
-
 <br>
-<div class="secondary-content">
-  <%= render "devise/shared/links" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-7">
+      <div class="main-content">
+        <%= image_tag "instagram_image"  %>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <br>Enter your email and we'll send you a link to get back into your account.
+          <div class="field">
+            <br>
+            <%= f.email_field :email, autocomplete: "email", placeholder: "Email", class: "input-1" %>
+          </div>
+
+          <div class="actions">
+            <br>
+            <%= f.submit "Send me reset link", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+
+      <br>
+      <div class="secondary-content">
+        <%= render "devise/shared/links" %>
+      </div>
+  </div>
 </div>

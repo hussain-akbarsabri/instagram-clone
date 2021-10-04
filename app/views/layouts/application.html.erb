@@ -29,10 +29,9 @@
 
             <div class="col-md-4">
               <% if user_signed_in? %>
-                <i class="fas fa-home"></i>
-                <i class="far fa-heart"></i>
-                <%= link_to 'Users', users_path %>
-                <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
+                <%= link_to '<i class="fas fa-home"></i> Feed'.html_safe, users_path, class: "btn" %>
+                <%= link_to "#{current_user.name}", user_path(current_user), class: "btn" %>
+                <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn" %>
               <% else %>
                 <%= link_to 'Sign In', new_user_session_path %>
                 <%= link_to 'Sign Up', new_user_registration_path %>

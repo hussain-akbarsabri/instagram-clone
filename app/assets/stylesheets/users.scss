@@ -25,3 +25,26 @@
   border: 2px solid #e6e6e6;
   padding: 10px 20px;
 }
+
+header {
+  border: 1px solid #edeeee;
+  .row {
+    display: flex;
+    align-items: center;
+  }
+  .header-logo {
+    img {
+     max-width: 130px;
+    }
+  }
+  .header-search {
+    text-align: center;
+    input {
+      border-radius: 2px;
+      background-color: #fafafa;
+      border: 1px solid #edeeee;
+      text-align: center;
+      padding: 5px 30px;
+    }
+  }
+}

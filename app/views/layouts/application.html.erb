@@ -7,34 +7,53 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/0cefdc3d31.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <header>
+        <div class="container">
+          <div class="row">
+
+            <div class="col-md-1">
+            </div>
+
+            <div class="col-md-2 header-logo">
+                <%= image_tag "instagram_logo"  %>
+            </div>
+
+            <div class="col-md-5 header-search">
+              <input type="text" name="Search" placeholder="Search"/>
+            </div>
+
+            <div class="col-md-4">
+              <% if user_signed_in? %>
+                <i class="fas fa-home"></i>
+                <i class="far fa-heart"></i>
+                <%= link_to 'Users', users_path %>
+                <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
+              <% else %>
+                <%= link_to 'Sign In', new_user_session_path %>
+                <%= link_to 'Sign Up', new_user_registration_path %>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+      </header>
+    <% else %>
+      <%= link_to 'Sign In', new_user_session_path %>
+      <%= link_to 'Sign Up', new_user_registration_path %>
+    <% end %>
+
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
     <% end %>
     <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
-    <% if user_signed_in? %>
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#"><%= image_tag "logo"  %></a>
 
-          </div>
-          <ul class="nav navbar-nav">
-            <li> <%= link_to 'Users', users_path %> </li>
-
-              <li> <%= link_to 'Sign In', new_user_session_path %> </li>
-
-              <li> <%= link_to 'Sign Up', new_user_registration_path %> </li>
-
-              <li> <%= link_to 'Logout', destroy_user_session_path, :method => :delete %> </li>
-          </ul>
-        </div>
-      </nav>
-    <% end %>
     <%= yield %>
   </body>
 </html>

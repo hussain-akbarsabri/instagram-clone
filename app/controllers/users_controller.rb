@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :configure_permitted_parameters, only: [:create]
   skip_before_action :verify_authenticity_token
   before_action :set_user, only: %i[show edit update destroy]
 
@@ -39,10 +37,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation) }
-  end
 
   def user_params
     params.require(:user).permit(:username, :name, :bio, :image)

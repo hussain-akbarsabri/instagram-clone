@@ -30,7 +30,7 @@
             <div class="col-md-4">
               <% if user_signed_in? %>
                 <%= link_to '<i class="fas fa-home"></i> Feed'.html_safe, users_path, class: "btn" %>
-                <%= link_to "#{current_user.name}", user_path(current_user), class: "btn" %>
+                <%= link_to "#{current_user.username}", user_path(current_user), class: "btn" %>
                 <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn" %>
               <% else %>
                 <%= link_to 'Sign In', new_user_session_path %>

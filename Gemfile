@@ -73,3 +73,4 @@ end
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'pg'
+gem 'pundit'

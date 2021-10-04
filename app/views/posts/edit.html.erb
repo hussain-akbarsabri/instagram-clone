@@ -1,0 +1,17 @@
+<%= form_with(model: @post, local: true) do |form| %>
+  <div class="field">
+    <%= form.file_field :image, autofocus: true, autocomplete: "image" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Caption %><br />
+    <%= form.text_field :caption, autofocus: true, autocomplete: "caption" %>
+  </div>
+
+  
+
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>

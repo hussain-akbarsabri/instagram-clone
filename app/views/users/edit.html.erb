@@ -1,0 +1,27 @@
+<%= image_tag @user.image, class: "img-circle" if @user.image.attached? %>
+
+<%= form_with(model: @user, local: true) do |form| %>
+  <div class="field">
+    <%= form.file_field :image, autofocus: true, autocomplete: "image" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %><br />
+    <%= form.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :username %><br />
+    <%= form.text_field :username, autofocus: true, autocomplete: "username" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bio %><br />
+    <%= form.text_field :bio, autofocus: true, autocomplete: "bio" %>
+  </div>
+
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>

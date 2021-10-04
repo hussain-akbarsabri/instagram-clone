@@ -1,0 +1,50 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.main-content {
+  width: 50%;
+  margin: 15% 0% 0% 50%;
+  background-color: #fff;
+  border: 2px solid #e6e6e6;
+  padding: 40px 50px;
+}
+
+.input-1 {
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 8px 12px;
+  border: 1px solid #dbdbdb;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+.secondary-content {
+  width: 50%;
+  margin: 0% 0% 0% 50%;
+  border: 2px solid #e6e6e6;
+  padding: 10px 20px;
+}
+
+header {
+  border: 1px solid #edeeee;
+  .row {
+    display: flex;
+    align-items: center;
+  }
+  .header-logo {
+    img {
+     max-width: 130px;
+    }
+  }
+  .header-search {
+    text-align: center;
+    input {
+      border-radius: 2px;
+      background-color: #fafafa;
+      border: 1px solid #edeeee;
+      text-align: center;
+      padding: 5px 30px;
+    }
+  }
+}

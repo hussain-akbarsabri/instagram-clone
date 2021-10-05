@@ -8,14 +8,16 @@ class PostsController < ApplicationController
   end
 
   def new
+    @user = User.find(params[:user_id])
     @post = Post.new
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
+    # @post = Post.new(post_params.merge(user_id: current_user.id))
 
     if @post.save
-      redirect_to @post
+      redirect_to user_post_path(current_user, @post)
     else
       render 'new'
     end

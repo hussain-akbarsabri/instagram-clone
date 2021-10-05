@@ -3,18 +3,12 @@
     <div class="col-md-4">
       <%= image_tag @user.image, class: "img-circle" if @user.image.attached? %>
     </div>
-    <div class="col-sm-8">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
+    
+          <div class="">
             <h1> <%= @user.username %> </h1>
-          </div>
-          <div class="col-md-1">
-            <button class="btn"><%= link_to 'Edit', edit_user_path(@user) %></button>
-          </div>
-        </div>
-      </div>
-
+            <%= link_to 'New Post', new_user_post_path(@user), class: "btn" %>
+            <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn" %>
+    
       <div class="container">
         <div class="row">
           <div class="col-md-2">
@@ -31,9 +25,10 @@
 
       <div class="container">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-5">
             <h3> <%= @user.name %> </h3>
           </div>
+
           <div class="col-md-2">
             <h4> <%= @user.bio %> </h4>
           </div>
@@ -42,3 +37,18 @@
 
   </div>
 </div>
+
+<hr><hr>
+
+<% @posts.each do |post| %>
+  <br><br><br>
+  <b>Created by <%= post.user.username %></b>
+  <p>Caption: <%= post.caption %></p>
+  <%= image_tag post.image if post.image.attached? %>
+  <br>
+  <%= link_to 'Show This Post', post_path(post) %>
+  <br>
+  <%= link_to 'Edit This Post', edit_post_path(post) %>
+  <br>
+  <%= link_to 'Delete This Post', post_path(post, post.user.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

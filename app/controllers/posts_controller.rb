@@ -13,11 +13,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params)
-    # @post = Post.new(post_params.merge(user_id: current_user.id))
+    @post = current_user.posts.new(post_params)
 
     if @post.save
-      redirect_to user_post_path(current_user, @post)
+      redirect_to @post
     else
       render 'new'
     end
@@ -25,7 +24,9 @@ class PostsController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    @post.save
+  end
 
   def update
     if @post.update(post_params)
@@ -38,7 +39,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
 
-    redirect_to posts_path
+    redirect_to user_path(params[:format])
   end
 
   private

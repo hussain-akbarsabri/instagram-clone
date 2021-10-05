@@ -1,4 +1,4 @@
-<%= form_for [@post, @user] do |form| %>
+<%= form_for @post do |form| %>
   <div class="field">
     <%= form.file_field :image, autofocus: true, autocomplete: "image" %>
   </div>
@@ -7,8 +7,6 @@
     <%= form.label :Caption %><br />
     <%= form.text_field :caption, autofocus: true, autocomplete: "caption" %>
   </div>
-
-  
 
   <p>
     <%= form.submit %>

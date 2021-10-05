@@ -16,9 +16,11 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
 
     if @post.save
+      flash[:notice] = 'post has created.'
       redirect_to @post
     else
-      render 'new'
+      flash[:alert] = @post.errors
+      redirect_to new_user_post_path
     end
   end
 

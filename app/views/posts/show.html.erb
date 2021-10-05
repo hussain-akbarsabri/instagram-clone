@@ -1,2 +1,7 @@
+posted by <%= @post.user.username %>
+
 <h1> <%= @post.caption %> </h1>
 <%= image_tag @post.image %>
+
+<br>
+<%= link_to 'Edit This Post', edit_user_post_path(@post) %>

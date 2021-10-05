@@ -9,8 +9,11 @@
           <div class="col-md-4">
             <h1> <%= @user.username %> </h1>
           </div>
-          <div class="col-md-1">
-            <button class="btn"><%= link_to 'Edit', edit_user_path(@user) %></button>
+          <div class="col-md-3">
+            <br>
+            <%= link_to 'New Post', new_user_post_path(@user), class: "btn" %>
+            <%= link_to 'Edit', edit_user_path(@user), class: "btn" %>
+            <%= link_to 'Show All Posts', user_posts_path(@user) %>
           </div>
         </div>
       </div>
@@ -34,6 +37,7 @@
           <div class="col-md-3">
             <h3> <%= @user.name %> </h3>
           </div>
+
           <div class="col-md-2">
             <h4> <%= @user.bio %> </h4>
           </div>
@@ -42,3 +46,17 @@
 
   </div>
 </div>
+
+
+<% @posts.each do |post| %>
+  <br><br><br>
+  <b>posted by <%= post.user.username %></b>
+  <p><%= post.caption %></p>
+  <%= image_tag post.image %>
+  <br>
+  <%= link_to 'Show This Post', user_post_path(post) %>
+  <br>
+  <%= link_to 'Edit This Post', edit_user_post_path(post) %>
+  <br>
+  <%= link_to 'Delete This Post', edit_user_post_path(post) %>
+<% end %>

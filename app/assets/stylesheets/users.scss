@@ -2,65 +2,54 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.main-content {
-  width: 50%;
-  margin: 15% 0% 0% 50%;
-  background-color: #fff;
-  border: 2px solid #e6e6e6;
-  padding: 40px 50px;
-}
-
-.input-1 {
-  width: 100%;
-  margin-bottom: 5px;
-  padding: 8px 12px;
-  border: 1px solid #dbdbdb;
-  box-sizing: border-box;
-  border-radius: 3px;
-}
-
-.secondary-content {
-  width: 50%;
-  margin: 0% 0% 0% 50%;
-  border: 2px solid #e6e6e6;
-  padding: 10px 20px;
-}
-
 header {
   border: 1px solid #edeeee;
-  .row {
-    display: flex;
-    align-items: center;
-  }
   .header-logo {
     img {
      max-width: 130px;
     }
   }
   .header-search {
-    text-align: center;
     input {
-      border-radius: 2px;
+      margin-top: 2%;
       background-color: #fafafa;
       border: 1px solid #edeeee;
       text-align: center;
       padding: 5px 30px;
     }
   }
+  .navbar_margin {
+    margin-top: 0.5%;
+  }
+}
+
+.user-images {
+  float: left;
+  margin: 0 20px 0px 2.5%;
+  .wrapper{
+    width: 280px;
+    height: 280px;
+    margin: 15px;
+    img{
+      width: 100%;
+      border-radius: 2%;
+    }
+  }
+}
+
+.form-edit-user{
+  padding: 30px 100px 10px 50px;
+  .col-form-label{
+    text-align: right;
+    font-weight: 600;
+  }
+  .username{
+    font-size: 35px;
+  }
 }
 
 .btn {
   color: inherit;
-}
-
-.profile {
-  padding: 5rem 0;
-}
-
-.profile::after {
-  content: "";
-  display: block;
-  clear: both;
 }
 
 .profile-image {
@@ -117,32 +106,4 @@ header {
 .profile-stat-count,
 .profile-edit-btn {
     font-weight: 600;
-}
-
-.user-images{
-  float: left;
-  margin: 0 20px 0px 8.5%;
-  .wrapper{
-    width: 280px;
-    height: 280px;
-    margin: 15px;
-    img{
-      width: 100%;
-      border-radius: 2%;
-    }
-  }
-}
-
-.form-edit-user{
-  padding: 30px 100px 10px 50px;
-  .col-form-label{
-    text-align: right;
-    font-weight: 600;
-  }
-  .username{
-    font-size: 35px;
-  }
-  input[type='submit']{
-    color: white;
-  }
 }

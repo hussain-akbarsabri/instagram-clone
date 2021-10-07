@@ -1,48 +1,31 @@
-<br>
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
-
+    <div class="col-md-2"></div>
+    <div class="col-md-5">
+      <br><br><br> <%= image_tag "instagram_mobile" %>
     </div>
-    <div class="col-md-1">
-      <br><br>
-      <%= image_tag "sign_in_page"  %>
-    </div>
-    <div class="col-md-7">
-      <div class="main-content">
-        <%= image_tag "instagram_image"  %>
+    <div class="col-md-3">
+      <div class="">
+        <br><br><br><br><br><br><br><br> <%= image_tag "login_logo" %>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
-
           <div class="field">
-            <br />
-            <%= f.email_field :email, autocomplete: "email", placeholder: "Email", class: "input-1" %>
+            <br><%= f.email_field :email, placeholder: "Email", class: "form-control" %>
           </div>
-
           <div class="field">
-            <br>
-            <%= f.text_field :username, autocomplete: "username", placeholder: "Username", class: "input-1" %>
+            <br><%= f.text_field :username, placeholder: "Username", class: "form-control" %>
           </div>
-
           <div class="field">
-            <br>
-            <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "input-1" %>
+            <br><%= f.password_field :password, placeholder: "Password", class: "form-control" %>
           </div>
-
           <div class="field">
-            <br>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password Confirmation", class: "input-1" %>
+            <br><%= f.password_field :password_confirmation, placeholder: "Password Confirmation", class: "form-control" %>
           </div>
-
-          <br>
           <div class="actions">
-            <%= f.submit "Sign up", class: "btn btn-primary" %>
+            <br><%= f.submit "Sign up", class: "btn btn-primary" %>
           </div>
         <% end %>
       </div>
-      <br>
-      <div class="secondary-content">
-        <%= render "devise/shared/links" %>
-      </div>
+      <br><%= render "devise/shared/links" %>
   </div>
 </div>

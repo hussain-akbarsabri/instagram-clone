@@ -1,45 +1,34 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token, only: %i[edit update]
   before_action :set_user, only: %i[show edit update destroy]
 
   def index
-    @users = if current_user.status == 'nil'
-               User.all.where(status: 'nil')
-             else
-               User.all
-             end
+    @users = User.all
   end
 
-  def create
-    @user = User.new(configure_permitted_parameters)
-
-    if @user.save
-      redirect_to @user
-    else
-      render 'new'
-    end
-  end
-
-  def show
-    @posts = @user.posts.order("created_at DESC")
-  end
+  def show; end
 
   def edit; end
 
   def update
     if @user.update(user_params)
+      flash[:notice] = 'User updated successfully.'
       redirect_to @user
     else
+      flash[:error] = @user.errors
       render 'edit'
     end
   end
 
   def destroy
-    @user.destroy
-
-    redirect_to users_path
+    if @user.destroy
+      flash[:notice] = 'User deleted successfully.'
+      redirect_to @user
+    else
+      flash[:error] = @user.errors
+    end
   end
 
   private

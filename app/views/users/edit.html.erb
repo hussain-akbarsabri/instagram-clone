@@ -1,7 +1,7 @@
 <%= form_with model: @user, local: true, html: {class: "form-horizontal form-edit-user"} do |f| %>
   <div class="form-group row">
     <div class="col-sm-3 col-form-label">
-      <%= image_tag @user.image, class: "img-circle profile-image", style: "margin-left: 60%;" %>
+      <%= image_tag(@user.image, class: "img-circle profile-image", style: "margin-left: 60%;") if @user.image.attached?%>
     </div>
     <div class="col-sm-9">
       <br><p class="username"><%=current_user.username %></p>

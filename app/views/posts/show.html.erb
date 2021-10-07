@@ -28,7 +28,6 @@
       </tr>
       <br>
       <% end %>
-
       <%= link_to "Add Comment", new_post_comment_path(@post) %>
       <br>
       <% if current_user.id == @post.user_id %>

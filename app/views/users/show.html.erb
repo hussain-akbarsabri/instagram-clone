@@ -1,15 +1,16 @@
 <header>
+  <br><br>
   <div class="container">
     <div class="profile">
       <div class="profile-image">
-        <%= image_tag @user.image %>
+        <%= image_tag @user.image if @user.image.attached? %>
       </div>
         <h1 class="profile-user-name"><%= @user.username %></h1>
          <%= link_to 'New Post', new_user_post_path(@user), class: "btn profile-edit-btn" %>
          <%= link_to '<i class="fas fa-cog"></i>'.html_safe, edit_user_path(@user), class: "btn" %>
       <div class="profile-stats">
         <ul>
-          <li><span class="profile-stat-count"><%= @posts.count %></span> posts</li>
+          <li><span class="profile-stat-count"><%= @user.posts.count %></span> posts</li>
           <li><span class="profile-stat-count">0</span> followers</li>
           <li><span class="profile-stat-count">0</span> following</li>
         </ul>
@@ -17,8 +18,10 @@
       <div class="profile-bio">
         <p><span class="profile-real-name"><%= @user.name %></span> <%= @user.bio %></p>
       </div>
+
     </div>
   </div>
+  <br><br>
 </header>
 <br>
-<%= render partial: '/posts/single_post', collection: @posts, as: :post %>
+<%= render partial: '/posts/single_post', collection: @user.posts, as: :post %>

@@ -3,10 +3,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
-  def index
-    @posts = Post.all.includes(:comments)
-  end
-
   def new
     @post = Post.new
   end
@@ -15,43 +11,44 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
 
     if @post.save
-      flash[:notice] = 'Post has successfully created.'
+      flash[:notice] = 'Post created successfully.'
       redirect_to user_path(params[:user_id])
     else
-      flash[:alert] = @post.errors
+      flash[:error] = @post.errors
       redirect_to new_user_post_path
     end
   end
 
   def show; end
 
-  def edit
-    @post.save
-  end
+  def edit; end
 
   def update
-    authorize @post
     if @post.update(post_params)
-      flash[:success] = 'Post has been successfully updated.'
+      flash[:notice] = 'Post updated successfully.'
       redirect_to @post
     else
+      flash[:error] = @post.errors
       render 'edit'
     end
   end
 
   def destroy
-    @post.destroy
-    flash[:danger] = 'Post has been successfully deleted.'
-    redirect_to user_path(params[:format])
+    if @post.destroy
+      flash[:notice] = 'Post deleted successfully.'
+      redirect_to user_path(params[:format])
+    else
+      flash[:error] = @post.errors
+    end
   end
 
   private
 
-  def set_post
-    @post = Post.find(params[:id])
-  end
-
   def post_params
     params.require(:post).permit(:caption, :image)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end

@@ -1,27 +1,64 @@
-<%= image_tag @user.image, class: "img-circle" if @user.image.attached? %>
-
-<%= form_with(model: @user, local: true) do |form| %>
-  <div class="field">
-    <%= form.file_field :image, autofocus: true, autocomplete: "image" %>
+<%= form_with model: @user, local: true, html: {class: "form-horizontal form-edit-user"} do |f| %>
+  <div class="form-group row">
+    <div class="col-sm-3 col-form-label">
+      <%= image_tag(@user.image, class: "img-circle profile-image", style: "margin-left: 60%;") if @user.image.attached?%>
+    </div>
+    <div class="col-sm-9">
+      <br><p class="username"><%=current_user.username %></p>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :name %><br />
-    <%= form.text_field :name, autofocus: true, autocomplete: "name" %>
+  <div class="form-group row">
+    <%= f.label :name, class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-7">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :username %><br />
-    <%= form.text_field :username, autofocus: true, autocomplete: "username" %>
+  <div class="form-group row">
+    <%= f.label :username, class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-7">
+      <%= f.text_field :username, class: 'form-control' %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :bio %><br />
-    <%= form.text_field :bio, autofocus: true, autocomplete: "bio" %>
+  <div class="form-group row">
+    <%= f.label :bio, class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-7">
+      <%= f.text_area :bio, class: 'form-control' %>
+    </div>
   </div>
-
-  <p>
-    <%= form.submit %>
-  </p>
- 
+  <div class="form-group row">
+    <%= f.label :email, class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-7">
+      <%= f.text_field :email, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :mobile_number, class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-7">
+      <%= f.text_field :mobile_number, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :status, class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-3">
+      <%= f.label :public, class: 'col-sm-3 col-form-label' %>
+      <%= f.radio_button :autolyse, true %>
+    </div>
+    <div class="col-sm-3">
+      <%= f.label :private, class: 'col-sm-3 col-form-label' %>
+      <%= f.radio_button :autolyse, true %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :Image, class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-7">
+    <%= f.file_field :image, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-9">
+      <%= f.submit "Submit", class: 'btn btn-primary' %>
+    </div>
+  </div>
 <% end %>

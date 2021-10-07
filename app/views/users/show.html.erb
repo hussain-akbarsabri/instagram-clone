@@ -1,54 +1,27 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <%= image_tag @user.image, class: "img-circle" if @user.image.attached? %>
+<header>
+  <br><br>
+  <div class="container">
+    <div class="profile">
+      <div class="profile-image">
+        <%= image_tag @user.image if @user.image.attached? %>
+      </div>
+        <h1 class="profile-user-name"><%= @user.username %></h1>
+         <%= link_to 'New Post', new_user_post_path(@user), class: "btn profile-edit-btn" %>
+         <%= link_to '<i class="fas fa-cog"></i>'.html_safe, edit_user_path(@user), class: "btn" %>
+      <div class="profile-stats">
+        <ul>
+          <li><span class="profile-stat-count"><%= @user.posts.count %></span> posts</li>
+          <li><span class="profile-stat-count">0</span> followers</li>
+          <li><span class="profile-stat-count">0</span> following</li>
+        </ul>
+      </div>
+      <div class="profile-bio">
+        <p><span class="profile-real-name"><%= @user.name %></span> <%= @user.bio %></p>
+      </div>
+
     </div>
-    
-          <div class="">
-            <h1> <%= @user.username %> </h1>
-            <%= link_to 'New Post', new_user_post_path(@user), class: "btn" %>
-            <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn" %>
-    
-      <div class="container">
-        <div class="row">
-          <div class="col-md-2">
-            <h3> 0 Posts </h3>
-          </div>
-          <div class="col-md-2">
-            <h3> 0 followers </h3>
-          </div>
-          <div class="col-md-2">
-            <h3> 0 following </h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-5">
-            <h3> <%= @user.name %> </h3>
-          </div>
-
-          <div class="col-md-2">
-            <h4> <%= @user.bio %> </h4>
-          </div>
-        </div>
-      </div>
-
   </div>
-</div>
-
-<hr><hr>
-
-<% @posts.each do |post| %>
-  <br><br><br>
-  <b>Created by <%= post.user.username %></b>
-  <p>Caption: <%= post.caption %></p>
-  <%= image_tag post.image if post.image.attached? %>
-  <br>
-  <%= link_to 'Show This Post', post_path(post) %>
-  <br>
-  <%= link_to 'Edit This Post', edit_post_path(post) %>
-  <br>
-  <%= link_to 'Delete This Post', post_path(post, post.user.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+  <br><br>
+</header>
+<br>
+<%= render partial: '/posts/single_post', collection: @user.posts, as: :post %>

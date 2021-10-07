@@ -2,49 +2,108 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.main-content {
-  width: 50%;
-  margin: 15% 0% 0% 50%;
-  background-color: #fff;
-  border: 2px solid #e6e6e6;
-  padding: 40px 50px;
-}
-
-.input-1 {
-  width: 100%;
-  margin-bottom: 5px;
-  padding: 8px 12px;
-  border: 1px solid #dbdbdb;
-  box-sizing: border-box;
-  border-radius: 3px;
-}
-
-.secondary-content {
-  width: 50%;
-  margin: 0% 0% 0% 50%;
-  border: 2px solid #e6e6e6;
-  padding: 10px 20px;
-}
-
 header {
   border: 1px solid #edeeee;
-  .row {
-    display: flex;
-    align-items: center;
-  }
   .header-logo {
     img {
      max-width: 130px;
     }
   }
   .header-search {
-    text-align: center;
     input {
-      border-radius: 2px;
+      margin-top: 2%;
       background-color: #fafafa;
       border: 1px solid #edeeee;
       text-align: center;
       padding: 5px 30px;
     }
   }
+  .navbar_margin {
+    margin-top: 0.5%;
+  }
+}
+
+.user-images {
+  float: left;
+  margin: 0 20px 0px 2.5%;
+  .wrapper{
+    width: 280px;
+    height: 280px;
+    margin: 15px;
+    img{
+      width: 100%;
+      border-radius: 2%;
+    }
+  }
+}
+
+.form-edit-user{
+  padding: 30px 100px 10px 50px;
+  .col-form-label{
+    text-align: right;
+    font-weight: 600;
+  }
+  .username{
+    font-size: 35px;
+  }
+}
+
+.btn {
+  color: inherit;
+}
+
+.profile-image {
+  float: left;
+  width: calc(33.333% - 1rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3rem;
+}
+
+.profile-image img {
+  border-radius: 50%;
+  height: 220px;
+  width: 220px;
+}
+
+.profile-user-settings,
+.profile-stats,
+.profile-bio {
+  float: left;
+  width: calc(66.666% - 2rem);
+}
+
+.profile-user-name {
+  display: inline-block;
+}
+
+.profile-edit-btn {
+  font-size: 1.4rem;
+  line-height: 1.8;
+  border: 0.1rem solid #dbdbdb;
+  border-radius: 0.3rem;
+  padding: 0 2.4rem;
+  margin-left: 2rem;
+}
+
+.profile-stats {
+  margin-top: 2.3rem;
+}
+
+.profile-stats li {
+  display: inline-block;
+  font-size: 1.6rem;
+  margin-right: 4rem;
+}
+
+.profile-bio {
+  font-size: 1.6rem;
+  margin-top: 2.3rem;
+}
+
+.profile-real-name,
+.profile-stat-count,
+.profile-edit-btn {
+    font-weight: 600;
 }

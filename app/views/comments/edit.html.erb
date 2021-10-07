@@ -1,0 +1,11 @@
+<%= form_for @comment do |form| %>
+  <div class="field">
+    <%= form.label :content %><br />
+    <%= form.text_field :content %>
+  </div>
+
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>

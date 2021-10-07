@@ -11,69 +11,8 @@
   </head>
 
   <body>
-  <% if user_signed_in? %>
-      <header>
-        <div class="container">
-          <div class="row">
-
-            <div class="col-md-1">
-            </div>
-
-            <div class="col-md-2 header-logo">
-                <%= image_tag "instagram_logo"  %>
-            </div>
-
-            <div class="col-md-5 header-search">
-              <input type="text" name="Search" placeholder="Search"/>
-            </div>
-
-            <div class="col-md-4">
-              <% if user_signed_in? %>
-                <%= link_to '<i class="fas fa-home"></i> Feed'.html_safe, root_path, class: "btn" %>
-                <%= link_to "#{current_user.username}", user_path(current_user), class: "btn" %>
-                <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn" %>
-              <% else %>
-                <%= link_to 'Sign In', new_user_session_path %>
-                <%= link_to 'Sign Up', new_user_registration_path %>
-              <% end %>
-            </div>
-
-          </div>
-        </div>
-      </header>
-    <% end %>
-    <!--
-  <div class="row text-dark" style="width:94%;margin-left:3.5rem">
-  <% if notice.present? %>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <%= notice %>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-  <% elsif alert.present? %>
-    <% if alert.is_a? Hash %>
-      <% alert.values.each do |error| %>
-        <div class="alert alert-danger alert-dismissible fade show ml-1" role="alert">
-          <%= error[0] %>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      <% end %>
-    <% else %>
-      <div class="alert alert-danger alert-dismissible fade show ml-1" role="alert">
-        <%= alert %>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    <% end %>
-  <% end %>
-</div>
-
-    -->
-
+    <%= render "layouts/header" %>
+    
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
     <% end %>

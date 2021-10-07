@@ -48,3 +48,101 @@ header {
     }
   }
 }
+
+.btn {
+  color: inherit;
+}
+
+.profile {
+  padding: 5rem 0;
+}
+
+.profile::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.profile-image {
+  float: left;
+  width: calc(33.333% - 1rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3rem;
+}
+
+.profile-image img {
+  border-radius: 50%;
+  height: 220px;
+  width: 220px;
+}
+
+.profile-user-settings,
+.profile-stats,
+.profile-bio {
+  float: left;
+  width: calc(66.666% - 2rem);
+}
+
+.profile-user-name {
+  display: inline-block;
+}
+
+.profile-edit-btn {
+  font-size: 1.4rem;
+  line-height: 1.8;
+  border: 0.1rem solid #dbdbdb;
+  border-radius: 0.3rem;
+  padding: 0 2.4rem;
+  margin-left: 2rem;
+}
+
+.profile-stats {
+  margin-top: 2.3rem;
+}
+
+.profile-stats li {
+  display: inline-block;
+  font-size: 1.6rem;
+  margin-right: 4rem;
+}
+
+.profile-bio {
+  font-size: 1.6rem;
+  margin-top: 2.3rem;
+}
+
+.profile-real-name,
+.profile-stat-count,
+.profile-edit-btn {
+    font-weight: 600;
+}
+
+.user-images{
+  float: left;
+  margin: 0 20px 0px 8.5%;
+  .wrapper{
+    width: 280px;
+    height: 280px;
+    margin: 15px;
+    img{
+      width: 100%;
+      border-radius: 2%;
+    }
+  }
+}
+
+.form-edit-user{
+  padding: 30px 100px 10px 50px;
+  .col-form-label{
+    text-align: right;
+    font-weight: 600;
+  }
+  .username{
+    font-size: 35px;
+  }
+  input[type='submit']{
+    color: white;
+  }
+}

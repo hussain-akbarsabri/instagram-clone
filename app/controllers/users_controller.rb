@@ -5,7 +5,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
   def index
-    @users = User.all
+    @users = if current_user.status == 'nil'
+               User.all.where(status: 'nil')
+             else
+               User.all
+             end
   end
 
   def create
@@ -19,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @posts = @user.posts
+    @posts = @user.posts.order("created_at DESC")
   end
 
   def edit; end
@@ -41,7 +45,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :name, :bio, :image)
+    params.require(:user).permit(:username, :name, :bio, :image, :mobile_number)
   end
 
   def set_user

@@ -3,12 +3,19 @@
 Rails.application.routes.draw do
   root 'posts#index'
   devise_for :users
+<<<<<<< HEAD
 
   resources :users, only: %i[show edit update], shallow: true do
     resources :posts, shallow: true do
       resources :likes, only: %i[create destroy]
       resources :comments, except: %i[index show]
     end
+=======
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'posts#index'
+  resources :users, shallow: true do
+    resources :posts
+>>>>>>> created feed page of instagram
   end
 
   resources :follows do

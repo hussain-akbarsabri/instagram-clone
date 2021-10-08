@@ -11,4 +11,9 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   validates :username, presence: true
+
+  has_many :followers, foreign_key: :following_id, class_name: 'Follow', dependent: :restrict_with_exception,
+                       inverse_of: false
+  has_many :followings, foreign_key: :follower_id, class_name: 'Follow', dependent: :restrict_with_exception,
+                        inverse_of: false
 end

@@ -1,15 +1,30 @@
-<h1>Create New Post</h1>
-<%= form_with(model: @post, url: user_posts_path) do |form| %>
-  <div class="field">
-    <%= form.file_field :image %>
-  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+      <h1>Create New Post</h1>
+      <%= form_with model: @post, url: user_posts_path do |f| %>
+        <div class="form-group row">
+          <%= f.label :caption, class: 'col-sm-3 col-form-label' %>
+          <div class="col-sm-7">
+            <%= f.text_field :caption, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= f.label :Image, class: 'col-sm-3 col-form-label' %>
+          <div class="col-sm-7">
+          <%= f.file_field :image, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm-9">
+            <%= f.submit "Submit", class: 'btn btn-primary' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-  <div class="field">
-    <%= form.label :Caption %><br>
-    <%= form.text_area :caption %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

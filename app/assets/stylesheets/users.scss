@@ -2,15 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-header {
+header{
   border: 1px solid #edeeee;
-  .header-logo {
-    img {
+  .header-logo{
+    img{
      max-width: 130px;
     }
   }
-  .header-search {
-    input {
+  .header-search{
+    input{
       margin-top: 2%;
       background-color: #fafafa;
       border: 1px solid #edeeee;
@@ -18,41 +18,17 @@ header {
       padding: 5px 30px;
     }
   }
-  .navbar_margin {
+  .navbar_margin{
     margin-top: 0.5%;
   }
 }
-
-.user-images {
-  float: left;
-  margin: 0 20px 0px 2.5%;
-  .wrapper{
-    width: 280px;
-    height: 280px;
-    margin: 15px;
-    img{
-      width: 100%;
-      border-radius: 2%;
-    }
-  }
+.col-form-label{
+  text-align: right;
 }
-
-.form-edit-user{
-  padding: 30px 100px 10px 50px;
-  .col-form-label{
-    text-align: right;
-    font-weight: 600;
-  }
-  .username{
-    font-size: 35px;
-  }
-}
-
-.btn {
+.btn{
   color: inherit;
 }
-
-.profile-image {
+.profile-image{
   float: left;
   width: calc(33.333% - 1rem);
   display: flex;
@@ -60,25 +36,21 @@ header {
   align-items: center;
   margin-right: 3rem;
 }
-
-.profile-image img {
+.profile-image img{
   border-radius: 50%;
   height: 220px;
   width: 220px;
 }
-
 .profile-user-settings,
 .profile-stats,
-.profile-bio {
+.profile-bio{
   float: left;
   width: calc(66.666% - 2rem);
 }
-
-.profile-user-name {
+.profile-user-name{
   display: inline-block;
 }
-
-.profile-edit-btn {
+.profile-edit-btn{
   font-size: 1.4rem;
   line-height: 1.8;
   border: 0.1rem solid #dbdbdb;
@@ -86,24 +58,28 @@ header {
   padding: 0 2.4rem;
   margin-left: 2rem;
 }
-
-.profile-stats {
+.profile-stats{
   margin-top: 2.3rem;
 }
-
-.profile-stats li {
+.profile-stats li{
   display: inline-block;
   font-size: 1.6rem;
   margin-right: 4rem;
 }
-
-.profile-bio {
+.profile-bio{
   font-size: 1.6rem;
   margin-top: 2.3rem;
 }
-
 .profile-real-name,
 .profile-stat-count,
-.profile-edit-btn {
-    font-weight: 600;
+.profile-edit-btn{
+  font-weight: 600;
+}
+
+.follow-btn {
+  text-transform: uppercase;
+  margin-left: 20px;
+  &:hover {
+    border-color: inherit;
+  }
 }

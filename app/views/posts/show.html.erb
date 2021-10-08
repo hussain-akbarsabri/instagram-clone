@@ -1,9 +1,14 @@
+<br><br><br><br>
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
-      <%= image_tag @post.image %>
+    <div class="col-md-9">
+      <div class="post">
+        <div class="post-wrapper">
+          <%= image_tag @post.image %>
+        </div>
+      </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <%= image_tag @post.user.image, class: 'img-circle profile-image' %>
       <br><br><br><br><br><br>
       <%= @post.user.username %>

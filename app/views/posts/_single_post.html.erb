@@ -1,5 +1,11 @@
-<div class="user-images">
-  <div class="wrapper">
-    <%= link_to image_tag(post.image), post_path(post), class: "user-images wrapper" %>
+<div class="post">
+  <div class="profile-wrapper">
+  	<div class="post-item">
+	    <div class="post-item-info">
+				<span><%=post.likes.count %></span><i class="fas fa-heart"></i>
+				<span><%=post.comments.count%></span><i class="fas fa-comment"></i>
+			</div>
+			<%= link_to image_tag(post.image), post_path(post) %>
+  	</div>
   </div>
 </div>

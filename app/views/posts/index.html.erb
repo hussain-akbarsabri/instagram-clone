@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <% @followings.each do |user| %> 
   <% @user = User.find(user.following_id) %>
   <%= render partial: '/posts/feed_post', collection: @user.posts, as: :post %>
 <%end%>
+=======
+<%= render partial: '/posts/feed_post', collection: @posts, as: :post %>
+>>>>>>> created feed page of instagram

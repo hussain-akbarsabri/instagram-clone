@@ -39,5 +39,32 @@
         </div>
       </div>
     </div>
+    <div class="col-md-3">
+      <%= image_tag @post.user.image, class: 'img-circle profile-image' if @post.user.image.attached? %>
+      <br><br><br><br><br><br>
+      <%= @post.user.username %>
+      <hr><hr>
+      <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+      <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
+      <% if pre_like %>
+        <%= button_to 'Unlike', post_like_path(@post, pre_like), method: :delete %>
+      <% else %>
+        <%= button_to 'Like', post_likes_path(@post), method: :post %>
+      <% end %>
+      <%= @post.caption %>
+      <br><br>
+      <%= image_tag @post.user.image, class: 'img-circle profile-image' if @post.user.image.attached? %>
+      <br><br><br><br><br>
+      <%= link_to "#{@post.user.username}", user_path(@post.user) %><hr><hr>
+      Caption: <%= @post.caption %><br><br>
+      <%= render 'likes/like' %><br><br>
+      <%= render 'comments/post_comments' %><br>
+      <%= link_to "Add Comment", new_post_comment_path(@post) %><br>
+      <% if post_login(current_user.id, @post.user_id) %>
+        <%= link_to 'Edit This Post', edit_post_path(@post) %>
+        <br>
+        <%= link_to 'Delete This Post', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </div>
   </div>
 </div>

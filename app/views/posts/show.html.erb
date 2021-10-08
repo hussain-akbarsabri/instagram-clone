@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="col-md-3">
-      <%= image_tag @post.user.image, class: 'img-circle profile-image' %>
+      <%= image_tag @post.user.image, class: 'img-circle profile-image' if @post.user.image.attached? %>
       <br><br><br><br><br><br>
       <%= @post.user.username %>
       <hr><hr>

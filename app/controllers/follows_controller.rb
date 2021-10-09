@@ -36,6 +36,7 @@ class FollowsController < ApplicationController
   def check_follower
     @follow = Follow.find_by(following_id: @user.id)
   end
+<<<<<<< HEAD
 
   def send_request_for_private
     return unless @user.status?
@@ -47,4 +48,6 @@ class FollowsController < ApplicationController
     end
     redirect_to user_path(params[:id])
   end
+=======
+>>>>>>> user can follow and unfollow other users
 end

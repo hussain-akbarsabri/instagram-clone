@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   resources :posts, shallow: true do
     resources :comments
   end
-  post 'follow_user/:id', to: 'relationships#follow_user', as: :follow_user
-  post 'unfollow_user/:id', to: 'relationships#unfollow_user', as: :unfollow_user
+  post 'follow_user/:id', to: 'follows#follow_user', as: :follow_user
+  post 'unfollow_user/:id', to: 'follows#unfollow_user', as: :unfollow_user
 end

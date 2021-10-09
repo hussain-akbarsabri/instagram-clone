@@ -9,8 +9,11 @@
           <%= link_to 'New Post', new_user_post_path(@user), class: "btn follow-btn" %>
           <%= link_to '<i class="fas fa-cog"></i>'.html_safe, edit_user_path(@user), class: "btn follow-btn" %>
         <% end %>
-        <%= link_to 'follow', follow_user_path(@user), method: :post, class: "btn follow-btn" %>
-        <%= link_to 'unfollow', unfollow_user_path(@user), method: :post, class: "btn follow-btn" %>
+        <% if !current_user_is_following(current_user.id, @user.id) %>
+          <%= link_to 'follow', follow_user_path(@user), method: :post, class: "btn follow-btn" %>
+        <% else %>
+          <%= link_to 'unfollow', unfollow_user_path(@user), method: :post, class: "btn follow-btn" %>
+        <% end %>
       <div class="profile-stats">
         <ul>
           <li><span class="profile-stat-count"><%= @user.posts.count %></span> posts</li>
@@ -24,5 +27,5 @@
 
     </div>
   </div>
-  <br><hr>
+  <hr>
 <br><%= render partial: '/posts/single_post', collection: @user.posts, as: :post %>

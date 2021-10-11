@@ -93,7 +93,11 @@ ActiveRecord::Schema.define(version: 2021_10_14_184927) do
     t.string "name"
     t.string "username"
     t.string "bio"
+<<<<<<< HEAD
     t.boolean "status", default: false
+=======
+    t.boolean "status"
+>>>>>>> updated type of status from integer to boolean
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

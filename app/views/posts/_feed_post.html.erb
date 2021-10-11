@@ -8,7 +8,8 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3"><br><br><br>
+    <div class="col-md-3">
+      <br><br>
       <%= image_tag post.user.image, class: 'img-circle profile-image' if post.user.image.attached? %>
       <br><br><br><br><br>
       <%= link_to "#{post.user.username}", user_path(post.user) %>

@@ -3,12 +3,11 @@
 class FollowsController < ApplicationController
   before_action :set_user, only: %i[follow_user unfollow_user]
   before_action :check_follower, only: %i[follow_user unfollow_user]
+  before_action :request_for_private, only: %i[follow_user]
 
   def follow_user
     if current_user.id != @user.id
-      if Follow.new(following_id: @user.id, follower_id: current_user.id).save
-        flash[:notice] = 'Follow started.'
-      end
+      flash[:notice] = 'Follow started.' if Follow.new(following_id: @user.id, follower_id: current_user.id).save
     else
       flash[:alert] = 'You cant follow your own account.'
     end
@@ -36,5 +35,9 @@ class FollowsController < ApplicationController
 
   def check_follower
     @follow = Follow.find_by(following_id: @user.id)
+  end
+
+  def request_for_private
+    redirect_to create_request_path(@user), method: :post if @user.status?
   end
 end

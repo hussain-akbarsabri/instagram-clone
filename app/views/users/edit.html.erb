@@ -32,9 +32,9 @@
     <div class="form-group row">
       <%= f.label :status, class: 'col-sm-3 col-form-label' %>
       <div class="col-sm-3">
-        <%= f.radio_button :status, '1' %> 
+        <%= f.radio_button :status, 'true' %> 
         <%= f.label :status, 'private' %>
-        <%= f.radio_button :status, '0' %>
+        <%= f.radio_button :status, 'false' %>
         <%= f.label :status, 'public' %>
       </div>
     </div>

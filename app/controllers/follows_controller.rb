@@ -37,6 +37,7 @@ class FollowsController < ApplicationController
     @follow = Follow.find_by(following_id: @user.id)
   end
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   def send_request_for_private
     return unless @user.status?
@@ -50,4 +51,10 @@ class FollowsController < ApplicationController
   end
 =======
 >>>>>>> user can follow and unfollow other users
+=======
+
+  def request_for_private
+    redirect_to create_request_path(@user), method: :post if @user.status?
+  end
+>>>>>>> user can send a follow request
 end

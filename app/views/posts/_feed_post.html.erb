@@ -8,10 +8,10 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3"><br><br><br>
       <%= image_tag post.user.image, class: 'img-circle profile-image' if post.user.image.attached? %>
-      <br><br><br><br><br><br>
-      <%= post.user.username %>
+      <br><br><br><br><br>
+      <%= link_to "#{post.user.username}", user_path(post.user) %>
       <hr><hr>
       <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
       <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>

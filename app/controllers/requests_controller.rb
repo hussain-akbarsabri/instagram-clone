@@ -26,6 +26,12 @@ class RequestsController < ApplicationController
     redirect_to user_path(params[:id])
   end
 
+  def destroy
+    @request = Request.find_by(following_id: params[:id])
+    flash[:notice] = 'Request deleted' if @request.destroy
+    redirect_to user_path(params[:id])
+  end
+
   private
 
   def set_user

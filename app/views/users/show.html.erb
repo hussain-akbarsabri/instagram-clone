@@ -8,13 +8,14 @@
         <% if current_user.id == @user.id %>
           <%= link_to 'New Post', new_user_post_path(@user), class: "btn follow-btn" %>
           <%= link_to '<i class="fas fa-cog"></i>'.html_safe, edit_user_path(@user), class: "btn follow-btn" %>
-        <% end %>
-        <% if current_user_is_requested(current_user.id, @user.id) %>
-          <%= link_to 'requested', root_path, class: "btn follow-btn" %>
-        <% elsif current_user_is_following(current_user.id, @user.id) %>
-          <%= link_to 'unfollow', unfollow_user_path(@user), method: :post, class: "btn follow-btn" %>
         <% else %>
-           <%= link_to 'follow', follow_user_path(@user), method: :post, class: "btn follow-btn" %>
+          <% if current_user_is_requested(current_user.id, @user.id) %>
+            <%= link_to 'Requested', request_path, method: :delete, class: "btn follow-btn" %>
+          <% elsif current_user_is_following(current_user.id, @user.id) %>
+            <%= link_to 'unfollow', unfollow_user_path(@user), method: :post, class: "btn follow-btn" %>
+          <% else %>
+            <%= link_to 'follow', follow_user_path(@user), method: :post, class: "btn follow-btn" %>
+          <% end %>
         <% end %>
       <div class="profile-stats">
         <ul>

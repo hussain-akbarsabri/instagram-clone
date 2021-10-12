@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class FollowsController < ApplicationController
-  before_action :set_user, only: %i[follow_user unfollow_user]
+  before_action :set_user, only: %i[follow_user unfollow_user send_request_for_private]
   before_action :check_follower, only: %i[follow_user unfollow_user]
-  before_action :request_for_private, only: %i[follow_user]
+  before_action :send_request_for_private, only: %i[follow_user]
 
   def follow_user
     if current_user.id != @user.id
@@ -37,7 +37,7 @@ class FollowsController < ApplicationController
     @follow = Follow.find_by(following_id: @user.id)
   end
 
-  def request_for_private
-    redirect_to create_request_path(@user), method: :post if @user.status?
+  def send_request_for_private
+    redirect_to send_follow_request_path, method: :post if @user.status?
   end
 end

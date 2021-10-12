@@ -7,7 +7,7 @@
   <% @requests.each do |request| %>
     <tr>
       <td><%= request.follower_id %></td>
-      <td><%= link_to 'Accept the request', accept_request_path() %></td>
+      <td><%= link_to 'Accept the request', accept_follow_request_path %></td>
     </tr>
   <% end %>
 </table>

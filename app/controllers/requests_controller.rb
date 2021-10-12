@@ -1,25 +1,29 @@
 # frozen_string_literal: true
 
 class RequestsController < ApplicationController
-  before_action :set_user, only: %i[create show]
+  before_action :set_user, only: %i[send_follow_request accept_follow_request]
 
-  def create
-    @request = Request.new(following_id: @user.id, follower_id: current_user.id)
-
-    if @request.save
-      flash[:notice] = 'Follow Request sent.'
+  def send_follow_request
+    if current_user.id != @user.id
+      flash[:notice] = 'Follow request sent.' if Request.new(following_id: @user.id, follower_id: current_user.id).save
     else
-      flash[:errors] = 'request not sent'
+      flash[:alert] = 'You cant follow your own account.'
     end
-    redirect_to root_path
+    redirect_to user_path(params[:id])
   end
 
   def show
     @requests = Request.where(following_id: params[:id])
   end
 
-  def accept
-    flash[:notice] = 'I have accepted request'
+  def accept_follow_request
+    @request = Request.find_by(following_id: params[:id])
+    if Follow.new(following_id: @user.id, follower_id: @request.follower_id).save
+      flash[:notice] = 'Request accepted and Follow started.'
+    end
+    @request.destroy
+
+    redirect_to user_path(params[:id])
   end
 
   private

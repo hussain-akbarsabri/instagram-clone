@@ -53,8 +53,8 @@ class FollowsController < ApplicationController
 >>>>>>> user can follow and unfollow other users
 =======
 
-  def request_for_private
-    redirect_to create_request_path(@user), method: :post if @user.status?
+  def send_request_for_private
+    redirect_to send_follow_request_path, method: :post if @user.status?
   end
 >>>>>>> user can send a follow request
 end

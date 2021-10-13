@@ -31,8 +31,6 @@ Rails.application.routes.draw do
       post :accept_follow
     end
   end
-  post 'follow_user/:id', to: 'follows#follow_user', as: :follow_user
-  post 'unfollow_user/:id', to: 'follows#unfollow_user', as: :unfollow_user
 
   resources :requests, only: [:show]
 end

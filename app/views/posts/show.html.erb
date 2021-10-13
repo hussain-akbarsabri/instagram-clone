@@ -29,7 +29,10 @@
       <tr>
         <b><td><%= comment.user.username %></td></b>
         <td><%= comment.content %></td>
-        <% if current_user.id == comment.user_id %>
+        <% if current_user.id == @post.user_id %>
+          <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+          <td><%= link_to 'Destroy', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% elsif current_user.id == comment.user_id %>
           <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
           <td><%= link_to 'Destroy', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>

@@ -18,7 +18,7 @@ class PostsController < ApplicationController
       flash[:notice] = 'Post created successfully.'
       redirect_to user_path(params[:user_id])
     else
-      flash[:error] = 'Post didnt created'
+      flash[:alert] = 'Post didnt created'
       redirect_to new_user_post_path
     end
   end
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
       flash[:notice] = 'Post updated successfully.'
       redirect_to @post
     else
-      flash[:error] = @post.errors
+      flash[:alert] = 'you cant update'
       render 'edit'
     end
   end

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class RequestsController < ApplicationController
-  before_action :set_user, only: %i[send_follow_request accept_follow_request]
+  before_action :set_user, only: %i[send_follow accept_follow]
 
-  def send_follow_request
+  def send_follow
     if current_user.id != @user.id
       flash[:notice] = 'Follow request sent.' if Request.new(following_id: @user.id, follower_id: current_user.id).save
     else
@@ -16,7 +16,7 @@ class RequestsController < ApplicationController
     @requests = Request.where(following_id: params[:id])
   end
 
-  def accept_follow_request
+  def accept_follow
     @request = Request.find_by(following_id: params[:id])
     if Follow.new(following_id: @user.id, follower_id: @request.follower_id).save
       flash[:notice] = 'Request accepted and Follow started.'

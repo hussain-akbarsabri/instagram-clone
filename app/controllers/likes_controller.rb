@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class LikesController < ApplicationController
-  before_action :set_post, only: %i[create destroy]
-  before_action :set_like, only: [:destroy]
+  before_action :set_post, only: %i[create]
 
   def create
     if already_liked?
@@ -14,6 +13,8 @@ class LikesController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    @like = Like.find_by(post_id: @post.id, user_id: current_user.id)
     if !already_liked?
       flash[:notice] = 'You cannot unlike'
     else
@@ -28,11 +29,7 @@ class LikesController < ApplicationController
     @post = Post.find(params[:post_id])
   end
 
-  def set_like
-    @like = @post.likes.find(params[:id])
-  end
-
   def already_liked?
-    Like.where(user_id: current_user.id, post_id: params[:post_id]).exists?
+    Like.where(post_id: @post.id, user_id: current_user.id).exists?
   end
 end

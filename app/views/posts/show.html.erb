@@ -4,21 +4,24 @@
     <div class="col-md-9">
       <div class="post">
         <div class="post-wrapper">
-          <%= image_tag @post.image %>
+          <% @post.images.each do |image| %>
+            <%= image_tag(image) %>
+          <% end %>
         </div>
       </div>
     </div>
     <div class="col-md-3">
+      <br><br>
       <%= image_tag @post.user.image, class: 'img-circle profile-image' if @post.user.image.attached? %>
-      <br><br><br><br><br><br>
+      <br><br><br><br><br>
       <%= link_to "#{@post.user.username}", user_path(@post.user) %>
       <hr><hr>
       <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
       <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
       <% if pre_like %>
-        <%= button_to 'Unlike', post_like_path(@post, pre_like), method: :delete %>
+        <%= button_to 'Unlike', like_path(@post), method: :delete %>
       <% else %>
-        <%= button_to 'Like', post_likes_path(@post), method: :post %>
+        <%= button_to 'Like', post_likes_path(@post) %>
       <% end %>
       <%= @post.caption %>
       <br><br>

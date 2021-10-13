@@ -1,4 +1,4 @@
-<br><br><br><br>
+<!-- <br><br><br><br>
 <div class="container">
   <div class="row">
     <div class="col-md-9">
@@ -17,9 +17,9 @@
       <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
       <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
       <% if pre_like %>
-        <%= button_to 'Unlike', post_like_path(post, pre_like), method: :delete %>
+        <%= button_to 'Unlike', like_path(post, pre_like), method: :delete %>
       <% else %>
-        <%= button_to 'Like', post_likes_path(post), method: :post %>
+        <%= button_to 'Like', post_likes_path(post) %>
       <% end %>
       <%= post.caption %>
       <br><br>

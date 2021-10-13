@@ -5,10 +5,6 @@ class PostsController < ApplicationController
 
   def index
     @followed_users = current_user.followings
-    @followed_users.each do |user|
-      @user_now = User.find(user.following_id)
-      @posts = @user_now.posts.order('created_at DESC')
-    end
   end
 
   def new
@@ -22,7 +18,7 @@ class PostsController < ApplicationController
       flash[:notice] = 'Post created successfully.'
       redirect_to user_path(params[:user_id])
     else
-      flash[:error] = @post.errors
+      flash[:error] = 'Post didnt created'
       redirect_to new_user_post_path
     end
   end
@@ -53,7 +49,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:caption, :image)
+    params.require(:post).permit(:caption, images: [])
   end
 
   def set_post

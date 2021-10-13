@@ -2,7 +2,7 @@
 
 class CommentsController < ApplicationController
   before_action :set_post, only: %i[create]
-  before_action :set_comment, only: %i[show edit update destroy]
+  before_action :set_comment, only: %i[edit update destroy]
 
   def new
     @comment = Comment.new
@@ -19,8 +19,6 @@ class CommentsController < ApplicationController
       render 'new'
     end
   end
-
-  def show; end
 
   def edit; end
 

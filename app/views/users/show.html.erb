@@ -5,7 +5,7 @@
       <%= image_tag @user.image if @user.image.attached? %>
     </div>
     <h1 class="profile-user-name"><%= @user.username %></h1>
-    <% if user_status_current(current_user.id, @user.id) %>
+    <% if current_user %>
       <%= link_to 'New Post', new_user_post_path(@user), class: "btn follow-btn" %>
       <%= link_to '<i class="fas fa-cog"></i>'.html_safe, edit_user_path, class: "btn follow-btn" %>
     <% else %>

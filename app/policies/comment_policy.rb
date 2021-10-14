@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UserPolicy < ApplicationPolicy
+class CommentPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -11,13 +11,9 @@ class UserPolicy < ApplicationPolicy
     current_user?
   end
 
-  def update?
-    current_user?
-  end
-
   private
 
   def current_user?
-    @user == @record
+    @user == @record.user
   end
 end

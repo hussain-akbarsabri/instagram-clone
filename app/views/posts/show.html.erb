@@ -19,7 +19,7 @@
       <%= render 'likes/like' %><br><br>
       <%= render 'comments/post_comments' %><br>
       <%= link_to "Add Comment", new_post_comment_path(@post) %><br>
-      <% if user_status_current(current_user.id, @post.user_id) %>
+      <% if post_login(current_user.id, @post.user_id) %>
         <%= link_to 'Edit This Post', edit_post_path(@post) %>
         <br>
         <%= link_to 'Delete This Post', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>

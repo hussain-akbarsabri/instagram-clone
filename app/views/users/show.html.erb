@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> optimizing code
 <br>
 <div class="container">
   <div class="profile">
@@ -9,11 +5,9 @@
       <%= image_tag @user.image if @user.image.attached? %>
     </div>
     <h1 class="profile-user-name"><%= @user.username %></h1>
-<<<<<<< HEAD
     <% if current_user %>
-=======
     <% if user_status_current(current_user.id, @user.id) %>
->>>>>>> optimizing code
+    <% if current_user %>
       <%= link_to 'New Post', new_user_post_path(@user), class: "btn follow-btn" %>
       <%= link_to '<i class="fas fa-cog"></i>'.html_safe, edit_user_path, class: "btn follow-btn" %>
     <% else %>
@@ -28,41 +22,6 @@
     </div>
     <div class="profile-bio">
       <p><span class="profile-real-name"><%= @user.name %></span> <%= @user.bio %></p>
-<<<<<<< HEAD
-=======
-  <br>
-  <div class="container">
-    <div class="profile">
-      <div class="profile-image">
-        <%= image_tag @user.image if @user.image.attached? %>
-      </div>
-        <h1 class="profile-user-name"><%= @user.username %></h1>
-        <% if current_user.id == @user.id %>
-          <%= link_to 'New Post', new_user_post_path(@user), class: "btn follow-btn" %>
-          <%= link_to '<i class="fas fa-cog"></i>'.html_safe, edit_user_path, class: "btn follow-btn" %>
-        <% else %>
-          <% if requested(current_user.id, @user.id) %>
-            <%= link_to 'Requested', request_path, method: :delete, class: "btn follow-btn" %>
-          <% elsif following(current_user.id, @user.id) %>
-            <%= link_to 'unfollow', unfollow_user_follow_path(@user), method: :post, class: "btn follow-btn" %>
-          <% else %>
-            <%= link_to 'follow', follow_user_follow_path(@user), method: :post, class: "btn follow-btn" %>
-          <% end %>
-        <% end %>
-      <div class="profile-stats">
-        <ul>
-          <li><span class="profile-stat-count"><%= @user.posts.count %></span> posts</li>
-          <li><span class="profile-stat-count"><%= @user.followers.count %></span> followers</li>
-          <li><span class="profile-stat-count"><%= @user.followings.count %></span> following</li>
-        </ul>
-      </div>
-      <div class="profile-bio">
-        <p><span class="profile-real-name"><%= @user.name %></span> <%= @user.bio %></p>
-      </div>
-
->>>>>>> policy
-=======
->>>>>>> optimizing code
     </div>
   </div>
 </div>

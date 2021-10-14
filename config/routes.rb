@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :follows, only: %i[] do
+  resources :follows do
     member do
       post :follow_user
       post :unfollow_user

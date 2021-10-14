@@ -1,10 +1,11 @@
 <br><br><br><br><br>
 <div class="post">
-  <%= image_tag(@user.image, class: "profile-wrapper img-circle") if @user.image.attached?%>
+  <%= image_tag @user.image, class: "profile-wrapper img-circle" if @user.image.attached?%>
   <h2 class="username"><%=current_user.username %></h2>
 </div>
 <div class="col-md-9">
-  <br><br><%= form_with model: @user do |f| %>
+  <br><br>
+  <%= form_with model: @user do |f| %>
     <div class="form-group row">
       <%= f.label :name, class: 'col-sm-3 col-form-label' %>
       <div class="col-sm-7">

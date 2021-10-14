@@ -3,22 +3,18 @@
     <div class="row">
       <div class="col-md-1">
       </div>
-
       <div class="col-md-3 header-logo">
           <%= image_tag "instagram_logo" %>
       </div>
-
       <div class="col-md-4 header-search">
         <input type="text" name="Search" placeholder="Search"/>
       </div>
-
       <div class="col-md-4 navbar_margin">
           <%= link_to '<i class="fas fa-home"></i> Feed'.html_safe, root_path, class: "btn" %>
           <%= link_to "#{current_user.username}", user_path(current_user), class: "btn" %>
           <%= link_to "Requests", request_path(current_user), class: "btn" %>
           <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn" %>
       </div>
-
     </div>
   </div>
 </header>

@@ -14,37 +14,15 @@
       <br><br>
       <%= image_tag @post.user.image, class: 'img-circle profile-image' if @post.user.image.attached? %>
       <br><br><br><br><br>
-      <%= link_to "#{@post.user.username}", user_path(@post.user) %>
-      <hr><hr>
-      <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-      <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
-      <% if pre_like %>
-        <%= button_to 'Unlike', like_path(@post), method: :delete %>
-      <% else %>
-        <%= button_to 'Like', post_likes_path(@post) %>
-      <% end %>
-      <%= @post.caption %>
-      <br><br>
-      <% @post.comments.each do |comment| %>
-      <tr>
-        <b><td><%= comment.user.username %></td></b>
-        <td><%= comment.content %></td>
-        <% if current_user.id == @post.user_id %>
-          <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-          <td><%= link_to 'Destroy', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% elsif current_user.id == comment.user_id %>
-          <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-          <td><%= link_to 'Destroy', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-      <br>
-      <% end %>
-      <%= link_to "Add Comment", new_post_comment_path(@post) %>
-      <br>
-      <% if current_user.id == @post.user_id %>
+      <%= link_to "#{@post.user.username}", user_path(@post.user) %><hr><hr>
+      Caption: <%= @post.caption %><br><br>
+      <%= render 'likes/like' %><br><br>
+      <%= render 'comments/post_comments' %><br>
+      <%= link_to "Add Comment", new_post_comment_path(@post) %><br>
+      <% if user_status_current(current_user.id, @post.user_id) %>
         <%= link_to 'Edit This Post', edit_post_path(@post) %>
         <br>
-        <%= link_to 'Delete This Post', post_path(@post, @post.user.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Delete This Post', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
     </div>
   </div>

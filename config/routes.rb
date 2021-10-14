@@ -20,8 +20,7 @@ Rails.application.routes.draw do
 
   resources :requests, only: %i[show destroy] do
     member do
-      get :send_follow
-      get :accept_follow
+      post :accept_follow
     end
   end
 end

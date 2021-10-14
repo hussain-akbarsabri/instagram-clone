@@ -1,13 +1,16 @@
-<table>
-  <tr>
-    <th>Accounts which have requested</th>
-    <th>Accept Request</th>
-  </tr>
- 
-  <% @requests.each do |request| %>
+<table class="table table-bordered">
+  <thead>
     <tr>
-      <td><%= request.follower_id %></td>
-      <td><%= link_to 'Accept the request', accept_follow_request_path %></td>
+      <th scope="col">Accounts which have requested</th>
+      <th scope="col">Accept Request</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @requests.each do |request| %>
+      <tr>
+        <td><%= request.follower_id %></td>
+        <td><%= link_to 'Accept the request', accept_follow_request_path, method: :post %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

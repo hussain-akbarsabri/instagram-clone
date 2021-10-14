@@ -5,6 +5,10 @@ class PostsController < ApplicationController
 
   def index
     @followed_users = current_user.followings
+    @followed_users.each do |user|
+      @user_now = User.find(user.following_id)
+      @posts = @user_now.posts.order('created_at DESC')
+    end
   end
 
   def new

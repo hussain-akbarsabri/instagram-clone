@@ -1,0 +1,11 @@
+<%= @post.likes.count %>
+<% if many_likes(@post.likes.count) %>
+  Likes
+<% else %>
+  Like
+<% end %>
+<% if liked(@post) %>
+  <%= button_to 'Unlike', like_path(@post), method: :delete %>
+<% else %>
+  <%= button_to 'Like', post_likes_path(@post) %>
+<% end %>

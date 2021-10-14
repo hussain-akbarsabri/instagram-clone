@@ -1,7 +1,1 @@
-<% @followed_users.each do |user| %>
-  <% @user_now = User.find(user.following_id) %>
-  <% @posts = @user_now.posts.order('created_at DESC') %>
-  <%= render partial: '/posts/feed_post', collection: @posts, as: :post %>
-<% end %>
-
-
+<%= render partial: '/posts/feed_post', collection: @posts, as: :post %>

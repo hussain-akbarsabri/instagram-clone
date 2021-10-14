@@ -54,7 +54,14 @@ class FollowsController < ApplicationController
 =======
 
   def send_request_for_private
-    redirect_to send_follow_request_path, method: :post if @user.status?
+    return unless @user.status?
+
+    if Request.new(following_id: @user.id, follower_id: current_user.id).save
+      flash[:notice] = 'Follow request sent.'
+    else
+      flash[:alert] = 'You cant send follow request.'
+    end
+    redirect_to user_path(params[:id])
   end
 >>>>>>> user can send a follow request
 end

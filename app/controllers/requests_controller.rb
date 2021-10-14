@@ -2,12 +2,13 @@
 
 class RequestsController < ApplicationController
   before_action :set_user, only: %i[send_follow accept_follow]
+  before_action :authenticate_user!
 
   def send_follow
-    if current_user.id != @user.id
-      flash[:notice] = 'Follow request sent.' if Request.new(following_id: @user.id, follower_id: current_user.id).save
+    if Request.new(following_id: @user.id, follower_id: current_user.id).save
+      flash[:notice] = 'Follow request sent.'
     else
-      flash[:alert] = 'You cant follow your own account.'
+      flash[:alert] = 'You cant send follow request.'
     end
     redirect_to user_path(params[:id])
   end

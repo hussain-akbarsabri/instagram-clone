@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> optimizing code
 <br>
 <div class="container">
   <div class="profile">
@@ -6,7 +9,11 @@
       <%= image_tag @user.image if @user.image.attached? %>
     </div>
     <h1 class="profile-user-name"><%= @user.username %></h1>
+<<<<<<< HEAD
     <% if current_user %>
+=======
+    <% if user_status_current(current_user.id, @user.id) %>
+>>>>>>> optimizing code
       <%= link_to 'New Post', new_user_post_path(@user), class: "btn follow-btn" %>
       <%= link_to '<i class="fas fa-cog"></i>'.html_safe, edit_user_path, class: "btn follow-btn" %>
     <% else %>
@@ -21,6 +28,7 @@
     </div>
     <div class="profile-bio">
       <p><span class="profile-real-name"><%= @user.name %></span> <%= @user.bio %></p>
+<<<<<<< HEAD
 =======
   <br>
   <div class="container">
@@ -53,6 +61,8 @@
       </div>
 
 >>>>>>> policy
+=======
+>>>>>>> optimizing code
     </div>
   </div>
 </div>

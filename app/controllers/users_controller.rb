@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
+  before_action :authorize_user, only: %i[edit update]
 
   def show; end
 
@@ -25,5 +26,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def authorize_user
+    authorize @user
   end
 end

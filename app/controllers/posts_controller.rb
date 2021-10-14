@@ -2,13 +2,10 @@
 
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
+  before_action :authorize_post, only: %i[edit update]
 
   def index
-    @followed_users = current_user.followings
-    @followed_users.each do |user|
-      @user_now = User.find(user.following_id)
-      @posts = @user_now.posts.order('created_at DESC')
-    end
+    @followings = current_user.followings
   end
 
   def new
@@ -58,5 +55,9 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def authorize_post
+    authorize @post
   end
 end

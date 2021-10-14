@@ -1,15 +1,23 @@
 # frozen_string_literal: true
 
 class PostPolicy < ApplicationPolicy
-  attr_reader :user, :post
+  class Scope < Scope
+    def resolve
+      scope.all
+    end
+  end
 
-  def initialize(user, post)
-    super(user)
-    @user = user
-    @post = post
+  def edit?
+    current_user?
   end
 
   def update?
-    user.admin? || !post.published?
+    current_user?
+  end
+
+  private
+
+  def current_user?
+    user == record
   end
 end

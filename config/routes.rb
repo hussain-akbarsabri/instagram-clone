@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :likes, only: %i[create destroy]
       resources :comments, except: %i[index show]
     end
+    resources :stories
   end
 
   resources :follows do

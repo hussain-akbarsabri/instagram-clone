@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :stories, dependent: :destroy
   validates :username, presence: true
 
   has_many :followers, foreign_key: :following_id, class_name: 'Follow', dependent: :restrict_with_exception,

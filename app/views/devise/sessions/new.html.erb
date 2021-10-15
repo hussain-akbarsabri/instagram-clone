@@ -1,24 +1,30 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-5">
-      <br><br><br> <%= image_tag "instagram_mobile" %>
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+      <br><br> <%= image_tag "instagram_mobile" %>
     </div>
-    <br><br><br><br><br><br><br><br><br>
-    <div class="col-md-3">
-      <br> <%= image_tag "login_logo"  %>
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field">
-          <br><%= f.email_field :email, placeholder: "Email", class: "form-control" %>
+    <div class="col-md-7">
+      <br><br><br><br><br><br><br>
+      <div class="img img-thumbnail devise-form">
+        <div class="main">
+          <%= image_tag "login_logo"  %>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field">
+              <br><%= f.email_field :email, placeholder: "Email", class: "form-control" %>
+            </div>
+            <div class="field">
+              <br><%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "form-control" %>
+            </div>
+            <div class="actions">
+              <br><%= f.submit "Log in", class: "btn btn-primary" %>
+            </div>
+          <% end %>
         </div>
-        <div class="field">
-          <br><%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "form-control" %>
-        </div>
-        <div class="actions">
-          <br><%= f.submit "Log in", class: "btn btn-primary" %>
-        </div>
-      <% end %>
-      <br><%= render "devise/shared/links" %><br>
+      </div><br><br>
+      <div class="img img-thumbnail devise-form ">
+        <br><%= render "devise/shared/links" %><br>
+      </div>
     </div>
   </div>
 </div>

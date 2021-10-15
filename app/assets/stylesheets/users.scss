@@ -2,6 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.devise-form {
+  margin-left: 8%;
+  text-align: center;
+  width: 55%;
+  .main {
+    padding: 10%;
+  }
+}
+
 header{
   border: 1px solid #edeeee;
   .header-logo{

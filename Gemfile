@@ -73,5 +73,7 @@ end
 gem 'active_storage_validations'
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'jquery-rails'
 gem 'pg'
 gem 'pundit'
+gem 'ransack'

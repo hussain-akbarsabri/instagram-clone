@@ -1,23 +1,31 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-3">
-      <br><br><br><br><br><br><br><br> <%= image_tag "login_logo" %>
-      <br><br>Reset Your Password.
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-        <%= f.hidden_field :reset_password_token %>
-        <div class="field">
-          <br><%= f.password_field :password, placeholder: "New Password", class: "form-control" %>
+    <div class="col-md-3"></div>
+    <div class="col-md-7">
+      <br><br><br><br><br><br><br>
+      <div class="img img-thumbnail devise-form">
+        <div class="main">
+          <%= image_tag "login_logo" %>
+          <br><br>Reset Your Password.
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <%= f.hidden_field :reset_password_token %>
+            <div class="field">
+              <br><%= f.password_field :password, placeholder: "New Password", class: "form-control" %>
+            </div>
+            <div class="field">
+              <br><%= f.password_field :password_confirmation, placeholder: "Confirm New Password", class: "form-control" %>
+            </div>
+            <div class="actions">
+              <br><%= f.submit "Change my password", class: "btn btn-primary" %>
+            </div>
+          <% end %>
         </div>
-        <div class="field">
-          <br><%= f.password_field :password_confirmation, placeholder: "Confirm New Password", class: "form-control" %>
-        </div>
-        <div class="actions">
-          <br><%= f.submit "Change my password", class: "btn btn-primary" %>
-        </div>
-      <% end %>
-      <br><%= render "devise/shared/links" %>
+      </div>
+      <br><br>
+      <div class="img img-thumbnail devise-form ">
+        <br><%= render "devise/shared/links" %><br>
+      </div>
     </div>
   </div>
 </div>

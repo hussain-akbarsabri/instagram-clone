@@ -3,6 +3,15 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
   before_action :authorize_user, only: %i[edit update]
+  before_action :force_json, only: :search
+
+  def index
+    @users = User.all
+  end
+
+  def search
+    @users = User.ransack(username_cont: params[:q]).result(distinct: true).limit(5)
+  end
 
   def show; end
 
@@ -30,5 +39,9 @@ class UsersController < ApplicationController
 
   def authorize_user
     authorize @user
+  end
+
+  def force_json
+    request.format = :json
   end
 end

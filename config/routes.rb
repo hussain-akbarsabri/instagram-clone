@@ -1,16 +1,26 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root 'posts#index'
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'posts#feed'
-  resources :users, shallow: true do
-    resources :posts
+
+  resources :users, only: %i[show edit update], shallow: true do
+    resources :posts, shallow: true do
+      resources :likes, only: %i[create destroy]
+      resources :comments, except: %i[index show]
+    end
   end
-  resources :posts do
-    resources :likes
+
+  resources :follows do
+    member do
+      post :follow_user
+      post :unfollow_user
+    end
   end
-  resources :posts, shallow: true do
-    resources :comments
+
+  resources :requests, only: %i[show destroy] do
+    member do
+      post :accept_follow
+    end
   end
 end

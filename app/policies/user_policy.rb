@@ -7,23 +7,17 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
-  def public_account?
-    role == 'public'
-  end
-
-  def private_account?
-    role == 'private'
-  end
-
-  def index?
-    @user.status == 'nil'
+  def edit?
+    current_user?
   end
 
   def update?
-    false
+    current_user?
   end
 
-  def edit?
-    update?
+  private
+
+  def current_user?
+    @user == @record
   end
 end

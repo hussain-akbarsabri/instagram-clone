@@ -1,15 +1,30 @@
-<%= form_for @post do |form| %>
-  <div class="field">
-    <%= form.file_field :image %>
-  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+      <h1>Edit Your Post</h1>
+      <%= form_with model: @post do |f| %>
+        <div class="form-group row">
+          <%= f.label :caption, class: 'col-sm-3 col-form-label' %>
+          <div class="col-sm-7">
+            <%= f.text_field :caption, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= f.label :images, class: 'col-sm-3 col-form-label' %>
+          <div class="col-sm-7">
+          <%= f.file_field :images, multiple: true, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm-9">
+            <%= f.submit "Update Your Post", class: 'btn btn-primary' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-  <div class="field">
-    <%= form.label :Caption %><br />
-    <%= form.text_field :caption, autofocus: true, autocomplete: "caption" %>
   </div>
-
-  <p>
-    <%= form.submit %>
-  </p>
- 
-<% end %>
+</div>

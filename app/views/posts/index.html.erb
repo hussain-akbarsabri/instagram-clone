@@ -1,13 +1,4 @@
-<table>
-  <tr>
-    <th>Caption</th>
-  </tr>
- 
-  <% @posts.each do |post| %>
-    <tr>
-      <td><%= post.caption %></td>
-      <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-      <td><%= link_to 'Show', user_posts_path(post) %></td>
-    </tr>
-  <% end %>
-</table>
+<% @followings.each do |user| %> 
+  <% @user = User.find(user.following_id) %>
+  <%= render partial: '/posts/feed_post', collection: @user.posts, as: :post %>
+<%end%>

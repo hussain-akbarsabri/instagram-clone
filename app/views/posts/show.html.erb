@@ -1,39 +1,28 @@
+<br><br><br><br>
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
-      <%= image_tag @post.image %>
+    <div class="col-md-9">
+      <div class="post">
+        <div class="post-wrapper">
+          <% @post.images.each do |image| %>
+            <%= image_tag(image) %>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="col-md-4">
-      <%= image_tag @post.user.image, class: 'img-circle profile-image' %>
-      <br><br><br><br><br><br>
-      <%= @post.user.username %>
-      <hr><hr>
-      <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-      <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
-      <% if pre_like %>
-        <%= button_to 'Unlike', post_like_path(@post, pre_like), method: :delete %>
-      <% else %>
-        <%= button_to 'Like', post_likes_path(@post), method: :post %>
-      <% end %>
-      <%= @post.caption %>
+    <div class="col-md-3">
       <br><br>
-      <% @post.comments.each do |comment| %>
-      <tr>
-        <b><td><%= comment.user.username %></td></b>
-        <td><%= comment.content %></td>
-        <% if current_user.id == comment.user_id %>
-          <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-          <td><%= link_to 'Destroy', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-      <br>
-      <% end %>
-      <%= link_to "Add Comment", new_post_comment_path(@post) %>
-      <br>
-      <% if current_user.id == @post.user_id %>
+      <%= image_tag @post.user.image, class: 'img-circle profile-image' if @post.user.image.attached? %>
+      <br><br><br><br><br>
+      <%= link_to "#{@post.user.username}", user_path(@post.user) %><hr><hr>
+      Caption: <%= @post.caption %><br><br>
+      <%= render 'likes/like' %><br><br>
+      <%= render 'comments/post_comments' %><br>
+      <%= link_to "Add Comment", new_post_comment_path(@post) %><br>
+      <% if post_login(current_user.id, @post.user_id) %>
         <%= link_to 'Edit This Post', edit_post_path(@post) %>
         <br>
-        <%= link_to 'Delete This Post', post_path(@post, @post.user.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Delete This Post', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
     </div>
   </div>

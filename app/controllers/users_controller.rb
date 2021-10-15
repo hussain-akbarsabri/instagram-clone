@@ -16,4 +16,8 @@ class UsersController < ApplicationController
   def force_json
     request.format = :json
   end
+
+  def force_json
+    request.format = :json
+  end
 end

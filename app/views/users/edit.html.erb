@@ -41,12 +41,55 @@
       <%= f.file_field :image, class: 'form-control' %>
       </div>
     </div>
-    <div class="form-group row">
-      <div class="col-sm-3">
-      </div>
-      <div class="col-sm-9">
-        <%= f.submit "Update User Profile", class: 'btn btn-primary' %>
-      </div>
+    <div class="col-md-8">
+      <h2 class="username"><%=current_user.username %></h2>
+      <%= form_with model: @user do |f| %>
+
+        <div class="form-group row">
+          <%= f.label :name, class: 'col-md-2 form-label' %>
+          <div class="col-md-7">
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :username, class: 'col-sm-2 form-label' %>
+          <div class="col-sm-7">
+            <%= f.text_field :username, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :bio, class: 'col-sm-2 form-label' %>
+          <div class="col-sm-7">
+            <%= f.text_area :bio, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :status, class: 'col-sm-2 form-label' %>
+          <div class="col-sm-3">
+            <%= f.radio_button :status, 'true' %>
+            <%= f.label :status, 'private' %>
+            <%= f.radio_button :status, 'false' %>
+            <%= f.label :status, 'public' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :Image, class: 'col-sm-2 form-label' %>
+          <div class="col-sm-7">
+            <%= f.file_field :image, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-9">
+            <%= f.submit "Update User Profile", class: 'btn btn-primary' %>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>

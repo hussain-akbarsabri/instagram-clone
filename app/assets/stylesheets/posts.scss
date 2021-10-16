@@ -2,10 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.post{
+.post-show {
+  margin-top: 7%;
+  margin-left: 12%;
+  .post-wrapper {
+    width: 650px;
+    height: 510px;
+    img{
+      width: 90%;
+      height: 100%;
+    }
+  }
+  .post-profile-wrapper {
+    width: 45px;
+    height: 45px;
+    img{
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      margin-left: 50%;
+    }
+  }
+  .username {
+    font-size: 17px;
+    margin-top: 20px;
+    color: black;
+    margin-left: 10%;
+  }
+}
+
+
+.single-post{
   float: left;
   margin: 15px;
-  .profile-wrapper{
+  .post-wrapper{
     width: 280px;
     height: 280px;
     img{
@@ -14,17 +44,6 @@
       border-radius: 2%;
     }
     margin: 10% 0 0 50%;
-  }
-  .post-wrapper{
-    width: 720px;
-    height: 450px;
-    img{
-      width: 100%;
-      height: 100%;
-    }
-  }
-  .username{
-    margin-left: 67%;
   }
   .post-item{
     position: relative;

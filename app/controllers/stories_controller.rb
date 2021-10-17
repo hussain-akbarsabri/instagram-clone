@@ -12,11 +12,11 @@ class StoriesController < ApplicationController
 
     if @story.save
       flash[:notice] = 'Story created successfully.'
-      redirect_to user_path(params[:user_id])
+      DeleteStoryJob.set(wait: 24.hours).perform_later(@story)
     else
-      flash[:alert] = @story.errors
       redirect_to back
     end
+    redirect_to user_path(params[:user_id])
   end
 
   def show; end
@@ -36,6 +36,10 @@ class StoriesController < ApplicationController
   def destroy
     if @story.destroy
       flash[:notice] = 'Story deleted successfully.'
+      queue = Sidekiq::ScheduledSet.new
+      queue.each do |job|
+        job.delete if job.args.first == @story.id
+      end
       redirect_to user_path current_user
     else
       flash[:error] = @story.errors

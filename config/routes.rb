@@ -6,9 +6,10 @@ Rails.application.routes.draw do
 
   root 'posts#index'
   get :search, controller: :users
-  devise_for :users
 
-  resources :users, only: %i[index show edit update], shallow: true do
+  devise_for :users, controllers: { registrations: 'registrations' }
+
+  resources :users, only: %i[show], shallow: true do
     resources :posts, shallow: true do
       resources :likes, only: %i[create destroy]
       resources :comments, except: %i[index show]

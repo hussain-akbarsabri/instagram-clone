@@ -3,8 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .post-show {
-  margin-top: 2%;
-  margin-left: 12%;
+  margin-left: 3.7%;
   .post-wrapper {
     width: 650px;
     height: 510px;
@@ -25,12 +24,20 @@
   }
   .username {
     font-size: 17px;
+    font-weight: 700;
     margin-top: 20px;
     color: black;
-    margin-left: 10%;
+    margin-left: 15%;
+    margin-right: 4%;
+  }
+  .likes-comments {
+    margin-left: 9%;
+  }
+  .caption {
+    width: 220px;
+    margin-left: 6%;
   }
 }
-
 
 .single-post{
   float: left;

@@ -1,3 +1,4 @@
+<br><br><br>
 <div class="container">
   <div class="row">
     <div class="post-show img img-thumbnail">
@@ -23,19 +24,11 @@
           </div>
         </div>
         <hr>
-        <div class="row">
-          <div class="col-md-2">
-            <div class="post-profile-wrapper">
-              <%= link_to image_tag(@post.user.image), user_path(current_user) if @post.user.image.attached? %>
-            </div>
-          </div>
-          <div class="col-md-9">
-            <br><%= link_to "#{@post.user.username}", user_path(@post.user), class: "username" %>
-            <%= @post.caption %>
-          </div>
+        <div class="row caption">
+          <%= @post.caption %>
         </div>
         <hr>
-        <div>
+        <div class="likes-comments">
           <%= render '/likes/like', locals: {post: @post} %>
           <%= link_to '<i class="glyphicon glyphicon-comment"></i>'.html_safe, new_post_comment_path(@post) %>
           <% if post_login(current_user.id, @post.user_id) %>

@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized_error
+  rescue_from ActionController::RoutingError, with: :handle_routing_error
 
   include Pundit
 
@@ -22,6 +23,11 @@ class ApplicationController < ActionController::Base
 
   def not_authorized_error
     flash[:alert] = 'You are not authorized.'
+    redirect_to root_path
+  end
+
+  def handle_routing_error
+    flash[:alert] = 'This route is not defined.'
     redirect_to root_path
   end
 end

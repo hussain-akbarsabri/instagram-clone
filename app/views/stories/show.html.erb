@@ -1,5 +1,10 @@
-<%= image_tag @story.image %>
-
-<%= link_to 'Edit This Post', edit_story_path(@story) %>
-<br>
-<%= link_to 'Delete This Post', story_path(@story), method: :delete, data: { confirm: 'Are you sure?' } %>
+<div class="container">
+  <div class="row">
+    <div class="post-show">
+      <div class="post-wrapper">
+        <%= image_tag @story.image %>
+        <br><br><%= link_to 'Delete This Post', story_path(@story), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+  </div>
+</div>

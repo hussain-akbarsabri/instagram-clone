@@ -9,12 +9,18 @@
       </div>
       <div class="col-md-8">
         <h2 class="profile-user-name"><%= @user.username %></h2>
-        <% if current_user %>
+        <% if current_user.id == @user.id %>
           <%= link_to 'New Post', new_user_post_path(@user), class: "btn follow-btn" %>
           <%= link_to 'New Story', new_user_story_path(@user), class: "btn follow-btn" %>
           <%= link_to '<i class="glyphicon glyphicon-cog"></i>'.html_safe, edit_user_registration_path, class: "btn follow-btn" %>
         <% else %>
-          <%= render 'follow_button' %>
+          <% if requested(current_user.id, @user.id) %>
+            <%= link_to 'Requested', request_path, method: :delete, class: "btn follow-btn" %>
+          <% elsif following(current_user.id, @user.id) %>
+            <%= link_to 'unfollow', unfollow_user_follow_path(@user), method: :post, class: "btn follow-btn" %>
+          <% else %>
+            <%= link_to 'follow', follow_user_follow_path(@user), method: :post, class: "btn follow-btn" %>
+          <% end %>
         <% end %>
         <div class="profile-stats">
             <span class="profile-stat-count"><%= @user.posts.count %></span> posts
@@ -28,6 +34,14 @@
     </div>
   </div>
 </div><br>
-<%= render partial: '/stories/single_story', collection: @user.stories, as: :story %>
-<br><br><br><br><br><br><br>
-<%= render partial: '/posts/single_post', collection: @user.posts, as: :post %>
+<% if current_user.id == @user.id %>
+  <%= render partial: '/stories/single_story', collection: @user.stories, as: :story %>
+  <br><br><br><br><br><br><br>
+  <%= render partial: '/posts/single_post', collection: @user.posts, as: :post %>
+<% elsif @user.status %>
+  <br><br><br><h1 class="text-center">This is a private Profile</h1>
+<% else %>
+  <%= render partial: '/stories/single_story', collection: @user.stories, as: :story %>
+  <br><br><br><br><br><br><br>
+  <%= render partial: '/posts/single_post', collection: @user.posts, as: :post %>
+<% end %>

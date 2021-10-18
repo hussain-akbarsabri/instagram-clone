@@ -72,7 +72,9 @@ end
 
 gem 'active_storage_validations'
 gem 'bootstrap-sass'
+gem 'cloudinary'
 gem 'devise'
+gem 'figaro'
 gem 'jquery-rails'
 gem 'pg'
 gem 'pundit'

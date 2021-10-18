@@ -2,6 +2,7 @@
 
 class StoriesController < ApplicationController
   before_action :set_story, only: %i[show edit update destroy]
+  after_action :create_job_for_deleting, only: %i[create]
 
   def new
     @story = Story.new
@@ -12,7 +13,6 @@ class StoriesController < ApplicationController
 
     if @story.save
       flash[:notice] = 'Story created successfully.'
-      DeleteStoryJob.set(wait: 24.hours).perform_later(@story)
     else
       redirect_to back
     end
@@ -34,12 +34,12 @@ class StoriesController < ApplicationController
   end
 
   def destroy
+    queue = Sidekiq::ScheduledSet.new
+    queue.each do |job|
+      job.delete if job.jid == @story.job_id
+    end
     if @story.destroy
       flash[:notice] = 'Story deleted successfully.'
-      queue = Sidekiq::ScheduledSet.new
-      queue.each do |job|
-        job.delete if job.args.first == @story.id
-      end
       redirect_to user_path current_user
     else
       flash[:error] = @story.errors
@@ -54,5 +54,10 @@ class StoriesController < ApplicationController
 
   def set_story
     @story = Story.find(params[:id])
+  end
+
+  def create_job_for_deleting
+    @story.job_id = DeleteStoryJob.set(wait: 24.hours).perform_later(@story).provider_job_id
+    @story.save
   end
 end

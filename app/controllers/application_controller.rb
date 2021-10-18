@@ -17,4 +17,9 @@ class ApplicationController < ActionController::Base
     flash[:alert] = 'You are not authorized.'
     redirect_to root_path
   end
+
+  def handle_routing_error
+    flash[:alert] = 'This route is not defined.'
+    redirect_to root_path
+  end
 end

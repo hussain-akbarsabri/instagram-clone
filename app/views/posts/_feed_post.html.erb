@@ -20,37 +20,19 @@
           <%= link_to image_tag(post.images.first), post_path(post) if post.images.attached? %>
         </div>
       </div>
-      <div class="col-md-3">
-        <br><%= link_to "#{post.user.username}", user_path(post.user) %>
+      <div class="col-md-1">
+        <br><br><%= link_to "#{post.user.username}", user_path(post.user), class: "username" %>
+        <% if post_login(current_user.id, post.user_id) %>
+          <%= link_to '<i class="glyphicon glyphicon-cog"></i>'.html_safe, edit_post_path(post) %>
+        <% end %>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="post-wrapper">
+          <%= link_to image_tag(post.images.first), post_path(post) if post.images.attached? %>
+        </div>
       </div>
     </div>
-    <div class="row">
-    <br><%= link_to image_tag(post.user.image), post_path(post) if post.user.image.attached? %>
-    </div>
-    <div class="row">
-      <%= post.likes.count %>
-      <% if many_likes(post.likes.count) %>
-        Likes
-      <% else %>
-        Like
-      <% end %>
-      <br>
-      <% if liked(post) %>
-        <%= link_to '<i class="glyphicon glyphicon-heart"></i>'.html_safe, like_path(post), method: :delete %>
-      <% else %>
-        <%= link_to '<i class="glyphicon glyphicon-heart-empty"></i>'.html_safe, post_likes_path(post), method: :post %>
-      <% end %>
-      <%= link_to '<i class="glyphicon glyphicon-comment"></i>'.html_safe, new_post_comment_path(post) %>
-      <% post.comments.each do |comment| %>
-      <%= comment.user.username %>
-      <%= comment.content %>
-      <% if commentor_login(current_user.id, comment.user_id) %>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-    </tr>
-    <br>
-    <% end %>
-    </div>
   </div>
-</div>
+</div><br>

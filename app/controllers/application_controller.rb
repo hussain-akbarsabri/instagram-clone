@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: %i[username name bio image status])
   end
 
+  def after_update_path_for(resource)
+    user_path(resource)
+  end
+
   def record_not_found
     flash[:alert] = 'Record Not Found'
     redirect_to root_path

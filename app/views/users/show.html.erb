@@ -1,27 +1,47 @@
 <br>
 <div class="container">
-  <div class="profile">
-    <div class="profile-image">
-      <%= image_tag @user.image if @user.image.attached? %>
-    </div>
-    <h1 class="profile-user-name"><%= @user.username %></h1>
-    <% if current_user %>
-      <%= link_to 'New Post', new_user_post_path(@user), class: "btn follow-btn" %>
-      <%= link_to '<i class="fas fa-cog"></i>'.html_safe, edit_user_path, class: "btn follow-btn" %>
-    <% else %>
-      <%= render 'follow_button' %>
-    <% end %>
-    <div class="profile-stats">
-      <ul>
-        <li><span class="profile-stat-count"><%= @user.posts.count %></span> posts</li>
-        <li><span class="profile-stat-count"><%= @user.followers.count %></span> followers</li>
-        <li><span class="profile-stat-count"><%= @user.followings.count %></span> following</li>
-      </ul>
-    </div>
-    <div class="profile-bio">
-      <p><span class="profile-real-name"><%= @user.name %></span> <%= @user.bio %></p>
+  <div class="row">
+    <div class="profile">
+      <div class="col-md-4">
+        <div class="profile-image">
+          <%= image_tag @user.image if @user.image.attached? %>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <h2 class="profile-user-name"><%= @user.username %></h2>
+        <% if current_user.id == @user.id %>
+          <%= link_to 'New Post', new_user_post_path(@user), class: "btn follow-btn" %>
+          <%= link_to 'New Story', new_user_story_path(@user), class: "btn follow-btn" %>
+          <%= link_to '<i class="glyphicon glyphicon-cog"></i>'.html_safe, edit_user_registration_path, class: "btn follow-btn" %>
+        <% else %>
+          <% if requested(current_user.id, @user.id) %>
+            <%= link_to 'Requested', request_path, method: :delete, class: "btn follow-btn" %>
+          <% elsif following(current_user.id, @user.id) %>
+            <%= link_to 'unfollow', unfollow_user_follow_path(@user), method: :post, class: "btn follow-btn" %>
+          <% else %>
+            <%= link_to 'follow', follow_user_follow_path(@user), method: :post, class: "btn follow-btn" %>
+          <% end %>
+        <% end %>
+        <div class="profile-stats">
+            <span class="profile-stat-count"><%= @user.posts.count %></span> posts
+            <span class="profile-stat-count"><%= @user.followers.count %></span> followers
+            <span class="profile-stat-count"><%= @user.followings.count %></span> following
+        </div>
+        <div class="profile-bio">
+          <p><span class="profile-real-name"><%= @user.name %></span> <%= @user.bio %></p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<hr><br>
-<%= render partial: '/posts/single_post', collection: @user.posts, as: :post %>
+</div><br>
+<% if current_user.id == @user.id %>
+  <%= render partial: '/stories/single_story', collection: @user.stories, as: :story %>
+  <br><br><br><br><br><br><br>
+  <%= render partial: '/posts/profile_post', collection: @user.posts, as: :post %>
+<% elsif !following(current_user.id, @user.id) && @user.status? %>
+  <br><br><br><h1 class="text-center">This is a private Profile</h1>
+<% else %>
+  <%= render partial: '/stories/single_story', collection: @user.stories, as: :story %>
+  <br><br><br><br><br><br><br>
+  <%= render partial: '/posts/profile_post', collection: @user.posts, as: :post %>
+<% end %>

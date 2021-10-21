@@ -2,7 +2,6 @@
 
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
-  before_action :authorize_post, only: %i[edit]
 
   def index
     @followings = current_user.followings
@@ -10,7 +9,6 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    authorize @post
   end
 
   def create
@@ -25,11 +23,11 @@ class PostsController < ApplicationController
     end
   end
 
-  def show; end
-
-  def edit
-    authorize @post
+  def show
+    @images = @post.images.page(params[:page]).per(1)
   end
+
+  def edit; end
 
   def update
     if @post.update(post_params)

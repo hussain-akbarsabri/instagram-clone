@@ -1,14 +1,14 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th scope="col">Accounts which have requested</th>
-      <th scope="col">Accept Request</th>
+      <th>Accounts which have requested</th>
+      <th>Accept Request</th>
     </tr>
   </thead>
   <tbody>
     <% @requests.each do |request| %>
       <tr>
-        <td><%= request.follower_id %></td>
+        <td><%= requester_username(request.follower_id) %></td>
         <td><%= link_to 'Accept the request', accept_follow_request_path, method: :post %></td>
       </tr>
     <% end %>

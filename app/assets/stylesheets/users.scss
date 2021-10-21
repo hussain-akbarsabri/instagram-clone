@@ -2,11 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.btn{
+  color: inherit;
+}
+
+.devise-form {
+  margin-left: 8%;
+  text-align: center;
+  width: 55%;
+  .main {
+    padding: 10%;
+  }
+}
+
 header{
+  padding-top: 11px;
+  padding-bottom: 7px;
   border: 1px solid #edeeee;
   .header-logo{
     img{
-     max-width: 130px;
+     width: 110px;
+     margin-left: 35%;
     }
   }
   .header-search{
@@ -19,67 +35,63 @@ header{
     }
   }
   .navbar_margin{
-    margin-top: 0.5%;
+    margin-left: 8%;
+    float: left;
   }
-}
-.col-form-label{
-  text-align: right;
-}
-.btn{
-  color: inherit;
-}
-.profile-image{
-  float: left;
-  width: calc(33.333% - 1rem);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 3rem;
-}
-.profile-image img{
-  border-radius: 50%;
-  height: 220px;
-  width: 220px;
-}
-.profile-user-settings,
-.profile-stats,
-.profile-bio{
-  float: left;
-  width: calc(66.666% - 2rem);
-}
-.profile-user-name{
-  display: inline-block;
-}
-.profile-edit-btn{
-  font-size: 1.4rem;
-  line-height: 1.8;
-  border: 0.1rem solid #dbdbdb;
-  border-radius: 0.3rem;
-  padding: 0 2.4rem;
-  margin-left: 2rem;
-}
-.profile-stats{
-  margin-top: 2.3rem;
-}
-.profile-stats li{
-  display: inline-block;
-  font-size: 1.6rem;
-  margin-right: 4rem;
-}
-.profile-bio{
-  font-size: 1.6rem;
-  margin-top: 2.3rem;
-}
-.profile-real-name,
-.profile-stat-count,
-.profile-edit-btn{
-  font-weight: 600;
+  .header-profile-wrapper{
+    img{
+      width: 7%;
+      height: 7%;
+      border-radius: 50%;
+      margin-left: 2%;
+    }
+  }
 }
 
-.follow-btn {
-  text-transform: uppercase;
-  margin-left: 20px;
-  &:hover {
-    border-color: inherit;
+.profile {
+  .profile-image{
+    margin-left: 53%;
+    img {
+      height: 150px;
+      width: 150px;
+      border-radius: 50%;
+    }
   }
+  .profile-user-name{
+    display: inline-block;
+    margin-left: 6%;
+  }
+  .profile-stats{
+    margin-top: 10px;
+    font-size: 17px;
+    margin-right: 10%;
+  }
+  .profile-bio{
+    font-size: 15px;
+    margin-top: 20px;
+  }
+  .profile-real-name,
+  .profile-stat-count {
+    font-weight: 600;
+    margin-left: 6%;
+  }
+  .follow-btn {
+    text-transform: uppercase;
+    margin-left: 20px;
+    &:hover {
+      border-color: inherit;
+    }
+  }
+}
+
+.edit-form {
+  .profile-wrapper {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+}
+
+.text-center {
+  text-align: center;
 }

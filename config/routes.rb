@@ -1,14 +1,20 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'posts#index'
-  devise_for :users
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 
-  resources :users, only: %i[show edit update], shallow: true do
+  root 'posts#index'
+  get :search, controller: :users
+
+  devise_for :users, controllers: { registrations: 'registrations' }
+
+  resources :users, only: %i[show], shallow: true do
     resources :posts, shallow: true do
       resources :likes, only: %i[create destroy]
       resources :comments, except: %i[index show]
     end
+    resources :stories, only: %i[new create show]
   end
 
   resources :follows do

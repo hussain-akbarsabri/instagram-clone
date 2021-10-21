@@ -8,7 +8,7 @@
   <tbody>
     <% @requests.each do |request| %>
       <tr>
-        <td><%= User.find(request.follower_id).username %></td>
+        <td><%= requester_username(request.follower_id) %></td>
         <td><%= link_to 'Accept the request', accept_follow_request_path, method: :post %></td>
       </tr>
     <% end %>

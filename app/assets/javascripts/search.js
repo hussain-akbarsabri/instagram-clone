@@ -3,13 +3,10 @@ document.addEventListener("turbolinks:load", function() {
 
 
   var options = {
-
     getValue: "username",
-    
     url: function(phrase) {
       return "/search.json?q=" + phrase;
     },
-    
     list: {
       onChooseEvent: function() {
         var url = $("#q").getSelectedItemData().url

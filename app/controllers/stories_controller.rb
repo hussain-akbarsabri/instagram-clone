@@ -2,7 +2,6 @@
 
 class StoriesController < ApplicationController
   before_action :set_story, only: %i[show edit update destroy]
-  after_action :create_job_for_deleting, only: %i[create]
 
   def new
     @story = Story.new
@@ -13,6 +12,7 @@ class StoriesController < ApplicationController
 
     if @story.save
       flash[:notice] = 'Story created successfully.'
+      create_job_for_deleting
     else
       redirect_to back
     end

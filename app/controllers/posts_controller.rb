@@ -3,9 +3,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
-  def index
-    @followings = current_user.followings
-  end
+  def index; end
 
   def new
     @post = Post.new

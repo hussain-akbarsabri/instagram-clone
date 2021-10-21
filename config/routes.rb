@@ -31,6 +31,4 @@ Rails.application.routes.draw do
       post :accept_follow
     end
   end
-
-  resources :requests, only: [:show]
 end

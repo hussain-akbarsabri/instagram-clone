@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StoriesController < ApplicationController
-  before_action :set_story, only: %i[show edit update destroy]
+  before_action :set_story, only: %i[show destroy]
 
   def new
     @story = Story.new
@@ -20,18 +20,6 @@ class StoriesController < ApplicationController
   end
 
   def show; end
-
-  def edit; end
-
-  def update
-    if @story.update(story_params)
-      flash[:notice] = 'Story updated successfully.'
-      redirect_to @story
-    else
-      flash[:alert] = 'you cant update'
-      render 'edit'
-    end
-  end
 
   def destroy
     queue = Sidekiq::ScheduledSet.new

@@ -4,14 +4,9 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized_error
-
   include Pundit
 
   private
-
-  def after_update_path_for(resource)
-    user_path(resource)
-  end
 
   def record_not_found
     flash[:alert] = 'Record Not Found'

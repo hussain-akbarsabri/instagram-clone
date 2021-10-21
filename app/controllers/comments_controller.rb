@@ -14,11 +14,11 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     if @comment.save
       flash[:notice] = 'Comment created successfully.'
-      redirect_to post_path(@post)
     else
-      flash[:error] = @comment.errors
+      flash[:alert] = @comment.errors
       render 'new'
     end
+    redirect_to post_path(@post)
   end
 
   def edit; end
@@ -26,20 +26,20 @@ class CommentsController < ApplicationController
   def update
     if @comment.update(comment_params)
       flash[:notice] = 'Comment updated successfully.'
-      redirect_to post_path(@comment.post)
     else
-      flash[:error] = @comment.errors
+      flash[:alert] = @comment.errors
       render 'edit'
     end
+    redirect_to post_path(@comment.post)
   end
 
   def destroy
     if @comment.destroy
       flash[:notice] = 'Comment deleted successfully.'
-      redirect_to post_path(@comment.post)
     else
-      flash[:error] = @comment.errors
+      flash[:alert] = @comment.errors
     end
+    redirect_to post_path(@comment.post)
   end
 
   private

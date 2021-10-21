@@ -3,8 +3,8 @@
   Likes
 <% else %>
   Like
-<% end %>
-<br>
+<% end %><br>
+
 <% if liked(@post) %>
   <%= link_to '<i class="glyphicon glyphicon-heart"></i>'.html_safe, like_path(@post), method: :delete %>
 <% else %>

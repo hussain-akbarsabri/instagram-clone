@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_post, only: %i[show update destroy]
 
-  def index; end
+  def index
+    @followings = current_user.followings
+  end
 
   def new
     @post = Post.new

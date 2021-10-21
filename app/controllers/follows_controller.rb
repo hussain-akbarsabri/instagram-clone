@@ -36,8 +36,6 @@ class FollowsController < ApplicationController
   def check_follower
     @follow = Follow.find_by(following_id: @user.id)
   end
-<<<<<<< HEAD
-<<<<<<< HEAD
 
   def send_request_for_private
     return unless @user.status?
@@ -49,19 +47,4 @@ class FollowsController < ApplicationController
     end
     redirect_to user_path(params[:id])
   end
-=======
->>>>>>> user can follow and unfollow other users
-=======
-
-  def send_request_for_private
-    return unless @user.status?
-
-    if Request.new(following_id: @user.id, follower_id: current_user.id).save
-      flash[:notice] = 'Follow request sent.'
-    else
-      flash[:alert] = 'You cant send follow request.'
-    end
-    redirect_to user_path(params[:id])
-  end
->>>>>>> user can send a follow request
 end

@@ -24,10 +24,8 @@ class PostsController < ApplicationController
     end
   end
 
-  def show; end
-
-  def edit
-    authorize @post
+  def show
+    @images = @post.images.page(params[:page]).per(1)
   end
 
   def update

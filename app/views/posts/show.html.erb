@@ -4,9 +4,10 @@
     <div class="post-show img img-thumbnail">
       <div class="col-md-8">
         <div class="post-wrapper">
-          <% @post.images.each do |image| %>
+          <% @images.each do |image| %>
             <%= image_tag(image) %>
           <% end %>
+          <%= paginate @images %>
         </div>
       </div>
       <div class="col-md-4">

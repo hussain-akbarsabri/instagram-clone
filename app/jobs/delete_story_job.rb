@@ -2,6 +2,6 @@
 
 class DeleteStoryJob < ApplicationJob
   def perform(story)
-    Story.find!(story.id).destroy
+    Story.find(story.id).destroy
   end
 end

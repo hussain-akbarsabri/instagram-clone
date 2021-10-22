@@ -35,9 +35,9 @@
           <% if requested(current_user.id, @user.id) %>
             <%= link_to 'Requested', request_path, method: :delete, class: "btn follow-btn" %>
           <% elsif following(current_user.id, @user.id) %>
-            <%= link_to 'unfollow', unfollow_user_follow_path(@user), method: :post, class: "btn follow-btn" %>
+            <%= link_to 'unfollow', unfollow_user_path(@user), method: :post, class: "btn follow-btn" %>
           <% else %>
-            <%= link_to 'follow', follow_user_follow_path(@user), method: :post, class: "btn follow-btn" %>
+            <%= link_to 'follow', follow_user_path(@user), method: :post, class: "btn follow-btn" %>
           <% end %>
         <% end %>
         <div class="profile-stats">

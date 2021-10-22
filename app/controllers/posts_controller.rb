@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   before_action :authorize_post, only: %i[edit destroy]
 
-  def index
+  def feed
     @followings = current_user.followings
   end
 

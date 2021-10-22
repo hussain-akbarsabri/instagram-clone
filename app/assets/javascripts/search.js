@@ -5,7 +5,7 @@ document.addEventListener("turbolinks:load", function() {
   var options = {
     getValue: "username",
     url: function(phrase) {
-      return "/search.json?q=" + phrase;
+      return "/users/search.json?q=" + phrase;
     },
     list: {
       onChooseEvent: function() {

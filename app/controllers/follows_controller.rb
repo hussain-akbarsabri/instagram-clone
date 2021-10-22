@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class FollowsController < ApplicationController
-  before_action :set_user, only: %i[follow_user unfollow_user send_request_for_private]
-  before_action :check_follower, only: %i[follow_user unfollow_user]
-  before_action :send_request_for_private, only: %i[follow_user]
+  before_action :set_user, only: %i[follow unfollow send_request_for_private]
+  before_action :check_follower, only: %i[follow unfollow]
+  before_action :send_request_for_private, only: %i[follow]
 
-  def follow_user
+  def follow
     if current_user.id != @user.id
       flash[:notice] = 'Follow started.' if Follow.new(following_id: @user.id, follower_id: current_user.id).save
     else
@@ -14,7 +14,7 @@ class FollowsController < ApplicationController
     redirect_to user_path(params[:id])
   end
 
-  def unfollow_user
+  def unfollow
     if @follow
       if @follow.destroy
         flash[:notice] = 'Unfollow started.'

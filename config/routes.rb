@@ -12,17 +12,17 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: %i[show], shallow: true do
-    resources :posts, shallow: true do
+    resources :posts, except: %i[index], shallow: true do
       resources :likes, only: %i[create destroy]
       resources :comments, except: %i[index show]
     end
     resources :stories, only: %i[new create show destroy]
-  end
-
-  resources :follows do
     member do
-      post :follow_user
-      post :unfollow_user
+      post :follow, controller: :follows
+      post :unfollow, controller: :follows
+    end
+    collection do
+      get :search
     end
   end
 

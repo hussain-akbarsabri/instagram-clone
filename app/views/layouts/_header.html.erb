@@ -5,7 +5,7 @@
           <%= link_to image_tag("instagram_logo"), root_path %>
       </div>
       <div class="col-md-3 header-search">
-        <%= form_with url: search_path, local: true, method: :get, html: { class: "form-inline" } do |form| %>
+        <%= form_with url: search_users_path, local: true, method: :get, html: { class: "form-inline" } do |form| %>
           <%= form.text_field :q, placeholder: "Search", data: { behaviour: "autocomplete" }, class: "form-control" %>
         <% end %>
       </div>

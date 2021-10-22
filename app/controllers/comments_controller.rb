@@ -15,8 +15,7 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:notice] = 'Comment created successfully.'
     else
-      flash[:alert] = @comment.errors
-      render 'new'
+      flash[:alert] = @comment.errors.full_messages
     end
     redirect_to post_path(@post)
   end
@@ -27,8 +26,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       flash[:notice] = 'Comment updated successfully.'
     else
-      flash[:alert] = @comment.errors
-      render 'edit'
+      flash[:alert] = @comment.errors.full_messages
     end
     redirect_to post_path(@comment.post)
   end
@@ -37,7 +35,7 @@ class CommentsController < ApplicationController
     if @comment.destroy
       flash[:notice] = 'Comment deleted successfully.'
     else
-      flash[:alert] = @comment.errors
+      flash[:alert] = @comment.errors.full_messages
     end
     redirect_to post_path(@comment.post)
   end

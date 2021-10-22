@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       resources :likes, only: %i[create destroy]
       resources :comments, except: %i[index show]
     end
-    resources :stories, only: %i[new create show]
+    resources :stories, only: %i[new create show destroy]
   end
 
   resources :follows do
@@ -31,4 +31,5 @@ Rails.application.routes.draw do
       post :accept_follow
     end
   end
+  # get '*path', to: 'requests#route_not_found'
 end

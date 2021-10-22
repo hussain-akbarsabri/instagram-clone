@@ -17,11 +17,10 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:notice] = 'Post created successfully.'
-      redirect_to user_path(params[:user_id])
     else
-      flash[:alert] = @post.erros
-      redirect_to new_user_post_path
+      flash[:alert] = @post.erros.full_messages
     end
+    redirect_to user_path(params[:user_id])
   end
 
   def show
@@ -35,7 +34,7 @@ class PostsController < ApplicationController
       flash[:notice] = 'Post updated successfully.'
       redirect_to @post
     else
-      flash[:alert] = 'you cant update'
+      flash[:alert] = @post.erros.full_messages
       render 'edit'
     end
   end
@@ -44,7 +43,7 @@ class PostsController < ApplicationController
     if @post.destroy
       flash[:notice] = 'Post deleted successfully.'
     else
-      flash[:error] = @post.errors
+      flash[:alert] = @post.erros.full_messages
     end
     redirect_to user_path current_user
   end

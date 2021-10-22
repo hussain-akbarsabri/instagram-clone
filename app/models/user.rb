@@ -11,11 +11,12 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :stories, dependent: :destroy
-  validates :username, presence: true
-  validates :image, attached: true
 
   has_many :followers, foreign_key: :following_id, class_name: 'Follow', dependent: :restrict_with_exception,
                        inverse_of: false
   has_many :followings, foreign_key: :follower_id, class_name: 'Follow', dependent: :restrict_with_exception,
                         inverse_of: false
+
+  validates :username, presence: true, length: { minimum: 2, maximum: 15 }
+  validates :image, attached: true
 end

@@ -42,10 +42,10 @@ class PostsController < ApplicationController
   def destroy
     if @post.destroy
       flash[:notice] = 'Post deleted successfully.'
-      redirect_to user_path current_user
     else
       flash[:error] = @post.errors
     end
+    redirect_to user_path current_user
   end
 
   private

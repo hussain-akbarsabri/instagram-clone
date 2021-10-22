@@ -3,7 +3,7 @@
 class CommentsController < ApplicationController
   before_action :set_post, only: %i[create]
   before_action :set_comment, only: %i[edit update destroy]
-  before_action :authorize_comment, only: %i[edit]
+  before_action :authorize_comment, only: %i[edit destroy]
 
   def new
     @comment = Comment.new

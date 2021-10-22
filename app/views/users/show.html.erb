@@ -52,7 +52,7 @@
     </div>
   </div>
 </div><br>
-<% if current_user.id == @user.id %>
+<% if user_signed_in(current_user.id, @user.id) %>
   <%= render partial: '/stories/single_story', collection: @user.stories, as: :story %>
   <br><br><br><br><br><br><br>
   <%= render partial: '/posts/profile_post', collection: @user.posts, as: :post %>

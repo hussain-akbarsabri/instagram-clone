@@ -10,4 +10,8 @@ module UsersHelper
     requested = Request.find_by(following_id: followed_user_id, follower_id: current_user_id)
     return true if requested
   end
+
+  def user_signed_in(current_user_id, user_id)
+    return true if current_user_id == user_id
+  end
 end

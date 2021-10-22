@@ -11,9 +11,14 @@ class CommentPolicy < ApplicationPolicy
     current_user?
   end
 
+  def destroy?
+    current_user?
+  end
+
   private
 
   def current_user?
-    @user == @record.user
+    @post = @record.post
+    @user == @post.user and @user == @record.user
   end
 end

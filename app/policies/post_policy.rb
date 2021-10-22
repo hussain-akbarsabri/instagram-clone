@@ -11,6 +11,10 @@ class PostPolicy < ApplicationPolicy
     current_user?
   end
 
+  def destroy?
+    current_user?
+  end
+
   private
 
   def current_user?

@@ -30,12 +30,12 @@
         </div>
         <hr>
         <div class="likes-comments">
-          <%= render '/likes/like', locals: @post %>
+          <%= render '/likes/like' %>
           <%= link_to '<i class="glyphicon glyphicon-comment"></i>'.html_safe, new_post_comment_path(@post) %>
           <% if post_maker(current_user.id, @post.user_id) %>
             <%= link_to '<i class="glyphicon glyphicon-remove"></i>'.html_safe, post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
-          <br><%= render 'comments/post_comments' %>
+          <br><%= render partial: '/comments/post_comments', collection: @post.comments, as: :comment %>
         </div>
       </div>
       <div class="col-md-4">

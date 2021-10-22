@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :followings, foreign_key: :follower_id, class_name: 'Follow', dependent: :restrict_with_exception,
                         inverse_of: false
 
-  validates :username, presence: true, length: { minimum: 2, maximum: 15 }
+  validates :username, presence: true, uniqueness: true, length: { minimum: 2, maximum: 15 }
   validates :name, length: { maximum: 15 }
   validates :bio, length: { maximum: 50 }
   validates :image, attached: true

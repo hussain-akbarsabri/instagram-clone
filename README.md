@@ -35,3 +35,4 @@ System dependencies
   Redis
   Sidekiq
   Jquery
+  bootstrap

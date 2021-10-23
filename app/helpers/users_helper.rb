@@ -14,4 +14,14 @@ module UsersHelper
   def user_signed_in(current_user_id, user_id)
     return true if current_user_id == user_id
   end
+
+  def post(user)
+    checker = user.posts.find { |post| post.user_id == current_user.id }
+    return true if checker
+  end
+
+  def story(user)
+    checker = user.stories.find { |story| story.user_id == current_user.id }
+    return true if checker
+  end
 end

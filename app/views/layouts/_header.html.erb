@@ -12,7 +12,11 @@
       <div class="col-md-3 navbar_margin">
         <%= link_to '<i class="glyphicon glyphicon-home"></i>'.html_safe, root_path, class: "btn" %>
         <%= link_to '<i class="glyphicon glyphicon-inbox"></i>'.html_safe, request_path(current_user), class: "btn" %>
-        <%= link_to image_tag(current_user.image), user_path(current_user), class: 'header-profile-wrapper' if current_user.image.attached? %>
+        <% if current_user.image.attached? %>
+          <%= link_to image_tag(current_user.image), user_path(current_user), class: 'header-profile-wrapper' %>
+        <% else %>
+          <%= link_to image_tag("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg"), user_path(current_user), class: 'header-profile-wrapper' %>
+        <%end%>
         <%= link_to '<i class="glyphicon glyphicon-log-out"></i>'.html_safe, destroy_user_session_path, :method => :delete, class: "btn" %>
       </div>
     </div>

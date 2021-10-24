@@ -18,7 +18,6 @@ class User < ApplicationRecord
                         inverse_of: false
 
   validates :username, presence: true, uniqueness: true, length: { minimum: 2, maximum: 15 }
-  validates :name, length: { maximum: 15 }
+  validates :name, length: { maximum: 30 }
   validates :bio, length: { maximum: 50 }
-  validates :image, attached: true
 end

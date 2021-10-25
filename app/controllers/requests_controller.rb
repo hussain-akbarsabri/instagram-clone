@@ -13,8 +13,7 @@ class RequestsController < ApplicationController
     if Follow.new(following_id: @user.id, follower_id: @request.follower_id).save
       flash[:notice] = 'Request accepted and Follow started.'
     end
-    @request.destroy
-
+    flash[:notice] = 'Request didnt deleted.' unless @request.destroy
     redirect_to user_path(params[:id])
   end
 

@@ -13,6 +13,7 @@ class StoriesController < ApplicationController
     if @story.save
       flash[:notice] = 'Story created successfully.'
     else
+      flash[:alert] = @story.errors.full_messages
       redirect_to back
     end
     redirect_to user_path(params[:user_id])
@@ -25,7 +26,7 @@ class StoriesController < ApplicationController
       flash[:notice] = 'Story deleted successfully.'
       redirect_to user_path current_user
     else
-      flash[:error] = @story.errors
+      flash[:error] = @story.errors.full_messages
     end
   end
 

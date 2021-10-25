@@ -24,4 +24,8 @@ module UsersHelper
     checker = user.stories.find { |story| story.user_id == user.id }
     return true if checker
   end
+
+  def private(user)
+    return true if user.status
+  end
 end

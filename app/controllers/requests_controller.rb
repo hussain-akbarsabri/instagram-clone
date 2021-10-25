@@ -8,9 +8,11 @@ class RequestsController < ApplicationController
     @requests = Request.where(following_id: params[:id])
   end
 
+  # move logic into model
+
   def accept_follow
     @request = Request.find_by!(following_id: params[:id])
-    if Follow.new(following_id: @user.id, follower_id: @request.follower_id).save
+    if Follow.create(following_id: @user.id, follower_id: @request.follower_id)
       flash[:notice] = 'Request accepted and Follow started.'
     end
     flash[:notice] = 'Request didnt deleted.' unless @request.destroy

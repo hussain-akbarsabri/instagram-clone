@@ -38,7 +38,7 @@ class StoriesController < ApplicationController
   def set_story
     @story = Story.find(params[:id])
   end
-
+  # move this in model
   def create_job_for_deleting
     @story.job_id = DeleteStoryJob.set(wait: 24.hours).perform_later(@story).provider_job_id
     @story.save

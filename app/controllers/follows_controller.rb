@@ -6,11 +6,12 @@ class FollowsController < ApplicationController
   before_action :send_request_for_private, only: %i[follow]
 
   def follow
-    if current_user.id != @user.id
-      flash[:notice] = 'Follow started.' if Follow.new(following_id: @user.id, follower_id: current_user.id).save
+    if current_user != @user
+      flash[:notice] = 'Follow started.' if Follow.create(following_id: @user.id, follower_id: current_user.id)
     else
       flash[:alert] = 'You cant follow your own account.'
     end
+
     redirect_to user_path(params[:id])
   end
 
@@ -19,11 +20,12 @@ class FollowsController < ApplicationController
       if @follow.destroy
         flash[:notice] = 'Unfollow started.'
       else
-        flash[:error] = @post.errors
+        flash[:error] = @follow.errors.full_messages
       end
     else
       flash[:alert] = 'You cant unfollow if not following'
     end
+
     redirect_to user_path(params[:id])
   end
 
@@ -40,7 +42,7 @@ class FollowsController < ApplicationController
   def send_request_for_private
     return unless @user.status?
 
-    if Request.new(following_id: @user.id, follower_id: current_user.id).save
+    if Request.create(following_id: @user.id, follower_id: current_user.id)
       flash[:notice] = 'Follow request sent.'
     else
       flash[:alert] = 'You cant send follow request.'

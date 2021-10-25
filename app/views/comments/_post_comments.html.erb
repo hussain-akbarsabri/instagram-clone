@@ -1,4 +1,4 @@
-<%= comment.user.username %>
+<b><%= comment.user.username %></b>
 <%= comment.content %>
 <% if comment_maker(current_user.id, current_user.id) && comment_maker(current_user.id, comment.user_id) %>
   <td><%= link_to 'Edit', edit_comment_path(comment) %></td>

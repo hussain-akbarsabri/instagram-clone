@@ -20,6 +20,7 @@ class LikesController < ApplicationController
     else
       @like.destroy
     end
+
     redirect_to post_path(@post)
   end
 
@@ -28,6 +29,7 @@ class LikesController < ApplicationController
   def set_post
     @post = Post.find(params[:post_id])
   end
+  # move already like to scope
 
   def already_liked?
     Like.where(post_id: @post.id, user_id: current_user.id).exists?

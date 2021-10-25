@@ -3,8 +3,3 @@ development:
 
 test:
   adapter: async
-
-production:
-  adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis-15080.c1.asia-northeast1-1.gce.cloud.redislabs.com:15080" } %>
-  channel_prefix: instagram_production

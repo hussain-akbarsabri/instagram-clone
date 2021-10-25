@@ -8,12 +8,29 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.create(
-  bio: 'Saya',
-  username: 'saya.',
-  name: 'hahah',
-  email: 'aaa@aaa.com',
-  password: 'foobar',
-  password_confirmation: 'foobar'
+User.create(
+  email: 'taha@gmail.com',
+  password: '123123',
+  password_confirmation: '123123',
+  username: 'taha_',
+  name: 'taha',
+  bio: 'i am here'
 )
-user.image.attach('https://i.ytimg.com/vi/1Ne1hqOXKKI/maxresdefault.jpg')
+
+User.create(
+  email: 'ali@gmail.com',
+  password: '123123',
+  password_confirmation: '123123',
+  username: 'ali_',
+  name: 'ali',
+  bio: 'i am here'
+)
+
+User.create(
+  email: 'ahmad@gmail.com',
+  password: '123123',
+  password_confirmation: '123123',
+  username: 'ahmad_',
+  name: 'ahmad',
+  bio: 'i am here'
+)

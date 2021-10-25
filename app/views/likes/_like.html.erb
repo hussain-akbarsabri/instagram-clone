@@ -6,7 +6,7 @@
 <% end %><br>
 
 <% if liked(@post) %>
-  <%= link_to '<i class="glyphicon glyphicon-heart"></i>'.html_safe, like_path(@post), method: :delete %>
+  <%= link_to '<i class="glyphicon glyphicon-heart"></i>'.html_safe, like_path(@post), method: :delete, remote: true %>
 <% else %>
-  <%= link_to '<i class="glyphicon glyphicon-heart-empty"></i>'.html_safe, post_likes_path(@post), method: :post %>
+  <%= link_to '<i class="glyphicon glyphicon-heart-empty"></i>'.html_safe, post_likes_path(@post), method: :post, remote: true %>
 <% end %>

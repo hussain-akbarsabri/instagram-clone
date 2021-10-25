@@ -23,10 +23,10 @@ class StoriesController < ApplicationController
   def destroy
     if @story.destroy
       flash[:notice] = 'Story deleted successfully.'
-      redirect_to user_path current_user
     else
       flash[:error] = @story.errors.full_messages
     end
+    redirect_to user_path current_user
   end
 
   private

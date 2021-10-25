@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4 header-logo">
-        <%= image_tag("https://i.imgur.com/zqpwkLQ.png") %>
+        <%= link_to image_tag("https://i.imgur.com/zqpwkLQ.png"), root_path %>
       </div>
       <div class="col-md-3 header-search">
         <%= form_with url: search_users_path, local: true, method: :get, html: { class: "form-inline" } do |form| %>

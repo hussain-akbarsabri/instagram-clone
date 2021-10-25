@@ -16,12 +16,12 @@ module UsersHelper
   end
 
   def post(user)
-    checker = user.posts.find { |post| post.user_id == current_user.id }
+    checker = user.posts.find { |post| post.user_id == user.id }
     return true if checker
   end
 
   def story(user)
-    checker = user.stories.find { |story| story.user_id == current_user.id }
+    checker = user.stories.find { |story| story.user_id == user.id }
     return true if checker
   end
 end

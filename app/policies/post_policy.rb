@@ -8,16 +8,20 @@ class PostPolicy < ApplicationPolicy
   end
 
   def edit?
-    current_user?
+    post_owner?
+  end
+
+  def update?
+    post_owner?
   end
 
   def destroy?
-    current_user?
+    post_owner?
   end
 
   private
 
-  def current_user?
+  def post_owner?
     @user == @record.user
   end
 end

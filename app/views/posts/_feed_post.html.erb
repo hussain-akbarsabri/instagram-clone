@@ -4,7 +4,12 @@
     <div class="row">
       <div class="col-md-1">
         <div class="post-profile-wrapper">
-          <br><%= link_to image_tag(post.user.image), user_path(current_user) if post.user.image.attached? %>
+          <br>
+          <% if post.user.image.attached? %>
+            <%= link_to cl_image_tag(post.user.image.key), user_path(current_user) if post.user.image.attached? %>
+          <% else %>
+            <%= image_tag("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg") %>
+          <%end%>
         </div>
       </div>
       <div class="col-md-1">
@@ -17,7 +22,7 @@
     <div class="row">
       <div class="col-md-8">
         <div class="post-wrapper">
-          <%= link_to image_tag(post.images.first), post_path(post) if post.images.attached? %>
+          <%= link_to cl_image_tag(post.images.first.key), post_path(post) if post.images.attached? %>
         </div>
       </div>
       <div class="col-md-1">

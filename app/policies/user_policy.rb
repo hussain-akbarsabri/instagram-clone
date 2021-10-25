@@ -7,17 +7,8 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
-  def edit?
-    current_user?
-  end
-
-  def update?
-    current_user?
-  end
-
-  private
-
-  def current_user?
-    @user == @record
+  def show?
+    relationship = Follow.find_by(follower_id: current_user_id, following_id: followed_user_id)
+    return true if relationship
   end
 end

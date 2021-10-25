@@ -14,7 +14,6 @@ class StoriesController < ApplicationController
       flash[:notice] = 'Story created successfully.'
     else
       flash[:alert] = @story.errors.full_messages
-      redirect_to back
     end
     redirect_to user_path(params[:user_id])
   end

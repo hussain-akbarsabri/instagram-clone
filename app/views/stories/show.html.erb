@@ -3,7 +3,7 @@
   <div class="row">
     <div class="post-show">
       <div class="post-wrapper">
-        <%= image_tag @story.image %>
+        <%= cl_image_tag @story.image.key %>
         <br><br><%= link_to 'Delete This Story', story_path(@story), method: :delete, data: { confirm: 'Are you sure?' } %>
       </div>
     </div>

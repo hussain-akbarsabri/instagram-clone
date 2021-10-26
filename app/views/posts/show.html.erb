@@ -19,7 +19,7 @@
           </div>
           <div class="col-md-10">
             <br><br><%= link_to "#{@post.user.username}", user_path(@post.user), class: "username" %>
-            <% if post_maker(current_user.id, @post.user_id) %>
+            <% if policy(@post).update? %>
               <%= link_to '<i class="glyphicon glyphicon-cog"></i>'.html_safe, edit_post_path(@post), class: "btn follow-btn" %>
             <% end %>
           </div>
@@ -32,7 +32,7 @@
         <div class="likes-comments">
           <%= render '/likes/like' %>
           <%= link_to '<i class="glyphicon glyphicon-comment"></i>'.html_safe, new_post_comment_path(@post) %>
-          <% if post_maker(current_user.id, @post.user_id) %>
+          <% if policy(@post).update? %>
             <%= link_to '<i class="glyphicon glyphicon-remove"></i>'.html_safe, post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
           <br><%= render partial: '/comments/post_comments', collection: @post.comments, as: :comment %>

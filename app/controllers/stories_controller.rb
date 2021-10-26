@@ -57,9 +57,4 @@ class StoriesController < ApplicationController
   def authorize_story
     authorize @story
   end
-
-  def create_job_for_deleting
-    @story.job_id = DeleteStoryJob.set(wait: 24.hours).perform_later(@story).provider_job_id
-    @story.save
-  end
 end

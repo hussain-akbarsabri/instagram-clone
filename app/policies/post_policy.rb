@@ -8,9 +8,8 @@ class PostPolicy < ApplicationPolicy
   end
 
   def show?
-    return true if
-    @user.followings.find_by(follower_id: @user.id,
-                             following_id: @record.user_id) || @user.id == @record || !User.find(@record.user_id).status
+    return true if @user.followings.find_by(follower_id: @user.id, following_id:
+      @record.user_id) || @user.id == @record.user_id || !User.find(@record.user_id).status
   end
 
   def edit?

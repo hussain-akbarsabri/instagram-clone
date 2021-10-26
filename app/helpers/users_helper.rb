@@ -11,10 +11,6 @@ module UsersHelper
     return true if requested
   end
 
-  def user_signed_in(current_user_id, user_id)
-    return true if current_user_id == user_id
-  end
-
   def post(user)
     checker = user.posts.find { |post| post.user_id == user.id }
     return true if checker
@@ -25,7 +21,7 @@ module UsersHelper
     return true if checker
   end
 
-  def private(user)
-    return true if user.status
+  def private_profile(user)
+    user.status
   end
 end

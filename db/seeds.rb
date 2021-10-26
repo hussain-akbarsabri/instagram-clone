@@ -34,4 +34,3 @@ User.create(
   name: 'ahmad',
   bio: 'i am here'
 )
-# save image

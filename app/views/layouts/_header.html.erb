@@ -11,7 +11,7 @@
       </div>
       <div class="col-md-3 navbar_margin">
         <%= link_to '<i class="glyphicon glyphicon-home"></i>'.html_safe, root_path, class: "btn" %>
-        <% if private(current_user) %>
+        <% if private_profile(current_user) %>
           <%= link_to '<i class="glyphicon glyphicon-inbox"></i>'.html_safe, request_path(current_user), class: "btn" %>
         <% end %>
         <% if current_user.image.attached? %>

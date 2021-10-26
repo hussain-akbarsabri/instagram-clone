@@ -7,7 +7,7 @@
         <% if @user.image.attached? %>
             <%= cl_image_tag @user.image.key, class: "profile-wrapper" %><br><br>
           <% else %>
-            <%= image_tag("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg") %>
+            <%= image_tag("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg", class: "profile-wrapper") %>
           <%end%>
         <h2 class="username"><%=current_user.username %></h2>
       </div>

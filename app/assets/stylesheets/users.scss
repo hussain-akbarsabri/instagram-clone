@@ -22,6 +22,7 @@ header{
   .header-logo{
     img{
      width: 110px;
+     margin-top: 1%;
      margin-left: 35%;
     }
   }
@@ -36,14 +37,20 @@ header{
   }
   .navbar_margin{
     margin-left: 8%;
+  }
+  .icons{
     float: left;
+    font-size: 22px;
   }
   .header-profile-wrapper{
+    width: 30px;
+    height: 30px;
+    float: left;
     img{
-      width: 7%;
-      height: 7%;
+      width: 100%;
+      margin-top: 18%;
+      height: 100%;
       border-radius: 50%;
-      margin-left: 2%;
     }
   }
 }

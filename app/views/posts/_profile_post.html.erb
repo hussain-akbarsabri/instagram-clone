@@ -1,11 +1,9 @@
 <div class="single-post">
-  <div class="post-wrapper">
-  	<div class="post-item">
-	    <div class="post-item-info">
-				<span><%= post.likes.count %></span><i class="fas fa-heart"></i>
-				<span><%= post.comments.count %></span><i class="fas fa-comment"></i>
-			</div>
-			<%= link_to cl_image_tag(post.images.first.key), post_path(post) if post.images.attached? %>
-  	</div>
-  </div>
+	<div class="post-item">
+		<div class="post-item-info">
+			<span><%= post.likes.count %></span><i class="fas fa-heart"></i>
+			<span><%= post.comments.count %></span><i class="fas fa-comment"></i>
+		</div>
+		<%= link_to cl_image_tag(post.images.first.key), post_path(post) if post.images.attached? %>
+	</div>
 </div>

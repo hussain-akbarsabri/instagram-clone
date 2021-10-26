@@ -3,7 +3,7 @@
 class CommentsController < ApplicationController
   before_action :set_post, only: %i[create]
   before_action :set_comment, only: %i[edit update destroy]
-  before_action :authorize_comment, only: %i[create edit update destroy]
+  before_action :authorize_comment, only: %i[edit update destroy]
 
   def new
     @comment = Comment.new
@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.new(comment_params)
     @comment.user_id = current_user.id
+    authorize @comment
 
     if @comment.save
       flash[:notice] = 'Comment created successfully.'

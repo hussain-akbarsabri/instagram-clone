@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class StoriesController < ApplicationController
-  before_action :set_story, only: %i[show destroy]
+  before_action :set_story, only: %i[show edit update destroy]
+  before_action :authorize_story, only: %i[edit update destroy]
 
   def new
     @story = Story.new
@@ -15,10 +16,23 @@ class StoriesController < ApplicationController
     else
       flash[:alert] = @story.errors.full_messages
     end
+
     redirect_to user_path(params[:user_id])
   end
 
   def show; end
+
+  def edit; end
+
+  def update
+    if @story.update(story_params)
+      flash[:notice] = 'Story updated successfully.'
+    else
+      flash[:alert] = @story.errors.full_messages
+    end
+
+    redirect_to @story
+  end
 
   def destroy
     if @story.destroy
@@ -26,6 +40,7 @@ class StoriesController < ApplicationController
     else
       flash[:error] = @story.errors.full_messages
     end
+
     redirect_to user_path current_user
   end
 
@@ -38,7 +53,11 @@ class StoriesController < ApplicationController
   def set_story
     @story = Story.find(params[:id])
   end
-  # move this in model
+
+  def authorize_story
+    authorize @story
+  end
+
   def create_job_for_deleting
     @story.job_id = DeleteStoryJob.set(wait: 24.hours).perform_later(@story).provider_job_id
     @story.save

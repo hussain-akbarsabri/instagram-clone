@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       resources :likes, only: %i[create destroy]
       resources :comments, except: %i[index show]
     end
-    resources :stories, only: %i[new create show destroy]
+    resources :stories, except: %i[index]
     member do
       post :follow, controller: :follows
       post :unfollow, controller: :follows

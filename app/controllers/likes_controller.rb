@@ -2,23 +2,27 @@
 
 class LikesController < ApplicationController
   before_action :set_post, only: %i[create]
+  before_action :set_post_like, only: %i[destroy]
 
   def create
-    if already_liked?
+    if liked.present?
       flash[:notice] = "You can't like more than once."
     else
-      @post.likes.create(user_id: current_user.id)
+      @like = @post.likes.new(user_id: current_user.id)
+      authorize @like
+      flash[:alert] = @like.errors.full_messages unless @like.save
     end
+
     redirect_to post_path(@post)
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    @like = Like.find_by(post_id: @post.id, user_id: current_user.id)
-    if !already_liked?
-      flash[:notice] = 'You cannot unlike'
+    if liked.blank?
+      flash[:notice] = "You can't unlike more than once."
     else
-      @like.destroy
+      @like = Like.find_by!(post_id: @post.id, user_id: current_user.id)
+      authorize @like
+      flash[:alert] = @like.errors.full_messages unless @like.destroy
     end
 
     redirect_to post_path(@post)
@@ -29,9 +33,12 @@ class LikesController < ApplicationController
   def set_post
     @post = Post.find(params[:post_id])
   end
-  # move already like to scope
 
-  def already_liked?
-    Like.where(post_id: @post.id, user_id: current_user.id).exists?
+  def set_post_like
+    @post = Post.find(params[:id])
+  end
+
+  def liked
+    Like.liked(@post.id, current_user.id)
   end
 end

@@ -1,6 +1,6 @@
 <b><%= comment.user.username %></b>
 <%= comment.content %>
-<% if comment_maker(current_user.id, current_user.id) && comment_maker(current_user.id, comment.user_id) %>
+<% if comment_maker(current_user.id, current_user.id) && comment_maker(current_user.id, comment.post.user_id) %>
   <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
   <td><%= link_to 'Destroy', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 <% elsif comment_maker(current_user.id, comment.user_id) %>

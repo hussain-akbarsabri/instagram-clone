@@ -20,16 +20,11 @@ Rails.application.routes.draw do
     member do
       post :follow, controller: :follows
       post :unfollow, controller: :follows
+      post :accept_follow, controller: :follows
     end
     collection do
       get :search
     end
   end
-
-  resources :requests, only: %i[show destroy] do
-    member do
-      post :accept_follow
-    end
-  end
-  # get '*path', to: 'requests#route_not_found'
+  resources :requests, only: %i[show destroy]
 end

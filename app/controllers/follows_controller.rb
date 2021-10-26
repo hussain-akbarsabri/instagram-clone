@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class FollowsController < ApplicationController
-  before_action :set_user, only: %i[follow unfollow send_request]
+  before_action :set_user, only: %i[follow unfollow accept_follow send_request]
   before_action :set_follower, only: %i[unfollow]
+  before_action :set_request, only: %i[accept_follow]
   before_action :send_request, only: %i[follow]
 
   def follow
@@ -20,6 +21,15 @@ class FollowsController < ApplicationController
     redirect_to user_path(params[:id])
   end
 
+  def accept_follow
+    @follow = Follow.new(following_id: @user.id, follower_id: @request.follower_id)
+    authorize @follow
+    flash[:alert] = @follow.errors.full_messages unless @follow.save
+    remove_request
+
+    redirect_to user_path(params[:id])
+  end
+
   private
 
   def set_user
@@ -30,6 +40,10 @@ class FollowsController < ApplicationController
     @follow = Follow.find_by!(following_id: @user.id)
   end
 
+  def set_request
+    @request = Request.find_by!(following_id: params[:id])
+  end
+
   def send_request
     return unless @user.status
 
@@ -37,5 +51,9 @@ class FollowsController < ApplicationController
     flash[:alert] = @request.errors.full_messages unless @request.save
 
     redirect_to user_path(params[:id])
+  end
+
+  def remove_request
+    flash[:alert] = @request.errors.full_messages unless @request.destroy
   end
 end

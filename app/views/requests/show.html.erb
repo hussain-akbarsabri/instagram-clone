@@ -9,7 +9,7 @@
     <% @requests.each do |request| %>
       <tr>
         <td><%= requester_username(request.follower_id) %></td>
-        <td><%= link_to 'Accept the request', accept_follow_request_path, method: :post %></td>
+        <td><%= link_to 'Accept the request', accept_follow_user_path, method: :post %></td>
       </tr>
     <% end %>
   </tbody>

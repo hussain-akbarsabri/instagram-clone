@@ -8,17 +8,21 @@ class FollowPolicy < ApplicationPolicy
   end
 
   def follow?
-    current_user?
+    !current_user?
   end
 
   def unfollow?
     follow_created?
   end
 
+  def accept_follow?
+    current_user?
+  end
+
   private
 
   def current_user?
-    @user.id != @record.following_id
+    @user.id == @record.following_id
   end
 
   def follow_created?

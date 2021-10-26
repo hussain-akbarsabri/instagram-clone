@@ -7,26 +7,30 @@ class StoryPolicy < ApplicationPolicy
     end
   end
 
+  def create?
+    story_owner?
+  end
+
   def show?
-    return true if @user.followings.find_by(follower_id: @user.id,
-                                            following_id: @record.user_id) || @user.id == @record.user_id
+    return true if @user.followings.find_by(follower_id: @user.id, following_id:
+      @record.user_id) || @user.id == @record.user_id || !User.find(@record.user_id).status
   end
 
   def edit?
-    post_owner?
+    story_owner?
   end
 
   def update?
-    post_owner?
+    story_owner?
   end
 
   def destroy?
-    post_owner?
+    story_owner?
   end
 
   private
 
-  def post_owner?
+  def story_owner?
     @user == @record.user
   end
 end

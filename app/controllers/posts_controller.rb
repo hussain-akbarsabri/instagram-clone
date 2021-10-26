@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
-  before_action :authorize_post, only: %i[show edit update destroy]
+  before_action :authorize_post, only: %i[create show edit update destroy]
 
   def feed
     @followings = current_user.followings
@@ -14,13 +14,14 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
+    authorize @post
 
     if @post.save
       flash[:notice] = 'Post created successfully.'
     else
       flash[:alert] = @post.errors.full_messages
     end
-    redirect_to user_path(params[:user_id])
+    redirect_to user_path(current_user)
   end
 
   def show

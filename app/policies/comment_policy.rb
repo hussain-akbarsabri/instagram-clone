@@ -7,6 +7,10 @@ class CommentPolicy < ApplicationPolicy
     end
   end
 
+  def create?
+    current_user?
+  end
+
   def edit?
     current_user?
   end

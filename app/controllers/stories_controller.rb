@@ -10,7 +10,7 @@ class StoriesController < ApplicationController
 
   def create
     @story = current_user.stories.new(story_params)
-    authorize @post
+    authorize @story
 
     if @story.save
       flash[:notice] = 'Story created successfully.'

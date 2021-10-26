@@ -14,12 +14,16 @@
         <div class="row">
           <div class="col-md-2">
             <div class="post-profile-wrapper">
-              <br><%= link_to cl_image_tag(@post.user.image.key), user_path(current_user) if @post.user.image.attached? %>
+              <% if @post.user.image.attached? %>
+                <br><%= link_to cl_image_tag(@post.user.image.key), user_path(current_user) %>
+              <% else %>
+                <br><%= image_tag("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg") %>
+              <%end%>
             </div>
           </div>
           <div class="col-md-10">
             <br><br><%= link_to "#{@post.user.username}", user_path(@post.user), class: "username" %>
-            <% if policy(@post).update? %>
+            <% if policy(@post).show? %>
               <%= link_to '<i class="glyphicon glyphicon-cog"></i>'.html_safe, edit_post_path(@post), class: "btn follow-btn" %>
             <% end %>
           </div>

@@ -14,9 +14,6 @@
       </div>
       <div class="col-md-1">
         <br><br><%= link_to "#{post.user.username}", user_path(post.user), class: "username" %>
-        <% if post_maker(current_user.id, post.user_id) %>
-          <%= link_to '<i class="glyphicon glyphicon-cog"></i>'.html_safe, edit_post_path(post) %>
-        <% end %>
       </div>
     </div><br>
     <div class="row">

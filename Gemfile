@@ -82,7 +82,3 @@ gem 'pg'
 gem 'pundit'
 gem 'ransack'
 gem 'sidekiq'
-
-group :production, :staging do
-  gem 'rails_12factor'
-end

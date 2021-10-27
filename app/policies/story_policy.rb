@@ -7,6 +7,10 @@ class StoryPolicy < ApplicationPolicy
     end
   end
 
+  def new?
+    story_owner?
+  end
+
   def create?
     story_owner?
   end

@@ -7,6 +7,10 @@ class PostPolicy < ApplicationPolicy
     end
   end
 
+  def new?
+    post_owner?
+  end
+
   def create?
     post_owner?
   end
@@ -32,5 +36,5 @@ class PostPolicy < ApplicationPolicy
 
   def post_owner?
     @user == @record.user
-  end
+  end 
 end

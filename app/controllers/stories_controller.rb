@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 class StoriesController < ApplicationController
+  before_action :set_user, only: %i[new create]
   before_action :set_story, only: %i[show edit update destroy]
-  before_action :authorize_story, only: %i[edit update destroy]
+  before_action :authorize_story, only: %i[show edit update destroy]
 
   def new
-    @story = Story.new
+    @story = @user.stories.new
+    authorize @story
   end
 
   def create
-    @story = current_user.stories.new(story_params)
+    @story = @user.stories.new(story_params)
     authorize @story
 
     if @story.save
@@ -49,6 +51,10 @@ class StoriesController < ApplicationController
 
   def story_params
     params.require(:story).permit(:image)
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 
   def set_story

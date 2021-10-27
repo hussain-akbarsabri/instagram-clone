@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  before_action :set_user, only: %i[new create]
   before_action :set_post, only: %i[show edit update destroy]
   before_action :authorize_post, only: %i[show edit update destroy]
 
@@ -9,11 +10,12 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    @post = @user.posts.new
+    authorize @post
   end
 
   def create
-    @post = current_user.posts.new(post_params)
+    @post = @user.posts.new(post_params)
     authorize @post
 
     if @post.save
@@ -53,6 +55,10 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:caption, images: [])
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 
   def set_post

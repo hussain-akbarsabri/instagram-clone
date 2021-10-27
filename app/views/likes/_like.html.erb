@@ -2,7 +2,7 @@
   <%= @post.likes.count %>
 </span>
 
-Likes <br>
+Likes<br>
 
-<%= link_to '<i class="glyphicon glyphicon-heart"></i>'.html_safe, like_path(@post), method: :delete, remote: true, id: 'unliked', class: "no" %>
-<%= link_to '<i class="glyphicon glyphicon-heart-empty"></i>'.html_safe, post_likes_path(@post), method: :post, remote: true, id: 'liked' %>
+<%= link_to '<i class="glyphicon glyphicon-heart"></i>'.html_safe, like_path(@post), method: :delete, remote: true, id: 'unliked', class: "#{"no" unless liked(@post)}" %>
+<%= link_to '<i class="glyphicon glyphicon-heart-empty"></i>'.html_safe, post_likes_path(@post), method: :post, remote: true, id: 'liked', class: "#{"no" if liked(@post)}" %>

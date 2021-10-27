@@ -15,7 +15,7 @@ def image_fetcher
   URI.parse(Faker::Avatar.image).open
 end
 
-100.times do |n|
+20.times do |n|
   user = User.create(
     email: Faker::Internet.email,
     password: '123123',

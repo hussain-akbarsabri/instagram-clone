@@ -1,0 +1,16 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Users</th>
+      <th>Visit This user</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.username %></td>
+        <td><%= link_to 'Visit', user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

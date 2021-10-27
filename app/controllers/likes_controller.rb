@@ -13,7 +13,7 @@ class LikesController < ApplicationController
       flash[:alert] = @like.errors.full_messages unless @like.save
     end
 
-    redirect_to post_path(@post)
+    # redirect_to post_path(@post)
   end
 
   def destroy
@@ -25,7 +25,7 @@ class LikesController < ApplicationController
       flash[:alert] = @like.errors.full_messages unless @like.destroy
     end
 
-    redirect_to post_path(@post)
+    # redirect_to post_path(@post)
   end
 
   private

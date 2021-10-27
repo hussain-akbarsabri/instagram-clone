@@ -686,34 +686,39 @@
   border-radius: 50%;
 }
 /* line 5, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+.no {
+  display: none;
+}
+
+/* line 8, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 .btn {
   color: inherit;
 }
 
-/* line 9, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 12, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 .devise-form {
   margin-left: 8%;
   text-align: center;
   width: 55%;
 }
-/* line 13, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 16, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 .devise-form .main {
   padding: 10%;
 }
 
-/* line 18, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 21, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 header {
   padding-top: 11px;
   padding-bottom: 7px;
   border: 1px solid #edeeee;
 }
-/* line 23, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 26, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 header .header-logo img {
   width: 110px;
   margin-top: 1%;
   margin-left: 35%;
 }
-/* line 30, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 33, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 header .header-search input {
   margin-top: 2%;
   background-color: #fafafa;
@@ -721,22 +726,22 @@ header .header-search input {
   text-align: center;
   padding: 5px 30px;
 }
-/* line 38, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 41, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 header .navbar_margin {
   margin-left: 8%;
 }
-/* line 41, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 44, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 header .icons {
   float: left;
   font-size: 22px;
 }
-/* line 45, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 48, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 header .header-profile-wrapper {
   width: 30px;
   height: 30px;
   float: left;
 }
-/* line 49, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 52, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 header .header-profile-wrapper img {
   width: 100%;
   margin-top: 18%;
@@ -744,56 +749,56 @@ header .header-profile-wrapper img {
   border-radius: 50%;
 }
 
-/* line 59, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 62, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 .profile .profile-image {
   margin-left: 53%;
 }
-/* line 61, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 64, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 .profile .profile-image img {
   height: 150px;
   width: 150px;
   border-radius: 50%;
 }
-/* line 67, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 70, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 .profile .profile-user-name {
   display: inline-block;
   margin-left: 6%;
 }
-/* line 71, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 74, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 .profile .profile-stats {
   margin-top: 10px;
   font-size: 17px;
   margin-right: 10%;
 }
-/* line 76, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 79, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 .profile .profile-bio {
   font-size: 15px;
   margin-top: 20px;
 }
-/* line 80, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 83, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 .profile .profile-real-name,
 .profile .profile-stat-count {
   font-weight: 600;
   margin-left: 6%;
 }
-/* line 85, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 88, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 .profile .follow-btn {
   text-transform: uppercase;
   margin-left: 20px;
 }
-/* line 88, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 91, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 .profile .follow-btn:hover {
   border-color: inherit;
 }
 
-/* line 95, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 98, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 .edit-form .profile-wrapper {
   width: 200px;
   height: 200px;
   border-radius: 50%;
 }
 
-/* line 102, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
+/* line 105, /home/dev/Pictures/instagram/app/assets/stylesheets/users.scss */
 .text-center {
   text-align: center;
 }

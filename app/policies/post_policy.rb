@@ -36,5 +36,5 @@ class PostPolicy < ApplicationPolicy
 
   def post_owner?
     @user == @record.user
-  end 
+  end
 end

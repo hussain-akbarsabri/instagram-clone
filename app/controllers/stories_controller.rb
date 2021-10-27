@@ -3,7 +3,7 @@
 class StoriesController < ApplicationController
   before_action :set_user, only: %i[new create]
   before_action :set_story, only: %i[show edit update destroy]
-  before_action :authorize_story, only: %i[show edit update destroy]
+  before_action :authorize_user, only: %i[show edit update destroy]
 
   def new
     @story = @user.stories.new
@@ -61,7 +61,7 @@ class StoriesController < ApplicationController
     @story = Story.find(params[:id])
   end
 
-  def authorize_story
+  def authorize_user
     authorize @story
   end
 end

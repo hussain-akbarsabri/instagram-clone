@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
   def search
-    @users = User.ransack(username_cont: params[:q]).result(distinct: true)
+    @users = User.ransack(username_cont: params[:q]).result
 
     respond_to do |format|
       format.html {}

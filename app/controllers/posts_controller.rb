@@ -3,7 +3,7 @@
 class PostsController < ApplicationController
   before_action :set_user, only: %i[new create]
   before_action :set_post, only: %i[show edit update destroy]
-  before_action :authorize_post, only: %i[show edit update destroy]
+  before_action :authorize_user, only: %i[show edit update destroy]
 
   def feed
     @followings = current_user.followings
@@ -65,7 +65,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def authorize_post
+  def authorize_user
     authorize @post
   end
 end

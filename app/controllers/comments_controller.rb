@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :set_post, only: %i[create]
+  before_action :set_post, only: %i[new create]
   before_action :set_comment, only: %i[edit update destroy]
-  before_action :authorize_comment, only: %i[edit update destroy]
+  before_action :authorize_user, only: %i[edit update destroy]
 
   def new
-    @comment = Comment.new
+    @comment = @post.comments.new
+    authorize @comment
   end
 
   def create
@@ -59,7 +60,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
   end
 
-  def authorize_comment
+  def authorize_user
     authorize @comment
   end
 end

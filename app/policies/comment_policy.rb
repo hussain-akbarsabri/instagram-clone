@@ -8,28 +8,28 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def new?
-    current_user?
+    allowed_user?
   end
 
   def create?
-    current_user?
+    allowed_user?
   end
 
   def edit?
-    current_user?
+    allowed_user?
   end
 
   def update?
-    current_user?
+    allowed_user?
   end
 
   def destroy?
-    current_user?
+    allowed_user?
   end
 
   private
 
-  def current_user?
+  def allowed_user?
     @post = @record.post
     @user == @post.user or @user == @record.user
   end

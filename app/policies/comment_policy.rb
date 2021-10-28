@@ -7,12 +7,9 @@ class CommentPolicy < ApplicationPolicy
     end
   end
 
-  def new?
-    allowed_user?
-  end
-
   def create?
-    allowed_user?
+    return true if @user.followings.find_by(follower_id: @user.id, following_id:
+      @record.user_id) || allowed_user?
   end
 
   def edit?
@@ -31,6 +28,6 @@ class CommentPolicy < ApplicationPolicy
 
   def allowed_user?
     @post = @record.post
-    @user == @post.user or @user == @record.user
+    @user == @post.user
   end
 end

@@ -8,16 +8,18 @@ class LikePolicy < ApplicationPolicy
   end
 
   def create?
-    current_user?
+    return true if @user.followings.find_by(follower_id: @user.id, following_id:
+      @record.user_id) || !allowed_user?
   end
 
   def destroy?
-    current_user?
+    @user == @record.user
   end
 
   private
 
-  def current_user?
-    @post = @record.user
+  def allowed_user?
+    @post = @record.post
+    @user != @post.user
   end
 end

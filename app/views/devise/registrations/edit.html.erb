@@ -8,7 +8,7 @@
           <% if current_user.image.attached? %>
             <%= cl_image_tag current_user.image.key, class: "profile-wrapper" %><br><br>
           <% else %>
-            <%= image_tag("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg", class: "profile-wrapper", cloud_name: 'instagram-dev') %>
+            <%= image_tag("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg", class: "profile-wrapper") %>
           <%end%>
         </div>
         <h2 class="username"><%=current_user.username %></h2>

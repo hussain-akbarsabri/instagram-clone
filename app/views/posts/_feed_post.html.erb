@@ -6,9 +6,9 @@
         <div class="post-profile-wrapper">
           <br>
           <% if post.user.image.attached? %>
-            <%= link_to cl_image_tag(post.user.image.key, cloud_name: 'instagram-dev'), user_path(post.user) %>
+            <%= link_to cl_image_tag(post.user.image.key), user_path(post.user) %>
           <% else %>
-            <%= image_tag("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg", cloud_name: 'instagram-dev') %>
+            <%= image_tag("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg") %>
           <%end%>
         </div>
       </div>

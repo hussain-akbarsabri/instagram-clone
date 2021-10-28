@@ -12,13 +12,10 @@ end
 
 if Rails.env.production?
   Sidekiq.configure_client do |config|
-    config.redis = { url: ENV['REDIS_HOSTNAME'], size: 1, network_timeout: 5 }
+    config.redis = { url: ENV['REDIS_URI'], size: 4, network_timeout: 5 }
   end
 
   Sidekiq.configure_server do |config|
-    pool_size = (Sidekiq.options[:concurrency] + 2)
-    config.redis = { url: ENV['REDIS_HOSTNAME'], size: pool_size, network_timeout: 5 }
+    config.redis = { url: ENV['REDIS_URI'], size: 4, network_timeout: 5 }
   end
-
-  Sidekiq::Extensions.enable_delay!
 end

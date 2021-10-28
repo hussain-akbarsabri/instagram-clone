@@ -24,6 +24,7 @@ Gems
   pundit
   ransack
   sidekiq
+  faker
 
 Run the application
   Start the rails server (rails s)
@@ -36,3 +37,9 @@ System dependencies
   Sidekiq
   Jquery
   bootstrap
+
+Setup Instructions
+  Clone the repository
+  
+  Start the rails server
+

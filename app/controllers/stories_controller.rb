@@ -15,6 +15,7 @@ class StoriesController < ApplicationController
     authorize @story
 
     if @story.save
+      create_job_for_deleting
       flash[:notice] = 'Story created successfully.'
     else
       flash[:alert] = @story.errors.full_messages
@@ -38,6 +39,7 @@ class StoriesController < ApplicationController
   end
 
   def destroy
+    remove_job_from_queue
     if @story.destroy
       flash[:notice] = 'Story deleted successfully.'
     else
@@ -59,6 +61,18 @@ class StoriesController < ApplicationController
 
   def set_story
     @story = Story.find(params[:id])
+  end
+
+  def create_job_for_deleting
+    @story.job_id = DeleteStoryJob.set(wait: 24.hours).perform_later(@story).provider_job_id
+    @story.save
+  end
+
+  def remove_job_from_queue
+    queue = Sidekiq::ScheduledSet.new
+    queue.each do |job|
+      job.delete if job.jid == @story.job_id
+    end
   end
 
   def authorize_user

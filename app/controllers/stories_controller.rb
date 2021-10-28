@@ -39,7 +39,6 @@ class StoriesController < ApplicationController
   end
 
   def destroy
-    remove_job_from_queue
     if @story.destroy
       flash[:notice] = 'Story deleted successfully.'
     else

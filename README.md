@@ -2,8 +2,7 @@
 
 Instagram Clone
 
-This application is built using ruby 2.7 and rails 5.2
-The database used is postgres
+This application is an instagram clone which works like instgram. You can create post, story, like or comment. Also you can follow each other.
 
 Description
   This application has a user login system. In which user can sign up by giving email, username and password.
@@ -15,31 +14,40 @@ Description
   A user can create a story, which will delete after 24 hours automatically, if user dont delete it.
   A search bar is implemented, you can search for any user through this.
 
+Models
+  User
+  Post
+  Story
+  Comment
+  Like
+  Follow
+  Request
+
 Gems
   active_storage_validations
   bootstrap-sass
+  cloudinary
   devise
+  faker
+  figaro
   jquery-rails
+  kaminari
   pg
   pundit
   ransack
   sidekiq
-  faker
-
-Run the application
-  Start the rails server (rails s)
-  Start the sidekiq (sidekiq)
 
 System dependencies
   Rails 5.2
   Ruby 2.7
-  Redis
-  Sidekiq
-  Jquery
-  bootstrap
+  psql (PostgreSQL) 14.0 (Ubuntu 14.0-1.pgdg20.04+1)
+
 
 Setup Instructions
   Clone the repository
-  
+  check this link for cloning: git@github.com:akbar-hussain/instagram-clone.git
+  Install the dependencies by runing bundle install
+  User rake db:setup to create database
+  Seed data in database
   Start the rails server
-
+  go to http://localhost:3000/

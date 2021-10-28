@@ -1,6 +1,6 @@
 <b><%= comment.user.username %></b>
 <%= comment.content %>
-<% if policy(comment).edit? || policy(comment).comment? %>
+<% if policy(comment).edit? %>
   <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
   <td><%= link_to 'Destroy', comment_path(comment), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 <% end %><br>

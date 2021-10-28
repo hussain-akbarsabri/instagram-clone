@@ -6,9 +6,9 @@
         <br><br><br><br><br>
         <div class="profile-wrapper">
           <% if current_user.image.attached? %>
-            <%= cl_image_tag current_user.image.key, cloud_name: 'instagram-dev', class: "profile-wrapper" %><br><br>
+            <%= cl_image_tag current_user.image.key, class: "profile-wrapper" %><br><br>
           <% else %>
-            <%= image_tag("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg", class: "profile-wrapper") %>
+            <%= image_tag("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg", class: "profile-wrapper", cloud_name: 'instagram-dev') %>
           <%end%>
         </div>
         <h2 class="username"><%=current_user.username %></h2>

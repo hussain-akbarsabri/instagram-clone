@@ -1,5 +1,5 @@
-cloudinary:      
-  service: Cloudinary
+redis:
+  service: Redis
 
 test:
   service: Disk

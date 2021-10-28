@@ -24,10 +24,14 @@ class CommentPolicy < ApplicationPolicy
     allowed_user?
   end
 
+  def comment?
+    @user == @record.user
+  end
+
   private
 
   def allowed_user?
     @post = @record.post
-    @user == @post.user
+    @user == @post.user || @user == @record.user
   end
 end

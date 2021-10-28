@@ -9,7 +9,7 @@ class LikePolicy < ApplicationPolicy
 
   def create?
     return true if @user.followings.find_by(follower_id: @user.id, following_id:
-      @record.user_id) || !allowed_user?
+      @record.user_id).presence || !allowed_user? || @user == @record.user
   end
 
   def destroy?

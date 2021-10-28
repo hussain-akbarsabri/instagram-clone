@@ -8,7 +8,7 @@
           <% if post.user.image.attached? %>
             <%= link_to cl_image_tag(post.user.image.key), user_path(post.user) %>
           <% else %>
-            <%= image_tag("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg") %>
+            <%= image_tag("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg", cloud_name: 'instagram-dev') %>
           <%end%>
         </div>
       </div>

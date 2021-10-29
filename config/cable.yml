@@ -1,6 +1,5 @@
 development:
-  adapter: redis
-  url: <%= ENV['REDIS_END_POINT'] %>
+  adapter: async
 
 test:
   adapter: async

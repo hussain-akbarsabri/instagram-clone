@@ -8,7 +8,7 @@ module Net
     alias original_use_ssl= use_ssl=
 
     def use_ssl=(flag)
-      self.ca_file = '/etc/pki/tls/certs/ca-bundle.crt'  # for Centos/Redhat
+      self.ca_file = '/etc/ssl/certs/ca-certificates.crt'  # for Centos/Redhat
       self.verify_mode = OpenSSL::SSL::VERIFY_PEER
       self.original_use_ssl = flag
     end

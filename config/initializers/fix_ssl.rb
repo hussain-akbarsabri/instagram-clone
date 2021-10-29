@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+
+require 'open-uri'
+require 'net/https'
+
+module Net
+  class HTTP
+    alias original_use_ssl= use_ssl=
+
+    def use_ssl=(flag)
+      self.ca_file = '/etc/pki/tls/certs/ca-bundle.crt'  # for Centos/Redhat
+      self.verify_mode = OpenSSL::SSL::VERIFY_PEER
+      self.original_use_ssl = flag
+    end
+  end
+end

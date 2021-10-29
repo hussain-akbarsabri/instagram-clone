@@ -38,8 +38,8 @@ Gems
   sidekiq
 
 System dependencies
-  Rails 5.2
-  Ruby 2.7
+  Rails 5.2.6
+  Ruby 2.7.0
   psql (PostgreSQL) 14.0 (Ubuntu 14.0-1.pgdg20.04+1)
 
 

@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-Redis.new(host: ENV['REDIS_END_POINT'], port: ENV['REDIS_PORT'], password: ENV['REDIS_PASSWORD'])
+Redis.new(url: ENV['REDIS_URL']) if ENV['REDIS_URL']

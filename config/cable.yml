@@ -6,4 +6,4 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_END_POINT") %>
+  url: <%= ENV['REDIS_END_POINT'] %>

@@ -12,8 +12,6 @@ class CommentsController < ApplicationController
     authorize @comment
 
     flash[:alert] = @comment.errors.full_messages unless @comment.save
-
-    redirect_to post_path(@post)
   end
 
   def edit; end
@@ -30,8 +28,6 @@ class CommentsController < ApplicationController
 
   def destroy
     flash[:alert] = @comment.errors.full_messages unless @comment.destroy
-
-    redirect_to post_path(@comment.post)
   end
 
   private

@@ -36,8 +36,10 @@
         <hr>
         <div class="likes-comments">
           <%= render '/likes/like' %>
-          <%= render '/comments/new' %>
-          <br><%= render partial: '/comments/post_comments', collection: @post.comments, as: :comment %>
+          <%= render '/comments/new' %><br>
+          <div id="comment">
+            <%= render partial: '/comments/post_comments', collection: @post.comments.order("created_at DESC"), as: :comment %>
+          </div>
         </div>
       </div>
       <div class="col-md-4">

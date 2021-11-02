@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FollowsController < ApplicationController
-  before_action :set_user, only: %i[follow unfollow accept_follow send_request]
+  before_action :set_user, only: %i[follow unfollow send_request]
   before_action :set_follower, only: %i[unfollow]
   before_action :set_request, only: %i[accept_follow]
   before_action :send_request, only: %i[follow]
@@ -22,12 +22,12 @@ class FollowsController < ApplicationController
   end
 
   def accept_follow
-    authorize @request, policy_class: RequestPolicy
-    @follow = Follow.new(following_id: @user.id, follower_id: @request.follower_id)
+    @follow = Follow.new(following_id: @request.following_id, follower_id: @request.follower_id)
+    authorize @follow
     flash[:alert] = @follow.errors.full_messages unless @follow.save
     remove_request
 
-    redirect_to user_path(params[:id])
+    redirect_to user_path(current_user)
   end
 
   private
@@ -41,7 +41,7 @@ class FollowsController < ApplicationController
   end
 
   def set_request
-    @request = Request.find_by!(following_id: params[:id])
+    @request = Request.find(params[:id])
   end
 
   def send_request

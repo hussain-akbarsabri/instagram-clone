@@ -16,7 +16,7 @@
         <% end %>
         <div class="header-profile-wrapper">
           <% if current_user.image.attached? %>
-            <%= link_to image_tag(current_user.image), user_path(current_user) %>
+            <%= link_to cl_image_tag(current_user.image.key), user_path(current_user) %>
           <% else %>
             <%= link_to image_tag("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg"), user_path(current_user) %>
           <%end%>

@@ -27,4 +27,5 @@ Rails.application.routes.draw do
     end
   end
   resources :requests, only: %i[show destroy]
+  get '*path', to: 'application#route_not_found'
 end

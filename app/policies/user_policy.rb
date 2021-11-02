@@ -7,17 +7,13 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
-  def edit?
-    current_user?
-  end
-
-  def update?
-    current_user?
+  def show?
+    allowed_user?
   end
 
   private
 
-  def current_user?
+  def allowed_user?
     @user == @record
   end
 end

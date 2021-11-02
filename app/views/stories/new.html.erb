@@ -8,7 +8,7 @@
         <div class="form-group row">
           <%= f.label :image, class: 'col-sm-2 col-form-label' %>
           <div class="col-sm-7">
-            <%= f.file_field :image, class: 'form-control' %>
+            <%= f.file_field :image, required: true, accept: 'image/png, image/jpg, image/jpeg', class: 'form-control' %>
           </div>
         </div>
         <div class="form-group row">
@@ -20,6 +20,5 @@
         </div>
       <% end %>
     </div>
-
   </div>
 </div>

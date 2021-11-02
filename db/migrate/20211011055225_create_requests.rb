@@ -10,6 +10,7 @@ class CreateRequests < ActiveRecord::Migration[5.2]
     end
 
     add_index :requests, :following_id
-    add_index :requests, :follower_id
+    add_index :requests, %i[following_id follower_id], unique: true
+    add_index :requests, :follower_id, unique: true
   end
 end

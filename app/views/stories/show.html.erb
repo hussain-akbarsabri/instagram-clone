@@ -1,10 +1,13 @@
-<br><br>
 <div class="container">
   <div class="row">
     <div class="post-show">
       <div class="post-wrapper">
-        <%= image_tag @story.image %>
-        <br><br><%= link_to 'Delete This Story', story_path(@story), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <br><%= link_to "#{@story.user.username}", user_path(@story.user), class: "username" %><br><br>
+        <%= cl_image_tag @story.image.key %>
+        <% if policy(@story).edit? %>
+         <br><%= link_to 'Edit Story', edit_story_path(@story), class: "btn follow-btn" %>
+          <br><%= link_to 'Delete This Story', story_path(@story), class: "btn follow-btn", method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
       </div>
     </div>
   </div>

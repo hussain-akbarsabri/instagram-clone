@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  url: rediss://:5TCpwKXm5B4TRD8eq4DmCTEGbGsOXp8X@redis-10720.c1.asia-northeast1-1.gce.cloud.redislabs.com:10720
   channel_prefix: instagram_production

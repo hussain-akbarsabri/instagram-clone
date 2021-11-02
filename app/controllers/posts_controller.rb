@@ -1,26 +1,29 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  before_action :set_user, only: %i[new create]
   before_action :set_post, only: %i[show edit update destroy]
+  before_action :authorize_user, only: %i[show edit update destroy]
 
-  def index
+  def feed
     @followings = current_user.followings
   end
 
   def new
-    @post = Post.new
+    @post = @user.posts.new
+    authorize @post
   end
 
   def create
-    @post = current_user.posts.new(post_params)
+    @post = @user.posts.new(post_params)
+    authorize @post
 
     if @post.save
       flash[:notice] = 'Post created successfully.'
-      redirect_to user_path(params[:user_id])
     else
-      flash[:alert] = @post.erros
-      redirect_to new_user_post_path
+      flash[:alert] = @post.errors.full_messages
     end
+    redirect_to user_path(current_user)
   end
 
   def show
@@ -34,7 +37,7 @@ class PostsController < ApplicationController
       flash[:notice] = 'Post updated successfully.'
       redirect_to @post
     else
-      flash[:alert] = 'you cant update'
+      flash[:alert] = @post.errors.full_messages
       render 'edit'
     end
   end
@@ -42,10 +45,10 @@ class PostsController < ApplicationController
   def destroy
     if @post.destroy
       flash[:notice] = 'Post deleted successfully.'
-      redirect_to user_path current_user
     else
-      flash[:error] = @post.errors
+      flash[:alert] = @post.errors.full_messages
     end
+    redirect_to user_path current_user
   end
 
   private
@@ -54,11 +57,15 @@ class PostsController < ApplicationController
     params.require(:post).permit(:caption, images: [])
   end
 
+  def set_user
+    @user = User.find(params[:user_id])
+  end
+
   def set_post
     @post = Post.find(params[:id])
   end
 
-  def authorize_post
+  def authorize_user
     authorize @post
   end
 end

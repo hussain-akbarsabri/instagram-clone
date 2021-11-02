@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_18_080255) do
+ActiveRecord::Schema.define(version: 2021_11_02_131708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2021_10_18_080255) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content", null: false
-    t.bigint "post_id"
-    t.bigint "user_id"
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 2021_10_18_080255) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.bigint "post_id"
-    t.bigint "user_id"
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_10_18_080255) do
     t.text "caption"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -79,13 +79,14 @@ ActiveRecord::Schema.define(version: 2021_10_18_080255) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["follower_id"], name: "index_requests_on_follower_id"
+    t.index ["following_id", "follower_id"], name: "index_requests_on_following_id_and_follower_id", unique: true
     t.index ["following_id"], name: "index_requests_on_following_id"
   end
 
   create_table "stories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.string "job_id"
     t.index ["user_id"], name: "index_stories_on_user_id"
   end
@@ -99,11 +100,12 @@ ActiveRecord::Schema.define(version: 2021_10_18_080255) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.string "username"
-    t.string "bio"
+    t.string "username", limit: 15, null: false
+    t.text "bio"
     t.boolean "status", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

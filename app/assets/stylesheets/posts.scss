@@ -42,7 +42,10 @@
 .single-post{
   float: left;
   margin: 15px;
-  .post-wrapper{
+  .post-item{
+    position: relative;
+    color: #fff;
+    cursor: pointer;
     width: 280px;
     height: 280px;
     img{
@@ -50,12 +53,7 @@
       height: 100%;
       border-radius: 2%;
     }
-    margin: 10% 0 0 50%;
-  }
-  .post-item{
-    position: relative;
-    color: #fff;
-    cursor: pointer;
+    margin-left: 50%;
   }
   .post-item:hover .post-item-info{
     display: flex;

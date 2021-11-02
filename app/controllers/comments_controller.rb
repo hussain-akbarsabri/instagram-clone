@@ -3,22 +3,15 @@
 class CommentsController < ApplicationController
   before_action :set_post, only: %i[create]
   before_action :set_comment, only: %i[edit update destroy]
-  before_action :authorize_comment, only: %i[edit]
-
-  def new
-    @comment = Comment.new
-  end
+  before_action :authorize_user, only: %i[edit update destroy]
 
   def create
-    @comment = @post.comments.new(comment_params)
+    @comment = @post.comments.new(content: params[:content])
+
     @comment.user_id = current_user.id
-    if @comment.save
-      flash[:notice] = 'Comment created successfully.'
-    else
-      flash[:alert] = @comment.errors
-      render 'new'
-    end
-    redirect_to post_path(@post)
+    authorize @comment
+
+    flash[:alert] = @comment.errors.full_messages unless @comment.save
   end
 
   def edit; end
@@ -27,25 +20,20 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       flash[:notice] = 'Comment updated successfully.'
     else
-      flash[:alert] = @comment.errors
-      render 'edit'
+      flash[:alert] = @comment.errors.full_messages
     end
+
     redirect_to post_path(@comment.post)
   end
 
   def destroy
-    if @comment.destroy
-      flash[:notice] = 'Comment deleted successfully.'
-    else
-      flash[:alert] = @comment.errors
-    end
-    redirect_to post_path(@comment.post)
+    flash[:alert] = @comment.errors.full_messages unless @comment.destroy
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:user_id, :post_id, :content)
+    params.require(:comment).permit(:content)
   end
 
   def set_comment
@@ -56,7 +44,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
   end
 
-  def authorize_comment
+  def authorize_user
     authorize @comment
   end
 end

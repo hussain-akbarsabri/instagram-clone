@@ -1,13 +1,8 @@
-<% @post.comments.each do |comment| %>
-  <%= comment.user.username %>
+<div id="delete<%= comment.id %>">
+  <b><%= comment.user.username %></b>
   <%= comment.content %>
-  <% if commentor_maker(current_user.id, current_user.id) && commentor_maker(current_user.id, @post.user_id) %>
+  <% if policy(comment).edit? %>
     <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-    <td><%= link_to 'Destroy', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  <% elsif commentor_maker(current_user.id, comment.user_id) %>
-    <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-    <td><%= link_to 'Destroy', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  <% end %>
-</tr>
-<br>
-<% end %>
+    <td><%= link_to 'Destroy', comment_path(comment), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <% end %><br>
+</div>

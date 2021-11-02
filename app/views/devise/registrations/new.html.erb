@@ -2,29 +2,26 @@
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-4">
-      <br><br><br><%= image_tag("instagram_mobile") %>
+      <br><br><br><%= image_tag("https://robogramapp.herokuapp.com/assets/auth_img1-5baaffb3d42278f4b95c51e2b134cd069383be42791c888d56514e2d2ffed552.png") %>
     </div>
     <div class="col-md-7">
-      <br><br><br><br>
+      <br><br><br><br><br><br>
       <div class="img img-thumbnail devise-form">
         <div class="main">
-          <%= image_tag("login_logo") %>
+          <%= image_tag("https://i.imgur.com/zqpwkLQ.png") %>
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>
             <div class="field">
-              <br><%= f.email_field :email, placeholder: "Email", class: "form-control" %>
+              <br><%= f.email_field :email, placeholder: "Email", required: true, class: "form-control" %>
             </div>
             <div class="field">
-              <br><%= f.password_field :password, placeholder: "Password", class: "form-control" %>
+              <br><%= f.password_field :password, placeholder: "Password", required: true, class: "form-control" %>
             </div>
             <div class="field">
-              <br><%= f.password_field :password_confirmation, placeholder: "Password Confirmation", class: "form-control" %>
+              <br><%= f.password_field :password_confirmation, placeholder: "Password Confirmation", required: true, class: "form-control" %>
             </div>
             <div class="field">
-              <br><%= f.text_field :username, placeholder: "Username", class: "form-control" %>
-            </div>
-            <div class="field">
-              <br><%= f.file_field :image, class: 'form-control' %>
+              <br><%= f.text_field :username, placeholder: "Username", required: true, class: "form-control" %>
             </div>
             <div class="actions">
               <br><%= f.submit "Sign up", class: "btn btn-primary" %>

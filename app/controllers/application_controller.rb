@@ -4,7 +4,13 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized_error
+  rescue_from ActionController::RoutingError, with: :route_not_found
+
   include Pundit
+
+  def route_not_found
+    render 'users/route_not_found'
+  end
 
   private
 

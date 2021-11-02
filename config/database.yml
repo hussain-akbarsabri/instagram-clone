@@ -20,8 +20,8 @@ development:
 production:
   <<: *default
   database: production_instagram
-  username: admin
-  password: 123123
+  username: ENV['DATABASE_USERNAME']
+  password: ENV['DATABASE_PASSWORD']
 
 
 # Warning: The database defined as "test" will be erased and

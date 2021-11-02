@@ -42,34 +42,6 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="row">
-          <div class="col-md-2">
-            <div class="post-profile-wrapper">
-              <br><%= link_to image_tag(@post.user.image), user_path(current_user) if @post.user.image.attached? %>
-            </div>
-          </div>
-          <div class="col-md-10">
-            <br><br><%= link_to "#{@post.user.username}", user_path(@post.user), class: "username" %>
-            <% if post_login(current_user.id, @post.user_id) %>
-              <%= link_to '<i class="glyphicon glyphicon-cog"></i>'.html_safe, edit_post_path(@post) %>
-            <% end %>
-          </div>
-        </div>
-        <hr>
-        <div class="row caption">
-          <%= @post.caption %>
-        </div>
-        <hr>
-        <div class="likes-comments">
-          <%= render '/likes/like', locals: @post %>
-          <%= link_to '<i class="glyphicon glyphicon-comment"></i>'.html_safe, new_post_comment_path(@post) %>
-          <% if post_maker(current_user.id, @post.user_id) %>
-            <%= link_to '<i class="glyphicon glyphicon-remove"></i>'.html_safe, post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-          <br><%= render 'comments/post_comments' %>
-        </div>
-      </div>
     </div>
   </div>
 </div>

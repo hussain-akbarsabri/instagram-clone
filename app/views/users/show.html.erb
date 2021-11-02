@@ -1,36 +1,22 @@
 <br>
 <div class="container">
-  <div class="profile">
-    <div class="profile-image">
-      <%= image_tag @user.image if @user.image.attached? %>
-    </div>
-    <h1 class="profile-user-name"><%= @user.username %></h1>
-    <% if user_status_current(current_user.id, @user.id) %>
-      <%= link_to 'New Post', new_user_post_path(@user), class: "btn follow-btn" %>
-      <%= link_to 'New Story', new_user_story_path(@user), class: "btn follow-btn" %>
-      <%= link_to '<i class="fas fa-cog"></i>'.html_safe, edit_user_path, class: "btn follow-btn" %>
-    <% else %>
-      <%= render 'follow_button' %>
-    <% end %>
-    <div class="profile-stats">
-      <ul>
-        <li><span class="profile-stat-count"><%= @user.posts.count %></span> posts</li>
-        <li><span class="profile-stat-count"><%= @user.followers.count %></span> followers</li>
-        <li><span class="profile-stat-count"><%= @user.followings.count %></span> following</li>
-      </ul>
-    </div>
-    <div class="profile-bio">
-      <p><span class="profile-real-name"><%= @user.name %></span> <%= @user.bio %></p>
-  <br>
-  <div class="container">
+  <div class="row">
     <div class="profile">
-      <div class="profile-image">
-        <%= image_tag @user.image if @user.image.attached? %>
+      <div class="col-md-4">
+        <div class="profile-image">
+          <% if @user.image.attached? %>
+            <%= cl_image_tag(@user.image.key) %>
+          <% else %>
+            <%= image_tag("https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg") %>
+          <%end%>
+        </div>
       </div>
-        <h1 class="profile-user-name"><%= @user.username %></h1>
-        <% if current_user.id == @user.id %>
+      <div class="col-md-8">
+        <h2 class="profile-user-name"><%= @user.username %></h2>
+        <% if policy(@user).show? %>
           <%= link_to 'New Post', new_user_post_path(@user), class: "btn follow-btn" %>
-          <%= link_to '<i class="fas fa-cog"></i>'.html_safe, edit_user_path, class: "btn follow-btn" %>
+          <%= link_to 'New Story', new_user_story_path(@user), class: "btn follow-btn" %>
+          <%= link_to '<i class="glyphicon glyphicon-cog"></i>'.html_safe, edit_user_registration_path, class: "btn follow-btn" %>
         <% else %>
           <% if requested(current_user.id, @user.id) %>
             <%= link_to 'Requested', request_path(@request.id), method: :delete, class: "btn follow-btn" %>

@@ -4,12 +4,9 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
-  root 'posts#index'
-
-  get :search, controller: :users
+  root 'posts#feed'
 
   devise_for :users, controllers: { registrations: 'registrations' }
-  devise_for :users
 
   resources :users, only: %i[show], shallow: true do
     resources :posts, except: %i[index], shallow: true do

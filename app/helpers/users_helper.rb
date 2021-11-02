@@ -7,8 +7,7 @@ module UsersHelper
   end
 
   def requested(current_user_id, followed_user_id)
-    requested = Request.find_by(following_id: followed_user_id, follower_id: current_user_id)
-    return true if requested
+    Request.find_by(following_id: followed_user_id, follower_id: current_user_id)
   end
 
   def post(user)

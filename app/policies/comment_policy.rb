@@ -26,8 +26,16 @@ class CommentPolicy < ApplicationPolicy
   private
 
   def allowed_user?
-    @post = Post.find(@record.post_id)
-    (@user.followings.find_by(following_id:
-      @post.user_id, follower_id: @user.id).present? && @user == @record.user) || @user == @post.user
+    set_follower
+    @user.id == @record.post.user_id || (!@record.post.user.status && comment_maker) || (follower &&
+      @record.post.user.status && comment_maker)
+  end
+
+  def comment_maker
+    @user.id == @record.user_id
+  end
+
+  def set_follower
+    @follower = @user.followings.find_by(following_id: @record.post.user_id, follower_id: @user.id).present?
   end
 end

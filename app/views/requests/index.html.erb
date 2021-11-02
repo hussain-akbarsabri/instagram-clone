@@ -3,13 +3,15 @@
     <tr>
       <th>Accounts which have requested</th>
       <th>Accept Request</th>
+      <th>Reject Request</th>
     </tr>
   </thead>
   <tbody>
     <% @requests.each do |request| %>
       <tr>
         <td><%= requester_username(request.follower_id) %></td>
-        <td><%= link_to 'Accept the request', accept_follow_user_path, method: :post %></td>
+        <td><%= link_to 'Accept the request', accept_follow_user_path(request), method: :post %></td>
+        <td><%= link_to 'Reject the request', request_path(request), method: :delete %></td>
       </tr>
     <% end %>
   </tbody>

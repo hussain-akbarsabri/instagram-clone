@@ -17,11 +17,11 @@ end
 
 20.times do |n|
   user = User.create(
-    email: Faker::Internet.email,
+    email: Faker::Internet.unique.email,
     password: '123123',
     password_confirmation: '123123',
     name: Faker::Name.name,
-    username: Faker::Name.name,
+    username: Faker::Name.unique.name[2..15],
     bio: Faker::Name.name
   )
   user.image.attach({

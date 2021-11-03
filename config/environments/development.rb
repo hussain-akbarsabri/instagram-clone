@@ -62,4 +62,10 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.generators do |g|
+    g.test_framework :rspec, fixture: true
+    g.factory_bot suffix: 'factory'
+    g.fixture_replacement :factory_bot, dir: 'spec/factories'
+  end
 end

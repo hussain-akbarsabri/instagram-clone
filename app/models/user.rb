@@ -13,7 +13,6 @@ class User < ApplicationRecord
   has_many :stories, dependent: :destroy
   has_many :follows, dependent: :destroy
   has_many :requests, dependent: :destroy
-
   has_many :followers, foreign_key: :following_id, class_name: 'Follow', dependent: :restrict_with_exception,
                        inverse_of: false
   has_many :followings, foreign_key: :follower_id, class_name: 'Follow', dependent: :restrict_with_exception,

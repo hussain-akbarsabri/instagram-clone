@@ -11,8 +11,8 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:comments).dependent(:destroy) }
     it { is_expected.to have_many(:likes).dependent(:destroy) }
     it { is_expected.to have_many(:stories).dependent(:destroy) }
-    it { is_expected.to have_many(:followers).dependent(:restrict_with_exception) }
-    it { is_expected.to have_many(:followings).dependent(:restrict_with_exception) }
+    it { is_expected.to have_many(:followers).dependent(:restrict_with_exception).inverse_of(false) }
+    it { is_expected.to have_many(:followings).dependent(:restrict_with_exception).inverse_of(false) }
   end
 
   describe 'validations' do

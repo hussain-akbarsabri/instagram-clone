@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :comment do
+    post
     content { Faker::Lorem.paragraph }
   end
 end

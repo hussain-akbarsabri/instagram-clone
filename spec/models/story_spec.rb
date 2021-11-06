@@ -7,4 +7,15 @@ RSpec.describe Story, type: :model do
     it { is_expected.to have_one_attached(:image) }
     it { is_expected.to belong_to(:user) }
   end
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:image) }
+
+    it { should validate_attachment_content_type(:image).
+      allowing('image/png').
+      allowing('image/jpg').
+      allowing('image/jpeg').
+      rejecting('text/plain', 'text/xml')
+    }
+  end
 end

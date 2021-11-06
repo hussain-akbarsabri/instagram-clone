@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-include ActionDispatch::TestProcess::FixtureFile
-
 FactoryBot.define do
   factory :user do
     email { Faker::Internet.email }
@@ -10,6 +8,5 @@ FactoryBot.define do
     name { Faker::Name.name }
     username { Faker::Name.unique.name[2..15] }
     bio { Faker::Name.name }
-    image { fixture_file_upload(Rails.root.join('spec/photos/image.png')) }
   end
 end

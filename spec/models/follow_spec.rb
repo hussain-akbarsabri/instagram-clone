@@ -3,7 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Follow, type: :model do
-  let(:follow) { create(:follow, following_id: '10', follower_id: '10') }
+  # let(:user1) { create(:user) }
+  # let(:user2) { create(:user) }
+  # let!(:new_follow1) { create(:follow, following_id: user1.id, follower_id: user2.id) }
+  # let!(:new_follow2) { create(:follow, following_id: user1.id, follower_id: user2.id) }
 
   describe 'associations' do
     it { is_expected.to belong_to(:follower) }

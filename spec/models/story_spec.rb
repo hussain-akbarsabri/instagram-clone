@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'allow_content_type'
 
 RSpec.describe Story, type: :model do
   describe 'associations' do
@@ -10,12 +11,5 @@ RSpec.describe Story, type: :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:image) }
-
-    it { should validate_attachment_content_type(:image).
-      allowing('image/png').
-      allowing('image/jpg').
-      allowing('image/jpeg').
-      rejecting('text/plain', 'text/xml')
-    }
   end
 end

@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  # let(:user) { FactoryBot.create(:user) }
-  # let(:post) { FactoryBot.create(:post, user_id: user.id) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:post) { FactoryBot.create(:post, user_id: user.id) }
   # let!(:first_like) { FactoryBot.create(:like, user_id: user.id, post_id: post.id) }
   # let!(:second_like) { FactoryBot.create(:like, user_id: user.id, post_id: post.id) }
 

@@ -8,5 +8,6 @@ FactoryBot.define do
     name { Faker::Name.name }
     username { Faker::Name.unique.name[2..15] }
     bio { Faker::Name.name }
+    status { false }
   end
 end

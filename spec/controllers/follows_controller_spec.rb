@@ -7,7 +7,7 @@ RSpec.describe FollowsController, type: :controller do
   let(:user) { FactoryBot.create(:user) }
   let(:user1) { FactoryBot.create(:user, status: true) }
   let(:user2) { FactoryBot.create(:user, status: false) }
-  let(:follow) { FactoryBot.create(:follow, following_id: user2.id, follower_id: user.id) }
+  let(:new_follow) { FactoryBot.create(:follow, following_id: user2.id, follower_id: user.id) }
 
   before do
     sign_in user
@@ -66,7 +66,7 @@ RSpec.describe FollowsController, type: :controller do
   describe 'POST follows#unfollow' do
     context 'with correct params' do
       it 'will unfollow a user' do
-        follow
+        new_follow
         expect do
           post :unfollow, params: { id: user2.id }
         end.to change(Follow, :count).by(-1)

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require_relative '../support/allow_content_type'
 
 RSpec.describe User, type: :model do
   subject { create(:user) }
@@ -25,5 +26,6 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_length_of(:bio).is_at_most(50) }
     it { is_expected.to validate_length_of(:password).is_at_least(6) }
     it { is_expected.to validate_presence_of(:password) }
+    it { is_expected.to allow_content_types('image/png', 'image/jpeg', 'image/jpg').for(:image) }
   end
 end

@@ -61,6 +61,14 @@ RSpec.describe FollowsController, type: :controller do
         expect(response).to redirect_to new_user_session_path
       end
     end
+
+    context 'when user is not authorize' do
+      it 'will not allow user to perform action' do
+        post :follow, params: { id: user.id }
+        expect(response.body).to eq('<html><body>You are being <a href="http://test.host/">redirected</a>.</body></html>')
+        expect(response).to redirect_to root_path
+      end
+    end
   end
 
   describe 'POST follows#unfollow' do
@@ -102,6 +110,14 @@ RSpec.describe FollowsController, type: :controller do
         expect(response).to redirect_to new_user_session_path
       end
     end
+
+    context 'when user is not authorize' do
+      it 'will not allow user to perform action' do
+        post :unfollow, params: { id: user.id }
+        expect(response.body).to eq('<html><body>You are being <a href="http://test.host/">redirected</a>.</body></html>')
+        expect(response).to redirect_to root_path
+      end
+    end
   end
 
   describe 'POST follows#accept_follow' do
@@ -134,6 +150,14 @@ RSpec.describe FollowsController, type: :controller do
         end.to change(Follow, :count).by(0)
         expect(flash[:alert]).to eq('You need to sign in or sign up before continuing.')
         expect(response).to redirect_to new_user_session_path
+      end
+    end
+
+    context 'when user is not authorize' do
+      it 'will not allow user to perform action' do
+        post :accept_follow, params: { id: 0 }
+        expect(response.body).to eq('<html><body>You are being <a href="http://test.host/">redirected</a>.</body></html>')
+        expect(response).to redirect_to root_path
       end
     end
   end

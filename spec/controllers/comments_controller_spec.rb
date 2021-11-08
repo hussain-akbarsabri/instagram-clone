@@ -49,6 +49,17 @@ RSpec.describe CommentsController, type: :controller do
         expect(response.body).to eq('You need to sign in or sign up before continuing.')
       end
     end
+
+    context 'when user is not authorize' do
+      let(:pvt_user) { FactoryBot.create(:user, status: true) }
+      let(:new_post) { FactoryBot.create(:post, user_id: pvt_user.id) }
+
+      it 'will not allow user to create' do
+        post :create, params: { post_id: new_post.id, content: 'This is a dummy content' }
+        expect(response.body).to eq('<html><body>You are being <a href="http://test.host/">redirected</a>.</body></html>')
+        expect(response).to redirect_to root_path
+      end
+    end
   end
 
   describe 'GET comments#edit' do
@@ -75,10 +86,21 @@ RSpec.describe CommentsController, type: :controller do
       it 'will make user to sign in' do
         sign_out user
         expect do
-          post :create, params: { post_id: comment_post.id, content: 'This is a dummy content' }, xhr: true
+          get :edit, params: { id: 0 }
         end.to change(Comment, :count).by(0)
-        expect(response).to have_http_status(:unauthorized)
-        expect(response.body).to eq('You need to sign in or sign up before continuing.')
+        expect(response.body).to eq('<html><body>You are being <a href="http://test.host/users/sign_in">redirected</a>.</body></html>')
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+
+    context 'when user is not authorize' do
+      let(:pvt_user) { FactoryBot.create(:user, status: true) }
+      let(:new_post) { FactoryBot.create(:post, user_id: pvt_user.id) }
+
+      it 'will not allow user to edit' do
+        get :edit, params: { id: 0 }
+        expect(response.body).to eq('<html><body>You are being <a href="http://test.host/">redirected</a>.</body></html>')
+        expect(response).to redirect_to root_path
       end
     end
   end
@@ -113,10 +135,21 @@ RSpec.describe CommentsController, type: :controller do
       it 'will make user to sign in' do
         sign_out user
         expect do
-          post :create, params: { post_id: comment_post.id, content: 'This is a dummy content' }, xhr: true
+          put :update, params: { id: 0 }
         end.to change(Comment, :count).by(0)
-        expect(response).to have_http_status(:unauthorized)
-        expect(response.body).to eq('You need to sign in or sign up before continuing.')
+        expect(response.body).to eq('<html><body>You are being <a href="http://test.host/users/sign_in">redirected</a>.</body></html>')
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+
+    context 'when user is not authorize' do
+      let(:pvt_user) { FactoryBot.create(:user, status: true) }
+      let(:new_post) { FactoryBot.create(:post, user_id: pvt_user.id) }
+
+      it 'will not allow user to update' do
+        put :update, params: { id: 0 }
+        expect(response.body).to eq('<html><body>You are being <a href="http://test.host/">redirected</a>.</body></html>')
+        expect(response).to redirect_to root_path
       end
     end
   end
@@ -144,10 +177,21 @@ RSpec.describe CommentsController, type: :controller do
       it 'will make user to sign in' do
         sign_out user
         expect do
-          post :create, params: { post_id: comment_post.id, content: 'This is a dummy content' }, xhr: true
+          delete :destroy, params: { id: 0 }, xhr: true
         end.to change(Comment, :count).by(0)
         expect(response).to have_http_status(:unauthorized)
         expect(response.body).to eq('You need to sign in or sign up before continuing.')
+      end
+    end
+
+    context 'when user is not authorize' do
+      let(:pvt_user) { FactoryBot.create(:user, status: true) }
+      let(:new_post) { FactoryBot.create(:post, user_id: pvt_user.id) }
+
+      it 'will not allow user to destroy' do
+        delete :destroy, params: { id: 0 }
+        expect(response.body).to eq('<html><body>You are being <a href="http://test.host/">redirected</a>.</body></html>')
+        expect(response).to redirect_to root_path
       end
     end
   end

@@ -13,7 +13,7 @@ RSpec.describe FollowsController, type: :controller do
     sign_in user
   end
 
-  describe 'POST follows#follow' do
+  describe 'Follows controller follow action' do
     context 'with correct params' do
       it 'will not make a follow if user follow himself' do
         expect do
@@ -71,7 +71,7 @@ RSpec.describe FollowsController, type: :controller do
     end
   end
 
-  describe 'POST follows#unfollow' do
+  describe 'Follows controller unfollow action' do
     context 'with correct params' do
       it 'will unfollow a user' do
         new_follow
@@ -120,7 +120,7 @@ RSpec.describe FollowsController, type: :controller do
     end
   end
 
-  describe 'POST follows#accept_follow' do
+  describe 'Follows controller accept_follow action' do
     let(:follow_request) { FactoryBot.create(:request, following_id: user.id, follower_id: user1.id) }
 
     context 'with correct params' do

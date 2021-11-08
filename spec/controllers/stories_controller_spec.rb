@@ -11,7 +11,7 @@ RSpec.describe StoriesController, type: :controller do
     sign_in user
   end
 
-  describe 'POST stories#new' do
+  describe 'Stories controller new action' do
     context 'with correct params' do
       it 'render new template' do
         get :new, params: { user_id: user.id }
@@ -47,7 +47,7 @@ RSpec.describe StoriesController, type: :controller do
     end
   end
 
-  describe 'POST stories#create' do
+  describe 'Stories controller create action' do
     context 'with correct params' do
       let(:params) do
         { story: { image: Rack::Test::UploadedFile.new(Rails.root.join('spec/photos/image.png'), 'image/png') },
@@ -109,7 +109,7 @@ RSpec.describe StoriesController, type: :controller do
     end
   end
 
-  describe 'GET stories#edit' do
+  describe 'Stories controller edit action' do
     context 'with correct params' do
       it 'render edit template' do
         get :edit, params: { id: new_story.id }
@@ -146,7 +146,7 @@ RSpec.describe StoriesController, type: :controller do
     end
   end
 
-  describe 'GET stories#show' do
+  describe 'Stories controller show action' do
     context 'with correct params' do
       it 'shows a story' do
         get :show, params: { id: new_story.id }
@@ -184,7 +184,7 @@ RSpec.describe StoriesController, type: :controller do
     end
   end
 
-  describe 'PUT stories#update' do
+  describe 'Stories controller update action' do
     context 'with correct params' do
       let(:story) { create(:story, user_id: user.id) }
       let(:param) do
@@ -239,7 +239,7 @@ RSpec.describe StoriesController, type: :controller do
     end
   end
 
-  describe 'DELETE stories#destroy' do
+  describe 'Stories controller destroy action' do
     context 'with correct params' do
       let(:story) { FactoryBot.create(:story, user_id: user.id) }
 

@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+pass = Faker::Internet.password(min_length: 6)
+
 FactoryBot.define do
   factory :user do
     email { Faker::Internet.email }
-    password { '123123' }
-    password_confirmation { '123123' }
+    password { pass }
+    password_confirmation { pass }
     name { Faker::Name.name }
     username { Faker::Name.unique.name[2..15] }
     bio { Faker::Name.name }

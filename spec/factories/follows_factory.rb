@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :follow do
-    follower_id { 10 }
-    following_id { 10 }
+    follower_id { Faker::Number.number(digits: 10) }
+    following_id { Faker::Number.number(digits: 10) }
   end
 end

@@ -11,7 +11,7 @@ RSpec.describe CommentsController, type: :controller do
     sign_in user
   end
 
-  describe 'POST comments#create' do
+  describe 'Comments controller create action' do
     context 'with correct params' do
       it 'creates a new comment' do
         expect do
@@ -22,15 +22,14 @@ RSpec.describe CommentsController, type: :controller do
     end
 
     context 'with wrong params' do
-      it 'empty content will not create a new comment' do
+      it 'having empty comment will not create a new comment' do
         expect do
           post :create, params: { post_id: comment_post.id, content: nil }, xhr: true
         end.to change(Comment, :count).by(0)
         expect(flash[:alert]).to include("Content can't be blank")
-        expect(response).to have_http_status(:ok)
       end
 
-      it 'wrong post id will not create a new comment' do
+      it 'having wrong post id will not create a new comment' do
         expect do
           post :create, params: { post_id: 0, content: 'This is a dummy content' }, xhr: true
         end.to change(Comment, :count).by(0)
@@ -40,7 +39,7 @@ RSpec.describe CommentsController, type: :controller do
     end
 
     context 'when user is not authenticate' do
-      it 'will make user to sign in' do
+      it 'will force user to sign in by rendering sign in page' do
         sign_out user
         expect do
           post :create, params: { post_id: comment_post.id, content: 'This is a dummy content' }, xhr: true
@@ -54,15 +53,16 @@ RSpec.describe CommentsController, type: :controller do
       let(:pvt_user) { FactoryBot.create(:user, status: true) }
       let(:new_post) { FactoryBot.create(:post, user_id: pvt_user.id) }
 
-      it 'will not allow user to create' do
+      it 'will not allow user to create a comment' do
         post :create, params: { post_id: new_post.id, content: 'This is a dummy content' }
         expect(response.body).to eq('<html><body>You are being <a href="http://test.host/">redirected</a>.</body></html>')
         expect(response).to redirect_to root_path
+        expect(response).to have_http_status(:found)
       end
     end
   end
 
-  describe 'GET comments#edit' do
+  describe 'Comments controller edit action' do
     context 'with correct params' do
       let(:my_new_comment) { FactoryBot.create(:comment, user_id: user.id) }
 
@@ -83,7 +83,7 @@ RSpec.describe CommentsController, type: :controller do
     end
 
     context 'when user is not authenticate' do
-      it 'will make user to sign in' do
+      it 'will force user to sign in by rendering sign in page' do
         sign_out user
         expect do
           get :edit, params: { id: 0 }
@@ -97,7 +97,7 @@ RSpec.describe CommentsController, type: :controller do
       let(:pvt_user) { FactoryBot.create(:user, status: true) }
       let(:new_post) { FactoryBot.create(:post, user_id: pvt_user.id) }
 
-      it 'will not allow user to edit' do
+      it 'will not allow user to render edit page' do
         get :edit, params: { id: 0 }
         expect(response.body).to eq('<html><body>You are being <a href="http://test.host/">redirected</a>.</body></html>')
         expect(response).to redirect_to root_path
@@ -105,7 +105,7 @@ RSpec.describe CommentsController, type: :controller do
     end
   end
 
-  describe 'PUT comments#update' do
+  describe 'Comments controller update action ' do
     context 'with correct params' do
       let(:my_new_comment) { FactoryBot.create(:comment, user_id: user.id) }
 
@@ -123,7 +123,7 @@ RSpec.describe CommentsController, type: :controller do
     end
 
     context 'with wrong params' do
-      it 'will not update comment' do
+      it 'having invalid comment id will not update comment' do
         put :update, params: { id: 0 }
         expect(flash[:alert]).to include('Record Not Found')
         expect(response).to have_http_status(:found)
@@ -132,7 +132,7 @@ RSpec.describe CommentsController, type: :controller do
     end
 
     context 'when user is not authenticate' do
-      it 'will make user to sign in' do
+      it 'will force user to sign in by rendering sign in page' do
         sign_out user
         expect do
           put :update, params: { id: 0 }
@@ -154,11 +154,11 @@ RSpec.describe CommentsController, type: :controller do
     end
   end
 
-  describe 'DELETE comments#destroy' do
+  describe 'Comments controller destroy action' do
     context 'with correct params' do
       let(:my_new_comment) { FactoryBot.create(:comment, user_id: user.id) }
 
-      it 'delete a comment' do
+      it 'deletes a comment' do
         delete :destroy, params: { id: my_new_comment.id }, xhr: true
         expect(response).to have_http_status(:ok)
       end
@@ -174,7 +174,7 @@ RSpec.describe CommentsController, type: :controller do
     end
 
     context 'when user is not authenticate' do
-      it 'will make user to sign in' do
+      it 'will force user to sign in by rendering sign in page' do
         sign_out user
         expect do
           delete :destroy, params: { id: 0 }, xhr: true

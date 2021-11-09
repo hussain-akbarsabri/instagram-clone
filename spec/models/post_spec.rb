@@ -4,9 +4,13 @@ require 'rails_helper'
 require_relative '../support/allow_content_type'
 
 RSpec.describe Post, type: :model do
+  Sidekiq::Testing.inline!
+  include ActiveJob::TestHelper
+
   let(:user) { FactoryBot.create(:user) }
   let(:new_post) { FactoryBot.create(:post, user_id: user.id) }
   let(:post_images) { FactoryBot.create(:post).images }
+  let(:post_with_images) { FactoryBot.create(:post) }
 
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
@@ -28,7 +32,16 @@ RSpec.describe Post, type: :model do
       expect(new_post.images.count).to be > 0
     end
 
-    it 'is expected to validate that :image have less than 10 images' do
+    it 'is expected to validate that :image have less than or equal to 10 images' do
+      post_with_images
+      11.times do
+        post_with_images.images.attach(Rack::Test::UploadedFile.new(Rails.root.join('spec/photos/image.png'),
+                                                                    'image/png'))
+      end
+      expect do
+        post_with_images.save!
+      end.to raise_error(ActiveRecord::RecordInvalid,
+                         'Validation failed: Images total number is out of range')
       expect(new_post.images.count).to be <= 10
     end
   end

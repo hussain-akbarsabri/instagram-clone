@@ -111,7 +111,7 @@ RSpec.describe CommentsController, type: :controller do
 
       it 'updates the comment with content' do
         put :update, params: { id: my_new_comment.id, comment: { content: 'This is a dummy content' } }
-        expect(flash[:notice]).to include('Comment updated successfully.')
+        expect(flash[:notice]).to eq('Comment updated successfully.')
         expect(response).to redirect_to post_path(my_new_comment.post)
       end
 
@@ -125,7 +125,7 @@ RSpec.describe CommentsController, type: :controller do
     context 'with wrong params' do
       it 'having invalid comment id will not update comment' do
         put :update, params: { id: 0 }
-        expect(flash[:alert]).to include('Record Not Found')
+        expect(flash[:alert]).to eq('Record Not Found')
         expect(response).to have_http_status(:found)
         expect(response).to redirect_to root_path
       end
@@ -167,7 +167,7 @@ RSpec.describe CommentsController, type: :controller do
     context 'with wrong params' do
       it 'will not delete comment' do
         delete :destroy, params: { id: 0 }, xhr: true
-        expect(flash[:alert]).to include('Record Not Found')
+        expect(flash[:alert]).to eq('Record Not Found')
         expect(response).to have_http_status(:ok)
         expect(response).to redirect_to root_path
       end

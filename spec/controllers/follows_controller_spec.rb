@@ -42,10 +42,7 @@ RSpec.describe FollowsController, type: :controller do
       it 'wrong user id will not make a follow or request' do
         expect do
           post :follow, params: { id: 0 }
-        end.to change(Follow, :count).by(0)
-        expect do
-          post :follow, params: { id: 0 }
-        end.to change(Request, :count).by(0)
+        end.to change(Follow, :count).by(0), change(Request, :count).by(0)
         expect(flash[:alert]).to eq('Record Not Found')
         expect(response).to redirect_to root_path
       end
@@ -127,8 +124,8 @@ RSpec.describe FollowsController, type: :controller do
       it 'will make a follow and delete a request' do
         expect do
           post :accept_follow, params: { id: follow_request.id }
-        end.to change(Follow, :count).by(+1)
-        expect(response).to redirect_to user_path user
+        end.to change(Follow, :count).by(+1), change(Request, :count).by(-1)
+        expect(response).to redirect_to user_path(user)
       end
     end
 

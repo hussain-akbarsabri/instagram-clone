@@ -49,6 +49,7 @@ RSpec.describe StoriesController, type: :controller do
 
   describe 'Stories controller create action' do
     context 'with correct params' do
+      let(:story) { FactoryBot.create(:story) }
       let(:params) do
         { story: { image: Rack::Test::UploadedFile.new(Rails.root.join('spec/photos/image.png'), 'image/png') },
           user_id: user.id }
@@ -58,6 +59,7 @@ RSpec.describe StoriesController, type: :controller do
         expect do
           post :create, params: params
         end.to change(Story, :count).by(+1)
+        expect(Story.last.job_id).not_to be nil
         expect(flash[:notice]).to eq('Story created successfully.')
         expect(response).to redirect_to user_path(user)
       end

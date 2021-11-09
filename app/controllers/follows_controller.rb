@@ -22,8 +22,8 @@ class FollowsController < ApplicationController
   end
 
   def accept_follow
+    authorize @request
     @follow = Follow.new(following_id: @request.following_id, follower_id: @request.follower_id)
-    authorize @follow
     flash[:alert] = @follow.errors.full_messages unless @follow.save
     remove_request
 

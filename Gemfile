@@ -64,10 +64,19 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
+  gem 'factory_bot_rails'
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec' # or gem 'rubocop-minitest' depending on your test suite
+end
+
+group :test do
+  gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 5.0.0'
+  gem 'rspec-sidekiq'
+  gem 'shoulda-matchers', '~> 5.0'
+  gem 'simplecov', require: false
 end
 
 gem 'active_storage_validations'

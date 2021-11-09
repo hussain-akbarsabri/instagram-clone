@@ -27,7 +27,7 @@ class CommentPolicy < ApplicationPolicy
 
   def allowed_user?
     set_follower
-    @user.id == @record.post.user_id || (!@record.post.user.status && comment_maker) || (follower &&
+    @user.id == @record.post.user_id || (!@record.post.user.status && comment_maker) || (@follower &&
       @record.post.user.status && comment_maker)
   end
 

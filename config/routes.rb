@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[show], shallow: true do
     resources :posts, except: %i[index], shallow: true do
       resources :likes, only: %i[create destroy]
-      resources :comments, except: %i[index show]
+      resources :comments, except: %i[index new show]
     end
     resources :stories, except: %i[index]
     member do

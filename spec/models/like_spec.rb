@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Like, type: :model do
   let(:user) { FactoryBot.create(:user) }
   let(:post) { FactoryBot.create(:post, user_id: user.id) }
-  let!(:first_like) { FactoryBot.create(:like, user_id: user.id, post_id: post.id) }
+  let(:first_like) { FactoryBot.create(:like, user_id: user.id, post_id: post.id) }
   let(:second_like) { FactoryBot.create(:like, user_id: user.id, post_id: post.id) }
 
   describe 'associations' do
@@ -15,6 +15,7 @@ RSpec.describe Like, type: :model do
 
   describe 'validations' do
     it 'allows only one like on a post by user' do
+      first_like
       expect(described_class.liked(post.id, user.id).count).to be < 2
     end
 

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class UserSerializer < ActiveModel::Serializer
+class StorySerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :id, :email, :name, :username, :bio, :image
+  attributes :id, :image
 
   def image
     return unless object.image.attached?

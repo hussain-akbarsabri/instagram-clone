@@ -6,8 +6,7 @@ module Api
       skip_before_action :authenticate_user!
 
       def index
-        posts = Post.all
-        render json: posts
+        render json: Post.all.with_attached_images
       end
     end
   end

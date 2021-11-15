@@ -69,3 +69,4 @@ Rails.application.configure do
     g.fixture_replacement :factory_bot, dir: 'spec/factories'
   end
 end
+Rails.application.routes.default_url_options = { host: 'localhost', port: 3000 }

@@ -79,6 +79,7 @@ group :test do
   gem 'simplecov', require: false
 end
 
+gem 'active_model_serializers'
 gem 'active_storage_validations'
 gem 'bootstrap-sass'
 gem 'cloudinary'

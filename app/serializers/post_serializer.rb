@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class PostSerializer < ActiveModel::Serializer
-  include Rails.application.routes.url_helpers
-
   attributes :id, :caption, :images
 
   def images

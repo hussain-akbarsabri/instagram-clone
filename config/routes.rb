@@ -24,5 +24,12 @@ Rails.application.routes.draw do
     end
   end
   resources :requests, only: %i[index destroy]
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: %i[index]
+      resources :posts, only: %i[index]
+      resources :stories, only: %i[index]
+    end
+  end
   get '*path', to: 'application#route_not_found'
 end
